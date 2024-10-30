@@ -20,6 +20,9 @@ MENU mainMenu[] = {
   {"settings", 3},
   {"settings", 3},
   {"settings", 3},
+  {"settings", 3},
+  {"settings", 3},
+  {"Battery info", 2},
 };
 
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
@@ -37,15 +40,25 @@ void checkExit(int proc) {
   }
 }
 
-void mainMenu_drawMenu(int size) {
+void drawMenu(MENU menu[], int size) {
   DISP.setTextSize(SMALL_TEXT);
   DISP.fillScreen(BGCOLOR);
-  for (int i = 0; i < size; i++) {
-    if (cursor == i) {
-      DISP.setTextColor(BGCOLOR, FGCOLOR);
+  if (cursor > 4) {
+    for (int i = 0 + (cursor - 4); i < size; i++) {
+      if (cursor == i) {
+        DISP.setTextColor(BGCOLOR, FGCOLOR);
+      }
+      DISP.printf(" %-12s\n", menu[i].name);
+      DISP.setTextColor(FGCOLOR, BGCOLOR);
     }
-    DISP.printf(" %-12s\n", mainMenu[i].name);
-    DISP.setTextColor(FGCOLOR, BGCOLOR);
+  } else {
+    for (int i = 0; i < size; i++) {
+      if (cursor == i) {
+        DISP.setTextColor(BGCOLOR, FGCOLOR);
+      }
+      DISP.printf(" %-12s\n", menu[i].name);
+      DISP.setTextColor(FGCOLOR, BGCOLOR);
+    }
   }
 }
 
@@ -56,7 +69,7 @@ void mainMenuLoop() {
     DISP.setCursor(0, 0, 1);
     cursor++;
     if (cursor == mainMenuSize) cursor = cursor % mainMenuSize;
-    mainMenu_drawMenu(mainMenuSize);
+    drawMenu(mainMenu, mainMenuSize);
     StickCP2.Speaker.tone(8000, 20);
   }
   if (StickCP2.BtnA.wasPressed()) {
@@ -131,7 +144,7 @@ void setup() {
   DISP.setTextSize(SMALL_TEXT);
   // DISP.setTextFont(&fonts::Orbitron_Light_24);
   DISP.setCursor(0, 0, 1);
-  mainMenu_drawMenu(mainMenuSize);
+  drawMenu(mainMenu, mainMenuSize);
 }
 
 void loop() {
