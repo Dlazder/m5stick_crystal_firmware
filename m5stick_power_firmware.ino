@@ -1,7 +1,8 @@
 #include "M5StickCPlus2.h"
 #define DISP StickCP2.Display
 
-#define statusBar
+// #define statusBar
+#define SMALL_TEXT 3
 
 uint16_t BGCOLOR=0x0000; // placeholder
 uint16_t FGCOLOR=0xFFF1; // placeholder
@@ -17,7 +18,10 @@ MENU mainMenu[] = {
   {"clock", 1},
   {"Battery info", 2},
   {"settings", 3},
+  {"settings", 3},
+  {"settings", 3},
 };
+
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 
 bool checkBtnBPressed() {
@@ -33,12 +37,14 @@ void checkExit(int proc) {
   }
 }
 
-void mainMenu_drawMenu() {
-  for (int i = 0; i < 3; i++) {
+void mainMenu_drawMenu(int size) {
+  DISP.setTextSize(SMALL_TEXT);
+  DISP.fillScreen(BGCOLOR);
+  for (int i = 0; i < size; i++) {
     if (cursor == i) {
       DISP.setTextColor(BGCOLOR, FGCOLOR);
     }
-    DISP.printf(" %-19s\n", mainMenu[i].name);
+    DISP.printf(" %-12s\n", mainMenu[i].name);
     DISP.setTextColor(FGCOLOR, BGCOLOR);
   }
 }
@@ -47,15 +53,15 @@ void mainMenuLoop() {
   StickCP2.update();
   if (StickCP2.BtnB.wasPressed()) {
     DISP.clear();
-    DISP.setCursor(0, 30);
+    DISP.setCursor(0, 0, 1);
     cursor++;
     if (cursor == mainMenuSize) cursor = cursor % mainMenuSize;
-    mainMenu_drawMenu();
+    mainMenu_drawMenu(mainMenuSize);
     StickCP2.Speaker.tone(8000, 20);
   }
   if (StickCP2.BtnA.wasPressed()) {
     DISP.clear();
-    DISP.setCursor(0, 30);
+    DISP.setCursor(0, 0, 1);
     currentProc = mainMenu[cursor].command;
   }
 }
@@ -122,14 +128,16 @@ void setup() {
   auto cfg = M5.config();
   StickCP2.begin(cfg);
   DISP.setRotation(1);
-  DISP.setTextSize(1);
-  DISP.setTextFont(&fonts::Orbitron_Light_24);
-  DISP.setCursor(0, 30);
-  mainMenu_drawMenu();
+  DISP.setTextSize(SMALL_TEXT);
+  // DISP.setTextFont(&fonts::Orbitron_Light_24);
+  DISP.setCursor(0, 0, 1);
+  mainMenu_drawMenu(mainMenuSize);
 }
 
 void loop() {
-  statusBarLoop();
+  #if defined(statusBar)
+    statusBarLoop();
+  #endif
 
   switch (currentProc) {
     case 0:
