@@ -32,17 +32,21 @@ bool checkBtnBPressed() {
     return true;
   } else return false;
 }
-
 void checkExit(int proc) {
   StickCP2.update();
   if (checkBtnBPressed()) {
     currentProc = proc;
+    DISP.clear();
+    DISP.setCursor(0, 0, 1);
+    drawMenu(mainMenu, mainMenuSize);
   }
 }
+
 
 void drawMenu(MENU menu[], int size) {
   DISP.setTextSize(SMALL_TEXT);
   DISP.fillScreen(BGCOLOR);
+  if (cursor == size) cursor = cursor % size;
   if (cursor > 4) {
     for (int i = 0 + (cursor - 4); i < size; i++) {
       if (cursor == i) {
@@ -61,14 +65,12 @@ void drawMenu(MENU menu[], int size) {
     }
   }
 }
-
 void mainMenuLoop() {
   StickCP2.update();
   if (StickCP2.BtnB.wasPressed()) {
     DISP.clear();
     DISP.setCursor(0, 0, 1);
     cursor++;
-    if (cursor == mainMenuSize) cursor = cursor % mainMenuSize;
     drawMenu(mainMenu, mainMenuSize);
     StickCP2.Speaker.tone(8000, 20);
   }
@@ -89,12 +91,13 @@ void clockLoop() {
     M5.Lcd.printf("%02d:%02d:%02d\n", dt.time.hours, dt.time.minutes, dt.time.seconds);
   }
   oldSeconds = dt.time.seconds;
-  checkExit(0);
+  // checkExit(0);
 }
 
 int oldBattery;
 void battery_drawMenu(int battery) {
-  DISP.setCursor(0, 0);
+  DISP.setCursor(0, 0, 1);
+  DISP.fillScreen(BGCOLOR);
   DISP.print(battery);
 }
 void batteryLoop() {
@@ -104,20 +107,19 @@ void batteryLoop() {
     battery_drawMenu(battery);
   }
   oldBattery = battery;
-  checkExit(0);
+  // checkExit(0, drawMenu(mainMenu, mainMenuSize));
 }
+
 bool isPrinted = false;
 void settingsLoop() {
   StickCP2.update();
-  checkExit(0);
 
   if (!isPrinted) {
     DISP.setCursor(0, 30);
     DISP.print("Settings");
-    isPrinted = true;
+    // isPrinted = true;
   }
-  // checkExit(0);
-  
+  checkExit(0);
 }
 
 auto lastBatteryCheckTime = StickCP2.Rtc.getDateTime();
