@@ -33,6 +33,13 @@ bool checkBtnBPressed() {
     return true;
   } else return false;
 }
+bool checkBtnAPressed() {
+  if (StickCP2.BtnA.wasPressed()) {
+    return true;
+  } else return false;
+}
+
+
 void checkExit(int proc) {
   StickCP2.update();
   if (checkBtnBPressed()) {
@@ -68,13 +75,13 @@ void drawMenu(MENU menu[], int size) {
 }
 void mainMenuLoop() {
   StickCP2.update();
-  if (StickCP2.BtnB.wasPressed()) {
+  if (checkBtnBPressed()) {
     DISP.setCursor(0, 0, 1);
     cursor++;
     drawMenu(mainMenu, mainMenuSize);
     StickCP2.Speaker.tone(8000, 20);
   }
-  if (StickCP2.BtnA.wasPressed()) {
+  if (checkBtnAPressed()) {
     DISP.clear();
     DISP.setCursor(0, 0, 1);
     currentProc = mainMenu[cursor].command;
