@@ -2,7 +2,9 @@
 #define DISP StickCP2.Display
 
 // #define statusBar
-#define SMALL_TEXT 3
+#define SMALL_TEXT 2
+#define MEDIUM_TEXT 3
+#define BIG_TEXT 4
 
 uint16_t BGCOLOR=0x0000; // placeholder
 uint16_t FGCOLOR=0xFFF1; // placeholder
@@ -13,12 +15,11 @@ struct MENU {
 };
 int cursor = 0;
 int currentProc = 0;
+bool isSwitching = true;
 
 MENU mainMenu[] = {
   {"clock", 1},
   {"Battery info", 2},
-  {"settings", 3},
-  {"settings", 3},
   {"settings", 3},
   {"settings", 3},
   {"settings", 3},
@@ -38,13 +39,13 @@ void checkExit(int proc) {
     currentProc = proc;
     DISP.clear();
     DISP.setCursor(0, 0, 1);
-    drawMenu(mainMenu, mainMenuSize);
+    isSwitching = true;
   }
 }
 
 
 void drawMenu(MENU menu[], int size) {
-  DISP.setTextSize(SMALL_TEXT);
+  DISP.setTextSize(MEDIUM_TEXT);
   DISP.fillScreen(BGCOLOR);
   if (cursor == size) cursor = cursor % size;
   if (cursor > 4) {
@@ -68,7 +69,6 @@ void drawMenu(MENU menu[], int size) {
 void mainMenuLoop() {
   StickCP2.update();
   if (StickCP2.BtnB.wasPressed()) {
-    DISP.clear();
     DISP.setCursor(0, 0, 1);
     cursor++;
     drawMenu(mainMenu, mainMenuSize);
@@ -78,48 +78,59 @@ void mainMenuLoop() {
     DISP.clear();
     DISP.setCursor(0, 0, 1);
     currentProc = mainMenu[cursor].command;
+    isSwitching = true;
   }
 }
-
+void mainMenuSetup() {
+  DISP.clear();
+  DISP.setCursor(0, 0, 1);
+  drawMenu(mainMenu, mainMenuSize);
+}
 
 int oldSeconds;
 void clockLoop() {
   auto dt = StickCP2.Rtc.getDateTime();
   if (dt.time.seconds != oldSeconds) {
-    // DISP.clear();
-    DISP.setCursor(10, 40, 7);
-    M5.Lcd.printf("%02d:%02d:%02d\n", dt.time.hours, dt.time.minutes, dt.time.seconds);
+    DISP.setCursor(0, 60, 1);
+    int padding = (20 - 8) / 2;
+    char format_string[30];
+    sprintf(format_string, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
+    DISP.printf("%*s", padding + 8, format_string);
   }
   oldSeconds = dt.time.seconds;
-  // checkExit(0);
+  checkExit(0);
+}
+void clockSetup() {
+  DISP.setTextSize(SMALL_TEXT);
 }
 
 int oldBattery;
 void battery_drawMenu(int battery) {
-  DISP.setCursor(0, 0, 1);
-  DISP.fillScreen(BGCOLOR);
-  DISP.print(battery);
+  DISP.setCursor(0, 60, 1);
+  int screenWidth = 20;
+  int length = 3;
+  int padding = (screenWidth - length) / 2;
+  DISP.printf("%*d%%", padding + length, battery);
 }
 void batteryLoop() {
-  delay(500);
   int battery = StickCP2.Power.getBatteryLevel();
-  if (battery != oldBattery) {
-    battery_drawMenu(battery);
-  }
+  battery_drawMenu(battery);
   oldBattery = battery;
-  // checkExit(0, drawMenu(mainMenu, mainMenuSize));
+  checkExit(0);
+}
+void batterySetup() {
+  DISP.setTextSize(SMALL_TEXT);
 }
 
 bool isPrinted = false;
 void settingsLoop() {
-  StickCP2.update();
-
-  if (!isPrinted) {
-    DISP.setCursor(0, 30);
-    DISP.print("Settings");
-    // isPrinted = true;
-  }
+  int padding = (20 - 8) / 2;
+  DISP.setCursor(0, 60, 1);
+  DISP.printf("%*s\n", padding + 8, "Settings");
   checkExit(0);
+}
+void settingsSetup() {
+  DISP.setTextSize(SMALL_TEXT);
 }
 
 auto lastBatteryCheckTime = StickCP2.Rtc.getDateTime();
@@ -154,6 +165,26 @@ void loop() {
     statusBarLoop();
   #endif
 
+  /* process setup functions switcher */
+  if (isSwitching) {
+    isSwitching = false;
+    switch (currentProc) {
+      case 0:
+        mainMenuSetup();
+        break;
+      case 1:
+        clockSetup();
+        break;
+      case 2:
+        batterySetup();
+        break;
+      case 3:
+        settingsSetup();
+        break;
+    }
+  }
+
+  /* process functions switcher */
   switch (currentProc) {
     case 0:
       mainMenuLoop();
