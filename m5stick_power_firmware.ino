@@ -28,12 +28,12 @@ MENU mainMenu[] = {
 
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 
-bool checkBtnBPressed() {
+bool BtnBWasPressed() {
   if (StickCP2.BtnB.wasPressed()) {
     return true;
   } else return false;
 }
-bool checkBtnAPressed() {
+bool BtnAWasPressed() {
   if (StickCP2.BtnA.wasPressed()) {
     return true;
   } else return false;
@@ -42,7 +42,7 @@ bool checkBtnAPressed() {
 
 void checkExit(int proc) {
   StickCP2.update();
-  if (checkBtnBPressed()) {
+  if (BtnBWasPressed()) {
     currentProc = proc;
     DISP.clear();
     DISP.setCursor(0, 0, 1);
@@ -75,13 +75,13 @@ void drawMenu(MENU menu[], int size) {
 }
 void mainMenuLoop() {
   StickCP2.update();
-  if (checkBtnBPressed()) {
+  if (BtnBWasPressed()) {
     DISP.setCursor(0, 0, 1);
     cursor++;
     drawMenu(mainMenu, mainMenuSize);
     StickCP2.Speaker.tone(8000, 20);
   }
-  if (checkBtnAPressed()) {
+  if (BtnAWasPressed()) {
     DISP.clear();
     DISP.setCursor(0, 0, 1);
     currentProc = mainMenu[cursor].command;
