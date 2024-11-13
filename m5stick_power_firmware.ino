@@ -3,12 +3,13 @@
 #include "./functions/btnUtils.h"
 
 // #define statusBar
+#define serial
 #define SMALL_TEXT 2
 #define MEDIUM_TEXT 3
 #define BIG_TEXT 4
 
-uint16_t BGCOLOR=0x0000; // placeholder
-uint16_t FGCOLOR=0xFFF1; // placeholder
+uint16_t BGCOLOR=0x0000;
+uint16_t FGCOLOR=0xFFF1;
 
 struct MENU {
   char name[20];
@@ -33,6 +34,7 @@ void checkExit(int proc) {
   StickCP2.update();
   if (BtnBWasPressed()) {
     currentProc = proc;
+    Serial.printf("Switching to %d process\n", currentProc);
     DISP.clear();
     DISP.setCursor(0, 0, 1);
     isSwitching = true;
@@ -74,6 +76,7 @@ void mainMenuLoop() {
     DISP.clear();
     DISP.setCursor(0, 0, 1);
     currentProc = mainMenu[cursor].command;
+    Serial.printf("Switching to %d process\n", currentProc);
     isSwitching = true;
   }
 }
@@ -103,7 +106,7 @@ void clockSetup() {
 int oldBattery;
 void battery_drawMenu(int battery) {
   DISP.setCursor(0, 60, 1);
-  int screenWidth = 20;
+  int screenWidth = 12;
   int length = 3;
   int padding = (screenWidth - length) / 2;
   DISP.printf("%*d%%", padding + length, battery);
@@ -115,7 +118,7 @@ void batteryLoop() {
   checkExit(0);
 }
 void batterySetup() {
-  DISP.setTextSize(SMALL_TEXT);
+  DISP.setTextSize(MEDIUM_TEXT);
 }
 
 bool isPrinted = false;
@@ -154,6 +157,7 @@ void setup() {
   // DISP.setTextFont(&fonts::Orbitron_Light_24);
   DISP.setCursor(0, 0, 1);
   drawMenu(mainMenu, mainMenuSize);
+  Serial.begin(9600);
 }
 
 void loop() {
