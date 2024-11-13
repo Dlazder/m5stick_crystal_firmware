@@ -1,5 +1,6 @@
 #include "M5StickCPlus2.h"
 #define DISP StickCP2.Display
+#include "./functions/btnUtils.h"
 
 // #define statusBar
 #define SMALL_TEXT 2
@@ -27,18 +28,6 @@ MENU mainMenu[] = {
 };
 
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
-
-bool BtnBWasPressed() {
-  if (StickCP2.BtnB.wasPressed()) {
-    return true;
-  } else return false;
-}
-bool BtnAWasPressed() {
-  if (StickCP2.BtnA.wasPressed()) {
-    return true;
-  } else return false;
-}
-
 
 void checkExit(int proc) {
   StickCP2.update();
