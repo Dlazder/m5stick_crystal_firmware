@@ -2,6 +2,11 @@
 #define DISP StickCP2.Display
 #include "./functions/btnUtils.h"
 
+
+#include <string>
+using std::to_string;
+
+
 // #define statusBar
 #define serial
 #define SMALL_TEXT 2
@@ -91,10 +96,11 @@ void clockLoop() {
   auto dt = StickCP2.Rtc.getDateTime();
   if (dt.time.seconds != oldSeconds) {
     DISP.setCursor(0, 60, 1);
-    int padding = (20 - 8) / 2;
+    int length = 8;
+    int padding = (20 - length) / 2;
     char format_string[30];
     sprintf(format_string, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
-    DISP.printf("%*s", padding + 8, format_string);
+    DISP.printf("%*s", padding + length, format_string);
   }
   oldSeconds = dt.time.seconds;
   checkExit(0);
@@ -107,7 +113,7 @@ int oldBattery;
 void battery_drawMenu(int battery) {
   DISP.setCursor(0, 60, 1);
   int screenWidth = 12;
-  int length = 3;
+  int length = to_string(battery).length() + 1;
   int padding = (screenWidth - length) / 2;
   DISP.printf("%*d%%", padding + length, battery);
 }
