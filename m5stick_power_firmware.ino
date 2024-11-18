@@ -109,22 +109,31 @@ void clockSetup() {
   DISP.setTextSize(SMALL_TEXT);
 }
 
-int oldBattery;
-void battery_drawMenu(int battery) {
-  DISP.setCursor(0, 60, 1);
-  int screenWidth = 12;
-  int length = to_string(battery).length() + 1;
-  int padding = (screenWidth - length) / 2;
-  DISP.printf("%*d%%", padding + length, battery);
-}
+const int batteryInterval = 2000;
+int currentMillis;
+int previosMillis = 0;
 void batteryLoop() {
-  int battery = StickCP2.Power.getBatteryLevel();
-  battery_drawMenu(battery);
-  oldBattery = battery;
+  currentMillis = millis();
+  if (currentMillis - previosMillis > batteryInterval) {
+    previosMillis = currentMillis;
+    int battery = StickCP2.Power.getBatteryLevel();
+    DISP.setCursor(0, 60, 1);
+    int screenWidth = 12;
+    int length = to_string(battery).length() + 1;
+    int padding = (screenWidth - length) / 2;
+    if (length == 4) {
+      DISP.printf("%*d%%", padding + length, battery);
+    } else {
+      DISP.printf("%*d%% ", padding + length, battery);
+    }
+  }
   checkExit(0);
 }
 void batterySetup() {
   DISP.setTextSize(MEDIUM_TEXT);
+  // reset values for correct first output
+  previosMillis = 0;
+  currentMillis = 10000;
 }
 
 bool isPrinted = false;
@@ -160,12 +169,12 @@ void statusBar_batteryLoop() {
   auto currentTime = StickCP2.Rtc.getDateTime();
   if (lastBatteryCheckTime.time.minutes != currentTime.time.minutes) {
     int battery = StickCP2.Power.getBatteryLevel();
-    oldBattery = battery;
+    // oldBattery = battery;
     lastBatteryCheckTime = currentTime;
     DISP.setCursor(0, 0);
     DISP.print("            ");
   }
-  battery_drawMenu(oldBattery);
+  // battery_drawMenu(oldBattery);
 }
 void statusBarLoop() {
   DISP.drawLine(0, 30, 250, 30);
