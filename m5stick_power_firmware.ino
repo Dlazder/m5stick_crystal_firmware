@@ -8,7 +8,7 @@ using std::to_string;
 #include <WiFi.h>
 
 
-// #define statusBar
+#define statusBar 1
 #define DISP StickCP2.Display
 #define serial
 #define SMALL_TEXT 2
@@ -35,13 +35,21 @@ MENU mainMenu[] = {
 
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 
+void cursorOnTop() {
+    if (statusBar) {
+      DISP.setCursor(0, 30, 1);
+    } else {
+      DISP.setCursor(0, 0, 1);
+    }
+}
+
 void checkExit(int proc) {
   StickCP2.update();
   if (BtnBWasPressed()) {
     currentProc = proc;
     Serial.printf("Switching to %d process\n", currentProc);
     DISP.clear();
-    DISP.setCursor(0, 0, 1);
+    cursorOnTop();
     isSwitching = true;
   }
 }
@@ -72,14 +80,14 @@ void drawMenu(MENU menu[], int size) {
 void mainMenuLoop() {
   StickCP2.update();
   if (BtnBWasPressed()) {
-    DISP.setCursor(0, 0, 1);
+    cursorOnTop();
     cursor++;
     drawMenu(mainMenu, mainMenuSize);
     StickCP2.Speaker.tone(8000, 20);
   }
   if (BtnAWasPressed()) {
     DISP.clear();
-    DISP.setCursor(0, 0, 1);
+    cursorOnTop();
     currentProc = mainMenu[cursor].command;
     Serial.printf("Switching to %d process\n", currentProc);
     isSwitching = true;
@@ -87,7 +95,7 @@ void mainMenuLoop() {
 }
 void mainMenuSetup() {
   DISP.clear();
-  DISP.setCursor(0, 0, 1);
+  cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
 }
 
@@ -177,8 +185,12 @@ void statusBar_batteryLoop() {
   // battery_drawMenu(oldBattery);
 }
 void statusBarLoop() {
+  DISP.setTextColor(FGCOLOR);
+  DISP.setCursor(8, 8, 1);
+  DISP.setTextSize(SMALL_TEXT);
+  DISP.printf("PID: %d", currentProc);
   DISP.drawLine(0, 30, 250, 30);
-  statusBar_batteryLoop();
+  // statusBar_batteryLoop();
 }
 
 void setup() {
@@ -193,9 +205,7 @@ void setup() {
 }
 
 void loop() {
-  #if defined(statusBar)
-    statusBarLoop();
-  #endif
+  
 
   /* process setup functions switcher */
   if (isSwitching) {
@@ -237,4 +247,7 @@ void loop() {
       wifiApLoop();
       break;
   }
+  #if defined(statusBar)
+    statusBarLoop();
+  #endif
 }
