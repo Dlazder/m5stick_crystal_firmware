@@ -1,13 +1,15 @@
 #include "M5StickCPlus2.h"
-#define DISP StickCP2.Display
+#include "esp_wifi.h"
 #include "./functions/btnUtils.h"
 
 
 #include <string>
 using std::to_string;
+#include <WiFi.h>
 
 
 // #define statusBar
+#define DISP StickCP2.Display
 #define serial
 #define SMALL_TEXT 2
 #define MEDIUM_TEXT 3
@@ -28,9 +30,7 @@ MENU mainMenu[] = {
   {"clock", 1},
   {"Battery info", 2},
   {"settings", 3},
-  {"settings", 3},
-  {"settings", 3},
-  {"Battery info", 2},
+  {"Wi-Fi ap", 4},
 };
 
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
@@ -138,6 +138,23 @@ void settingsSetup() {
   DISP.setTextSize(SMALL_TEXT);
 }
 
+#define ssid "M5Stick"
+IPAddress AP_GATEWAY(172, 0, 0, 1);
+void wifiApLoop() {
+  checkExit(0);
+  DISP.setCursor(0, 60, 1);
+  int screenWidth = 20;
+  int length = 15;
+  int padding = (screenWidth - length) / 2;
+  DISP.printf("%*s", padding + length, "WiFi Ap enabled");
+}
+void wifiApSetup() {
+  DISP.setTextSize(SMALL_TEXT);
+  WiFi.mode(WIFI_AP);
+  WiFi.softAP(ssid);
+  WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
+}
+
 auto lastBatteryCheckTime = StickCP2.Rtc.getDateTime();
 void statusBar_batteryLoop() {
   auto currentTime = StickCP2.Rtc.getDateTime();
@@ -187,6 +204,9 @@ void loop() {
       case 3:
         settingsSetup();
         break;
+      case 4:
+        wifiApSetup();
+        break;
     }
   }
 
@@ -203,6 +223,9 @@ void loop() {
       break;
     case 3:
       settingsLoop();
+      break;
+    case 4:
+      wifiApLoop();
       break;
   }
 }
