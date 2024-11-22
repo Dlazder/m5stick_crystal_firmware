@@ -1,6 +1,6 @@
 #include "M5StickCPlus2.h"
 #include "esp_wifi.h"
-#include "./functions/btnUtils.h"
+#include "./utils/btnUtils.h"
 
 
 #include <string>
