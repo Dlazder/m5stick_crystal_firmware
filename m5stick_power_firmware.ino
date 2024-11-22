@@ -32,7 +32,6 @@ MENU mainMenu[] = {
   {"settings", 3},
   {"Wi-Fi ap", 4},
 };
-
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 
 void cursorOnTop() {
@@ -77,24 +76,29 @@ void drawMenu(MENU menu[], int size) {
     }
   }
 }
-void mainMenuLoop() {
+
+void menuLoop(MENU menu[], int size) {
   StickCP2.update();
   if (BtnBWasPressed()) {
     cursorOnTop();
     cursor++;
-    drawMenu(mainMenu, mainMenuSize);
+    drawMenu(menu, size);
     StickCP2.Speaker.tone(8000, 20);
   }
   if (BtnAWasPressed()) {
     DISP.clear();
     cursorOnTop();
-    currentProc = mainMenu[cursor].command;
+    currentProc = menu[cursor].command;
     Serial.printf("Switching to %d process\n", currentProc);
     isSwitching = true;
   }
 }
+
+
+void mainMenuLoop() {
+  menuLoop(mainMenu, mainMenuSize);
+}
 void mainMenuSetup() {
-  DISP.clear();
   cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
 }
@@ -144,15 +148,20 @@ void batterySetup() {
   currentMillis = 10000;
 }
 
-bool isPrinted = false;
+MENU settingsMenu[] = {
+  {"back", 0},
+  {"brightness", 5},
+  {"orientation", 6}
+};
+int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 void settingsLoop() {
-  int padding = (20 - 8) / 2;
-  DISP.setCursor(0, 60, 1);
-  DISP.printf("%*s\n", padding + 8, "Settings");
-  checkExit(0);
+  menuLoop(settingsMenu, settingsMenuSize);
 }
 void settingsSetup() {
   DISP.setTextSize(SMALL_TEXT);
+  cursorOnTop();
+  cursor = 0;
+  drawMenu(settingsMenu, settingsMenuSize);
 }
 
 #define ssid "M5Stick"
