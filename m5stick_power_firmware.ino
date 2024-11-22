@@ -1,22 +1,6 @@
-#include "M5StickCPlus2.h"
-#include "esp_wifi.h"
+#include "./globals/globals.h"
 #include "./utils/btnUtils.h"
-
-
-#include <string>
-using std::to_string;
-#include <WiFi.h>
-
-#define statusBar 1
-#define DISP StickCP2.Display
 #include "./utils/displayUtils.h"
-#define serial
-#define SMALL_TEXT 2
-#define MEDIUM_TEXT 3
-#define BIG_TEXT 4
-
-uint16_t BGCOLOR=0x0000;
-uint16_t FGCOLOR=0xFFF1;
 
 struct MENU {
   char name[20];
@@ -33,14 +17,6 @@ MENU mainMenu[] = {
   {"Wi-Fi ap", 4},
 };
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
-
-void cursorOnTop() {
-    if (statusBar) {
-      DISP.setCursor(0, 30, 1);
-    } else {
-      DISP.setCursor(0, 0, 1);
-    }
-}
 
 void checkExit(int proc) {
   StickCP2.update();
