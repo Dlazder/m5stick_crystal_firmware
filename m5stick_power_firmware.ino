@@ -7,9 +7,9 @@
 using std::to_string;
 #include <WiFi.h>
 
-
 #define statusBar 1
 #define DISP StickCP2.Display
+#include "./utils/displayUtils.h"
 #define serial
 #define SMALL_TEXT 2
 #define MEDIUM_TEXT 3
@@ -107,12 +107,10 @@ int oldSeconds;
 void clockLoop() {
   auto dt = StickCP2.Rtc.getDateTime();
   if (dt.time.seconds != oldSeconds) {
-    DISP.setCursor(0, 60, 1);
-    int length = 8;
-    int padding = (20 - length) / 2;
-    char format_string[30];
-    sprintf(format_string, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
-    DISP.printf("%*s", padding + length, format_string);
+    DISP.setTextColor(FGCOLOR, BGCOLOR);
+    char formatString[30];
+    sprintf(formatString, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
+    centeredPrint(formatString, SMALL_TEXT);
   }
   oldSeconds = dt.time.seconds;
   checkExit(0);
@@ -129,20 +127,14 @@ void batteryLoop() {
   if (currentMillis - previosMillis > batteryInterval) {
     previosMillis = currentMillis;
     int battery = StickCP2.Power.getBatteryLevel();
-    DISP.setCursor(0, 60, 1);
-    int screenWidth = 12;
-    int length = to_string(battery).length() + 1;
-    int padding = (screenWidth - length) / 2;
-    if (length == 4) {
-      DISP.printf("%*d%%", padding + length, battery);
-    } else {
-      DISP.printf("%*d%% ", padding + length, battery);
-    }
+    DISP.setTextColor(FGCOLOR, BGCOLOR);
+    char text[10];
+    sprintf(text, "%d%%", battery);
+    centeredPrint(text, SMALL_TEXT);
   }
   checkExit(0);
 }
 void batterySetup() {
-  DISP.setTextSize(MEDIUM_TEXT);
   // reset values for correct first output
   previosMillis = 0;
   currentMillis = 10000;
@@ -167,12 +159,8 @@ void settingsSetup() {
 #define ssid "M5Stick"
 IPAddress AP_GATEWAY(172, 0, 0, 1);
 void wifiApLoop() {
+  centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   checkExit(0);
-  DISP.setCursor(0, 60, 1);
-  int screenWidth = 20;
-  int length = 15;
-  int padding = (screenWidth - length) / 2;
-  DISP.printf("%*s", padding + length, "WiFi Ap enabled");
 }
 void wifiApSetup() {
   DISP.setTextSize(SMALL_TEXT);
@@ -180,6 +168,16 @@ void wifiApSetup() {
   WiFi.softAP(ssid);
   WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
 }
+
+void brightnessLoop() {
+  DISP.setCursor(0, 60, 1);
+  int brightness = DISP.getBrightness();
+  char text[50];
+  sprintf(text, "brightness: %d", brightness);
+  centeredPrint(text, SMALL_TEXT);
+  checkExit(3);
+}
+
 
 auto lastBatteryCheckTime = StickCP2.Rtc.getDateTime();
 void statusBar_batteryLoop() {
@@ -210,7 +208,7 @@ void setup() {
   // DISP.setTextFont(&fonts::Orbitron_Light_24);
   DISP.setCursor(0, 0, 1);
   drawMenu(mainMenu, mainMenuSize);
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -254,6 +252,9 @@ void loop() {
       break;
     case 4:
       wifiApLoop();
+      break;
+    case 5:
+      brightnessLoop();
       break;
   }
   #if defined(statusBar)
