@@ -59,7 +59,7 @@ void menuLoop(MENU menu[], int size) {
     cursorOnTop();
     cursor++;
     drawMenu(menu, size);
-    StickCP2.Speaker.tone(8000, 20);
+    // StickCP2.Speaker.tone(8000, 20);
   }
   if (BtnAWasPressed()) {
     DISP.clear();
@@ -145,13 +145,24 @@ void wifiApSetup() {
   WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
 }
 
+
 void brightnessLoop() {
   DISP.setCursor(0, 60, 1);
-  int brightness = DISP.getBrightness();
   char text[50];
   sprintf(text, "brightness: %d", brightness);
-  centeredPrint(text, SMALL_TEXT);
+  if (BtnAWasPressed()) {
+    brightness -= brightnessDividor;
+    if (brightness <= 0) brightness = brightnessMax;
+    DISP.setBrightness(brightness);
+    sprintf(text, "brightness: %d", brightness / brightnessDividor);
+    centeredPrint(text, SMALL_TEXT);
+  }
   checkExit(3);
+}
+void brightnessSetup() {
+  char text[50];
+  sprintf(text, "brightness: %d", brightness / brightnessDividor);
+  centeredPrint(text, SMALL_TEXT);
 }
 
 
@@ -183,13 +194,13 @@ void setup() {
   DISP.setTextSize(SMALL_TEXT);
   // DISP.setTextFont(&fonts::Orbitron_Light_24);
   DISP.setCursor(0, 0, 1);
+  DISP.setBrightness(brightness);
   drawMenu(mainMenu, mainMenuSize);
   Serial.begin(115200);
+
 }
 
 void loop() {
-  
-
   /* process setup functions switcher */
   if (isSwitching) {
     isSwitching = false;
@@ -209,9 +220,12 @@ void loop() {
       case 4:
         wifiApSetup();
         break;
+      case 5:
+        brightnessSetup();
+        break;
     }
   }
-
+  
   /* process functions switcher */
   switch (currentProc) {
     case 0:
@@ -233,7 +247,8 @@ void loop() {
       brightnessLoop();
       break;
   }
-  #if defined(statusBar)
+
+  if (statusBar) {
     statusBarLoop();
-  #endif
+  }
 }
