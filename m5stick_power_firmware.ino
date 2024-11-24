@@ -72,12 +72,13 @@ void menuLoop(MENU menu[], int size) {
 
 
 void mainMenuLoop() {
+  if (isSetup()) {
+    cursorOnTop();
+    drawMenu(mainMenu, mainMenuSize);
+  }
   menuLoop(mainMenu, mainMenuSize);
 }
-void mainMenuSetup() {
-  cursorOnTop();
-  drawMenu(mainMenu, mainMenuSize);
-}
+
 
 int oldSeconds;
 void clockLoop() {
@@ -91,14 +92,17 @@ void clockLoop() {
   oldSeconds = dt.time.seconds;
   checkExit(0);
 }
-void clockSetup() {
-  DISP.setTextSize(SMALL_TEXT);
-}
+
 
 const int batteryInterval = 2000;
 int currentMillis;
 int previosMillis = 0;
 void batteryLoop() {
+  if (isSetup()) {
+    // reset values for correct first output
+    previosMillis = 0;
+    currentMillis = 10000;
+  }
   currentMillis = millis();
   if (currentMillis - previosMillis > batteryInterval) {
     previosMillis = currentMillis;
@@ -110,11 +114,7 @@ void batteryLoop() {
   }
   checkExit(0);
 }
-void batterySetup() {
-  // reset values for correct first output
-  previosMillis = 0;
-  currentMillis = 10000;
-}
+
 
 MENU settingsMenu[] = {
   {"back", 0},
@@ -123,30 +123,36 @@ MENU settingsMenu[] = {
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 void settingsLoop() {
+  if (isSetup()) {
+    DISP.setTextSize(SMALL_TEXT);
+    cursorOnTop();
+    cursor = 0;
+    drawMenu(settingsMenu, settingsMenuSize);
+  }
   menuLoop(settingsMenu, settingsMenuSize);
 }
-void settingsSetup() {
-  DISP.setTextSize(SMALL_TEXT);
-  cursorOnTop();
-  cursor = 0;
-  drawMenu(settingsMenu, settingsMenuSize);
-}
+
 
 #define ssid "M5Stick"
 IPAddress AP_GATEWAY(172, 0, 0, 1);
 void wifiApLoop() {
+  if (isSetup()) {
+    DISP.setTextSize(SMALL_TEXT);
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP(ssid);
+    WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
+  }
   centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   checkExit(0);
-}
-void wifiApSetup() {
-  DISP.setTextSize(SMALL_TEXT);
-  WiFi.mode(WIFI_AP);
-  WiFi.softAP(ssid);
-  WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
 }
 
 
 void brightnessLoop() {
+  if (isSetup()) {
+    char text[50];
+    sprintf(text, "brightness: %d", brightness / brightnessDividor);
+    centeredPrint(text, SMALL_TEXT);
+  }
   DISP.setCursor(0, 60, 1);
   char text[50];
   sprintf(text, "brightness: %d", brightness);
@@ -158,11 +164,6 @@ void brightnessLoop() {
     centeredPrint(text, SMALL_TEXT);
   }
   checkExit(3);
-}
-void brightnessSetup() {
-  char text[50];
-  sprintf(text, "brightness: %d", brightness / brightnessDividor);
-  centeredPrint(text, SMALL_TEXT);
 }
 
 
@@ -187,6 +188,15 @@ void statusBarLoop() {
   // statusBar_batteryLoop();
 }
 
+bool isSetup() {
+  if (isSwitching) {
+    isSwitching = false;
+    return true;
+  } else {
+    return false;
+  }
+}
+
 void setup() {
   auto cfg = M5.config();
   StickCP2.begin(cfg);
@@ -200,32 +210,7 @@ void setup() {
 
 }
 
-void loop() {
-  /* process setup functions switcher */
-  if (isSwitching) {
-    isSwitching = false;
-    switch (currentProc) {
-      case 0:
-        mainMenuSetup();
-        break;
-      case 1:
-        clockSetup();
-        break;
-      case 2:
-        batterySetup();
-        break;
-      case 3:
-        settingsSetup();
-        break;
-      case 4:
-        wifiApSetup();
-        break;
-      case 5:
-        brightnessSetup();
-        break;
-    }
-  }
-  
+void loop() {  
   /* process functions switcher */
   switch (currentProc) {
     case 0:
