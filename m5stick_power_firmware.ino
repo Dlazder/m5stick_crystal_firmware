@@ -10,6 +10,8 @@ int cursor = 0;
 int currentProc = 0;
 bool isSwitching = true;
 
+int globalTimer = millis();
+
 MENU mainMenu[] = {
   {"clock", 1},
   {"Battery info", 2},
@@ -147,16 +149,22 @@ void wifiApLoop() {
 }
 
 
+int previousSwitcherTimer = 0;
 void brightnessLoop() {
   if (isSetup()) {
     char text[50];
     sprintf(text, "brightness: %d", brightness / brightnessDividor);
     centeredPrint(text, SMALL_TEXT);
+    globalTimer = millis();
+    previousSwitcherTimer = globalTimer;
   }
-  DISP.setCursor(0, 60, 1);
-  char text[50];
-  sprintf(text, "brightness: %d", brightness);
-  if (BtnAWasPressed()) {
+  globalTimer = millis();
+  if (globalTimer - previousSwitcherTimer > 100 && BtnAWasPressed()) {
+    DISP.setCursor(0, 60, 1);
+    char text[50];
+    sprintf(text, "brightness: %d", brightness);
+    previousSwitcherTimer = globalTimer;
+
     brightness -= brightnessDividor;
     if (brightness <= 0) brightness = brightnessMax;
     DISP.setBrightness(brightness);
