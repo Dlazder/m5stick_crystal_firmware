@@ -11,7 +11,7 @@ using std::to_string;
 
 #define serial
 
-#define statusBar 0
+#define statusBar 1
 
 uint16_t BGCOLOR=0x0000;
 uint16_t FGCOLOR=0xFFF1;
@@ -20,3 +20,6 @@ int brightnessMax = 250;
 int brightnessStep = 10;
 int brightnessDividor = brightnessMax / brightnessStep;
 int brightness = 6*brightnessDividor;
+
+int globalTimer = millis();
+int globalPreviousTimer = 0;

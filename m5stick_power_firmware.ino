@@ -1,6 +1,7 @@
 #include "./globals/globals.h"
 #include "./utils/btnUtils.h"
 #include "./utils/displayUtils.h"
+#include "./utils/timerUtils.h"
 
 struct MENU {
   char name[20];
@@ -9,8 +10,6 @@ struct MENU {
 int cursor = 0;
 int currentProc = 0;
 bool isSwitching = true;
-
-int globalTimer = millis();
 
 MENU mainMenu[] = {
   {"clock", 1},
@@ -96,18 +95,8 @@ void clockLoop() {
 }
 
 
-const int batteryInterval = 2000;
-int currentMillis;
-int previosMillis = 0;
 void batteryLoop() {
-  if (isSetup()) {
-    // reset values for correct first output
-    previosMillis = 0;
-    currentMillis = 10000;
-  }
-  currentMillis = millis();
-  if (currentMillis - previosMillis > batteryInterval) {
-    previosMillis = currentMillis;
+  if (checkTimer(2000)) {
     int battery = StickCP2.Power.getBatteryLevel();
     DISP.setTextColor(FGCOLOR, BGCOLOR);
     char text[10];
@@ -143,27 +132,23 @@ void wifiApLoop() {
     WiFi.mode(WIFI_AP);
     WiFi.softAP(ssid);
     WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
+    centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   }
-  centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   checkExit(0);
 }
 
 
-int previousSwitcherTimer = 0;
 void brightnessLoop() {
   if (isSetup()) {
     char text[50];
     sprintf(text, "brightness: %d", brightness / brightnessDividor);
     centeredPrint(text, SMALL_TEXT);
-    globalTimer = millis();
-    previousSwitcherTimer = globalTimer;
+    updateTimer();
   }
-  globalTimer = millis();
-  if (globalTimer - previousSwitcherTimer > 100 && BtnAWasPressed()) {
+  if (BtnAWasPressed() && checkTimer(100)) {
     DISP.setCursor(0, 60, 1);
     char text[50];
     sprintf(text, "brightness: %d", brightness);
-    previousSwitcherTimer = globalTimer;
 
     brightness -= brightnessDividor;
     if (brightness <= 0) brightness = brightnessMax;
@@ -218,7 +203,8 @@ void setup() {
 
 }
 
-void loop() {  
+void loop() {
+  globalTimer = millis();
   /* process functions switcher */
   switch (currentProc) {
     case 0:
