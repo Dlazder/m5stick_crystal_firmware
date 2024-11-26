@@ -3,7 +3,7 @@ void updateTimer(int *previousTimer = nullptr) {
   *previousTimer = globalTimer;
 }
 
-bool checkTimer(int checkingTime, bool updateTimer = true, int* timer = nullptr) {
+bool checkTimer(int checkingTime, bool updateTimer = true, int *timer = nullptr) {
   if (timer == nullptr) timer = &globalPreviousTimer;
 
   if (globalTimer - *timer > checkingTime) {

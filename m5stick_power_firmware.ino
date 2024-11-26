@@ -96,7 +96,7 @@ void clockLoop() {
 
 
 void batteryLoop() {
-  if (checkTimer(2000)) {
+  if (checkTimer(3000)) {
     int battery = StickCP2.Power.getBatteryLevel();
     DISP.setTextColor(FGCOLOR, BGCOLOR);
     char text[10];
@@ -159,26 +159,21 @@ void brightnessLoop() {
   checkExit(3);
 }
 
-
-auto lastBatteryCheckTime = StickCP2.Rtc.getDateTime();
-void statusBar_batteryLoop() {
-  auto currentTime = StickCP2.Rtc.getDateTime();
-  if (lastBatteryCheckTime.time.minutes != currentTime.time.minutes) {
-    int battery = StickCP2.Power.getBatteryLevel();
-    // oldBattery = battery;
-    lastBatteryCheckTime = currentTime;
-    DISP.setCursor(0, 0);
-    DISP.print("            ");
-  }
-  // battery_drawMenu(oldBattery);
-}
+int battery = StickCP2.Power.getBatteryLevel();
+int statusBarTimer = 0;
 void statusBarLoop() {
   DISP.setTextColor(FGCOLOR);
   DISP.setCursor(8, 8, 1);
   DISP.setTextSize(SMALL_TEXT);
   DISP.printf("PID: %d", currentProc);
-  DISP.drawLine(0, 30, 250, 30);
-  // statusBar_batteryLoop();
+  statusBar_batteryLoop();
+  DISP.drawLine(0, 30, 250, 30, FGCOLOR);
+}
+void statusBar_batteryLoop() {
+  auto currentTime = StickCP2.Rtc.getDateTime();
+  if (checkTimer(3000, true, &statusBarTimer)) battery = StickCP2.Power.getBatteryLevel();
+  DISP.setTextColor(FGCOLOR, BGCOLOR);
+  DISP.printf(" %d%%", battery);
 }
 
 bool isSetup() {
