@@ -2,15 +2,7 @@
 #include "./utils/btnUtils.h"
 #include "./utils/displayUtils.h"
 #include "./utils/timerUtils.h"
-
-struct MENU {
-  char name[20];
-  int command;
-};
-int cursor = 0;
-int currentProc = 0;
-bool isSwitching = true;
-int rotation = 1;
+#include "./utils/webServerUtils.h"
 
 MENU mainMenu[] = {
   {"clock", 1},
@@ -31,9 +23,7 @@ void checkExit(int proc) {
   }
 }
 
-
 void drawMenu(MENU menu[], int size) {
-  Serial.printf("menu size: %d\n", sizeof(menu) / sizeof(MENU));
   DISP.setTextSize(MEDIUM_TEXT);
   DISP.fillScreen(BGCOLOR);
   if (cursor == size) cursor = cursor % size;
@@ -74,55 +64,19 @@ void menuLoop(MENU menu[], int size) {
 }
 
 
+#include "./functions/settingsLoop.h"
+#include "./functions/clockLoop.h"
+#include "./functions/batteryLoop.h"
+#include "./functions/brightnessLoop.h"
+#include "./functions/rotationLoop.h"
+#include "./functions/statusBarLoop.h"
+
 void mainMenuLoop() {
   if (isSetup()) {
     cursorOnTop();
     drawMenu(mainMenu, mainMenuSize);
   }
   menuLoop(mainMenu, mainMenuSize);
-}
-
-
-int oldSeconds;
-void clockLoop() {
-  auto dt = StickCP2.Rtc.getDateTime();
-  if (dt.time.seconds != oldSeconds) {
-    DISP.setTextColor(FGCOLOR, BGCOLOR);
-    char formatString[30];
-    sprintf(formatString, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
-    centeredPrint(formatString, SMALL_TEXT);
-  }
-  oldSeconds = dt.time.seconds;
-  checkExit(0);
-}
-
-
-void batteryLoop() {
-  if (checkTimer(3000)) {
-    int battery = StickCP2.Power.getBatteryLevel();
-    DISP.setTextColor(FGCOLOR, BGCOLOR);
-    char text[10];
-    sprintf(text, "%d%%", battery);
-    centeredPrint(text, SMALL_TEXT);
-  }
-  checkExit(0);
-}
-
-
-MENU settingsMenu[] = {
-  {"back", 0},
-  {"brightness", 5},
-  {"orientation", 6}
-};
-int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
-void settingsLoop() {
-  if (isSetup()) {
-    DISP.setTextSize(SMALL_TEXT);
-    cursorOnTop();
-    cursor = 0;
-    drawMenu(settingsMenu, settingsMenuSize);
-  }
-  menuLoop(settingsMenu, settingsMenuSize);
 }
 
 
@@ -134,67 +88,28 @@ void wifiApLoop() {
     WiFi.mode(WIFI_AP);
     WiFi.softAP(ssid);
     WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
+    webServerLoop();
     centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   }
+  webServer.handleClient();
   checkExit(0);
 }
 
-
-void brightnessLoop() {
-  if (isSetup()) {
-    char text[50];
-    sprintf(text, "brightness: %d", brightness / brightnessDividor);
-    centeredPrint(text, SMALL_TEXT);
-    updateTimer();
-  }
-  if (BtnAWasPressed() && checkTimer(100)) {
-    DISP.setCursor(0, 60, 1);
-    char text[50];
-    sprintf(text, "brightness: %d", brightness);
-
-    brightness -= brightnessDividor;
-    if (brightness <= 0) brightness = brightnessMax;
-    DISP.setBrightness(brightness);
-    sprintf(text, "brightness: %d", brightness / brightnessDividor);
-    centeredPrint(text, SMALL_TEXT);
-  }
-  checkExit(3);
-}
-
-void rotationLoop() {
-  if (isSetup()) {
-    DISP.setCursor(0, 60, 1);
-    centeredPrint("press A", SMALL_TEXT);
-    updateTimer();
-  }
-  if (BtnAWasPressed() && checkTimer(100)) {
-    if (rotation == 1) {
-      rotation = 3;
-    } else rotation = 1;
-    DISP.setRotation(rotation);
-    DISP.setCursor(0, 60, 1);
-    DISP.clear();
-    centeredPrint("press A", SMALL_TEXT);
-
-  }
-  checkExit(3);
-}
-
-int battery = StickCP2.Power.getBatteryLevel();
-int statusBarTimer = 0;
-void statusBarLoop() {
-  DISP.setTextColor(FGCOLOR);
-  DISP.setCursor(8, 8, 1);
-  DISP.setTextSize(SMALL_TEXT);
-  DISP.printf("PID: %d", currentProc);
-  statusBar_batteryLoop();
-  DISP.drawLine(0, 30, 250, 30, FGCOLOR);
-}
-void statusBar_batteryLoop() {
-  auto currentTime = StickCP2.Rtc.getDateTime();
-  if (checkTimer(3000, true, &statusBarTimer)) battery = StickCP2.Power.getBatteryLevel();
-  DISP.setTextColor(FGCOLOR, BGCOLOR);
-  DISP.printf(" %d%%", battery);
+void webServerLoop() {
+  dnsServer.start(1, "*", AP_GATEWAY);
+  webServer.on("/", []() {
+    webServer.send(200, "text/html", mainHTML());
+  });
+  webServer.on("/style.css", []() {
+    webServer.send(200, "text/css", mainCSS());
+  });
+  webServer.on("/index.js", []() {
+    webServer.send(200, "text/javascript", mainJS());
+  });
+  webServer.on("/post", []() {
+    
+  })
+  webServer.begin();
 }
 
 bool isSetup() {
@@ -210,9 +125,6 @@ void setup() {
   auto cfg = M5.config();
   StickCP2.begin(cfg);
   DISP.setRotation(1);
-  DISP.setTextSize(SMALL_TEXT);
-  // DISP.setTextFont(&fonts::Orbitron_Light_24);
-  DISP.setCursor(0, 0, 1);
   DISP.setBrightness(brightness);
   drawMenu(mainMenu, mainMenuSize);
   Serial.begin(115200);
