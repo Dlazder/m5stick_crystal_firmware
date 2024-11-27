@@ -1,0 +1,31 @@
+{
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "C_Cpp.default.includePath": [
+        "${workspaceRoot}",
+        "/home/dlazder/Arduino/libraries"
+    ],
+    "arduino.enableUSBDetection": true,
+    "arduino.additionalUrls": ["https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_index.json"],
+    "arduino.disableIntelliSenseAutoGen": true,
+    "files.associations": {
+        "*.tpp": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "string_view": "cpp",
+        "format": "cpp",
+        "initializer_list": "cpp",
+        "span": "cpp",
+        "regex": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "system_error": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "cstdint": "cpp"
+    }
+}

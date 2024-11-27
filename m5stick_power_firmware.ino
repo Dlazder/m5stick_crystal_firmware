@@ -1,55 +1,26 @@
-#include "M5StickCPlus2.h"
-#define DISP StickCP2.Display
-
-// #define statusBar
-#define SMALL_TEXT 2
-#define MEDIUM_TEXT 3
-#define BIG_TEXT 4
-
-uint16_t BGCOLOR=0x0000; // placeholder
-uint16_t FGCOLOR=0xFFF1; // placeholder
-
-struct MENU {
-  char name[20];
-  int command;
-};
-int cursor = 0;
-int currentProc = 0;
-bool isSwitching = true;
+#include "./globals/globals.h"
+#include "./utils/btnUtils.h"
+#include "./utils/displayUtils.h"
+#include "./utils/timerUtils.h"
 
 MENU mainMenu[] = {
   {"clock", 1},
   {"Battery info", 2},
   {"settings", 3},
-  {"settings", 3},
-  {"settings", 3},
-  {"Battery info", 2},
+  {"Wi-Fi ap", 4},
 };
-
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
-
-bool BtnBWasPressed() {
-  if (StickCP2.BtnB.wasPressed()) {
-    return true;
-  } else return false;
-}
-bool BtnAWasPressed() {
-  if (StickCP2.BtnA.wasPressed()) {
-    return true;
-  } else return false;
-}
-
 
 void checkExit(int proc) {
   StickCP2.update();
   if (BtnBWasPressed()) {
     currentProc = proc;
+    Serial.printf("Switching to %d process\n", currentProc);
     DISP.clear();
-    DISP.setCursor(0, 0, 1);
+    cursorOnTop();
     isSwitching = true;
   }
 }
-
 
 void drawMenu(MENU menu[], int size) {
   DISP.setTextSize(MEDIUM_TEXT);
@@ -73,88 +44,125 @@ void drawMenu(MENU menu[], int size) {
     }
   }
 }
-void mainMenuLoop() {
+
+void menuLoop(MENU menu[], int size) {
   StickCP2.update();
   if (BtnBWasPressed()) {
-    DISP.setCursor(0, 0, 1);
+    cursorOnTop();
     cursor++;
-    drawMenu(mainMenu, mainMenuSize);
-    StickCP2.Speaker.tone(8000, 20);
+    drawMenu(menu, size);
+    // StickCP2.Speaker.tone(8000, 20);
   }
   if (BtnAWasPressed()) {
     DISP.clear();
-    DISP.setCursor(0, 0, 1);
-    currentProc = mainMenu[cursor].command;
+    cursorOnTop();
+    currentProc = menu[cursor].command;
+    Serial.printf("Switching to %d process\n", currentProc);
     isSwitching = true;
   }
 }
-void mainMenuSetup() {
-  DISP.clear();
-  DISP.setCursor(0, 0, 1);
-  drawMenu(mainMenu, mainMenuSize);
-}
 
-int oldSeconds;
-void clockLoop() {
-  auto dt = StickCP2.Rtc.getDateTime();
-  if (dt.time.seconds != oldSeconds) {
-    DISP.setCursor(0, 60, 1);
-    int padding = (20 - 8) / 2;
-    char format_string[30];
-    sprintf(format_string, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
-    DISP.printf("%*s", padding + 8, format_string);
+
+#include "./functions/settingsLoop.h"
+#include "./functions/clockLoop.h"
+
+void mainMenuLoop() {
+  if (isSetup()) {
+    cursorOnTop();
+    drawMenu(mainMenu, mainMenuSize);
   }
-  oldSeconds = dt.time.seconds;
-  checkExit(0);
-}
-void clockSetup() {
-  DISP.setTextSize(SMALL_TEXT);
+  menuLoop(mainMenu, mainMenuSize);
 }
 
-int oldBattery;
-void battery_drawMenu(int battery) {
-  DISP.setCursor(0, 60, 1);
-  int screenWidth = 20;
-  int length = 3;
-  int padding = (screenWidth - length) / 2;
-  DISP.printf("%*d%%", padding + length, battery);
-}
 void batteryLoop() {
-  int battery = StickCP2.Power.getBatteryLevel();
-  battery_drawMenu(battery);
-  oldBattery = battery;
+  if (checkTimer(3000)) {
+    int battery = StickCP2.Power.getBatteryLevel();
+    DISP.setTextColor(FGCOLOR, BGCOLOR);
+    char text[10];
+    sprintf(text, "%d%%", battery);
+    centeredPrint(text, SMALL_TEXT);
+  }
   checkExit(0);
 }
-void batterySetup() {
-  DISP.setTextSize(SMALL_TEXT);
-}
 
-bool isPrinted = false;
-void settingsLoop() {
-  int padding = (20 - 8) / 2;
-  DISP.setCursor(0, 60, 1);
-  DISP.printf("%*s\n", padding + 8, "Settings");
+#define ssid "M5Stick"
+IPAddress AP_GATEWAY(172, 0, 0, 1);
+void wifiApLoop() {
+  if (isSetup()) {
+    DISP.setTextSize(SMALL_TEXT);
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP(ssid);
+    WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
+    centeredPrint("WiFi Ap enabled", SMALL_TEXT);
+  }
   checkExit(0);
 }
-void settingsSetup() {
-  DISP.setTextSize(SMALL_TEXT);
+
+
+void brightnessLoop() {
+  if (isSetup()) {
+    char text[50];
+    sprintf(text, "brightness: %d", brightness / brightnessDividor);
+    centeredPrint(text, SMALL_TEXT);
+    updateTimer();
+  }
+  if (BtnAWasPressed() && checkTimer(100)) {
+    DISP.setCursor(0, 60, 1);
+    char text[50];
+    sprintf(text, "brightness: %d", brightness);
+
+    brightness -= brightnessDividor;
+    if (brightness <= 0) brightness = brightnessMax;
+    DISP.setBrightness(brightness);
+    sprintf(text, "brightness: %d", brightness / brightnessDividor);
+    centeredPrint(text, SMALL_TEXT);
+  }
+  checkExit(3);
 }
 
-auto lastBatteryCheckTime = StickCP2.Rtc.getDateTime();
+void rotationLoop() {
+  if (isSetup()) {
+    DISP.setCursor(0, 60, 1);
+    centeredPrint("press A", SMALL_TEXT);
+    updateTimer();
+  }
+  if (BtnAWasPressed() && checkTimer(100)) {
+    if (rotation == 1) {
+      rotation = 3;
+    } else rotation = 1;
+    DISP.setRotation(rotation);
+    DISP.setCursor(0, 60, 1);
+    DISP.clear();
+    centeredPrint("press A", SMALL_TEXT);
+
+  }
+  checkExit(3);
+}
+
+int battery = StickCP2.Power.getBatteryLevel();
+int statusBarTimer = 0;
+void statusBarLoop() {
+  DISP.setTextColor(FGCOLOR);
+  DISP.setCursor(8, 8, 1);
+  DISP.setTextSize(SMALL_TEXT);
+  DISP.printf("PID: %d", currentProc);
+  statusBar_batteryLoop();
+  DISP.drawLine(0, 30, 250, 30, FGCOLOR);
+}
 void statusBar_batteryLoop() {
   auto currentTime = StickCP2.Rtc.getDateTime();
-  if (lastBatteryCheckTime.time.minutes != currentTime.time.minutes) {
-    int battery = StickCP2.Power.getBatteryLevel();
-    oldBattery = battery;
-    lastBatteryCheckTime = currentTime;
-    DISP.setCursor(0, 0);
-    DISP.print("            ");
-  }
-  battery_drawMenu(oldBattery);
+  if (checkTimer(3000, true, &statusBarTimer)) battery = StickCP2.Power.getBatteryLevel();
+  DISP.setTextColor(FGCOLOR, BGCOLOR);
+  DISP.printf(" %d%%", battery);
 }
-void statusBarLoop() {
-  DISP.drawLine(0, 30, 250, 30);
-  statusBar_batteryLoop();
+
+bool isSetup() {
+  if (isSwitching) {
+    isSwitching = false;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 void setup() {
@@ -164,33 +172,14 @@ void setup() {
   DISP.setTextSize(SMALL_TEXT);
   // DISP.setTextFont(&fonts::Orbitron_Light_24);
   DISP.setCursor(0, 0, 1);
+  DISP.setBrightness(brightness);
   drawMenu(mainMenu, mainMenuSize);
+  Serial.begin(115200);
+
 }
 
 void loop() {
-  #if defined(statusBar)
-    statusBarLoop();
-  #endif
-
-  /* process setup functions switcher */
-  if (isSwitching) {
-    isSwitching = false;
-    switch (currentProc) {
-      case 0:
-        mainMenuSetup();
-        break;
-      case 1:
-        clockSetup();
-        break;
-      case 2:
-        batterySetup();
-        break;
-      case 3:
-        settingsSetup();
-        break;
-    }
-  }
-
+  globalTimer = millis();
   /* process functions switcher */
   switch (currentProc) {
     case 0:
@@ -205,5 +194,18 @@ void loop() {
     case 3:
       settingsLoop();
       break;
+    case 4:
+      wifiApLoop();
+      break;
+    case 5:
+      brightnessLoop();
+      break;
+    case 6:
+      rotationLoop();
+      break;
+  }
+
+  if (statusBar) {
+    statusBarLoop();
   }
 }
