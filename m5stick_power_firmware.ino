@@ -10,6 +10,7 @@ struct MENU {
 int cursor = 0;
 int currentProc = 0;
 bool isSwitching = true;
+int rotation = 1;
 
 MENU mainMenu[] = {
   {"clock", 1},
@@ -32,6 +33,7 @@ void checkExit(int proc) {
 
 
 void drawMenu(MENU menu[], int size) {
+  Serial.printf("menu size: %d\n", sizeof(menu) / sizeof(MENU));
   DISP.setTextSize(MEDIUM_TEXT);
   DISP.fillScreen(BGCOLOR);
   if (cursor == size) cursor = cursor % size;
@@ -159,6 +161,25 @@ void brightnessLoop() {
   checkExit(3);
 }
 
+void rotationLoop() {
+  if (isSetup()) {
+    DISP.setCursor(0, 60, 1);
+    centeredPrint("press A", SMALL_TEXT);
+    updateTimer();
+  }
+  if (BtnAWasPressed() && checkTimer(100)) {
+    if (rotation == 1) {
+      rotation = 3;
+    } else rotation = 1;
+    DISP.setRotation(rotation);
+    DISP.setCursor(0, 60, 1);
+    DISP.clear();
+    centeredPrint("press A", SMALL_TEXT);
+
+  }
+  checkExit(3);
+}
+
 int battery = StickCP2.Power.getBatteryLevel();
 int statusBarTimer = 0;
 void statusBarLoop() {
@@ -219,6 +240,9 @@ void loop() {
       break;
     case 5:
       brightnessLoop();
+      break;
+    case 6:
+      rotationLoop();
       break;
   }
 
