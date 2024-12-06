@@ -32,15 +32,15 @@ void webServerSetup() {
 
 void wifiApLoop() {
   if (isSetup()) {
+    if (!isWebInterfaceEnabled) {
+      WiFi.mode(WIFI_AP);
+      WiFi.softAP(ssid);
+      WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
+      webServerSetup();
+      isWebInterfaceEnabled = true;
+    }
     DISP.setTextSize(SMALL_TEXT);
-    WiFi.mode(WIFI_AP);
-    WiFi.softAP(ssid);
-    WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
-    webServerSetup();
     centeredPrint("WiFi Ap enabled", SMALL_TEXT);
-    isWebInterfaceEnabled = true;
   }
-  webServer.handleClient();
   checkExit(0);
 }
-
