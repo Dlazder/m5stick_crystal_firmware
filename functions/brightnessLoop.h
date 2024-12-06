@@ -11,7 +11,7 @@ void brightnessLoop() {
     sprintf(text, "brightness: %d", brightness);
 
     brightness -= brightnessDividor;
-    if (brightness <= 0) brightness = brightnessMax;
+    if (brightness <= 0 || brightness / brightnessDividor == 0) brightness = brightnessMax;
     DISP.setBrightness(brightness);
     sprintf(text, "brightness: %d", brightness / brightnessDividor);
     centeredPrint(text, SMALL_TEXT);

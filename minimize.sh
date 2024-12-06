@@ -6,3 +6,5 @@ printf "String mainCSS() {\n\tString css = \"%s\";\n\treturn css;\n}\n\n" "$mini
 
 minimized_js=$(tr -d '\r\n\t' < './web/index.js' | sed 's/"/\\"/g')
 printf "String mainJS() {\n\tString js = \"%s\";\n\treturn js;\n}\n\n" "$minimized_js" >> './utils/webServerUtils.h'
+
+echo done
