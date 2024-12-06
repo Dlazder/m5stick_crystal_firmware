@@ -1,7 +1,7 @@
 MENU settingsMenu[] = {
   {"back", 0},
   {"brightness", 5},
-  {"orientation", 6}
+  {"rotation", 6}
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 void settingsLoop() {
