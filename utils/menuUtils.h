@@ -1,6 +1,5 @@
 void drawMenu(MENU menu[], int size) {
   DISP.setTextSize(MEDIUM_TEXT);
-  DISP.fillScreen(BGCOLOR);
   if (cursor == size) cursor = cursor % size;
   if (cursor < 0) cursor = size - 1;
   

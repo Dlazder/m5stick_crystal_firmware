@@ -1,8 +1,0 @@
-{
-    "sketch": "m5stick_power_firmware.ino",
-    "port": "/dev/ttyACM0",
-    "board": "m5stack:esp32:m5stack_stickc_plus2",
-    "output": "./build",
-    "programmer": "esptool",
-    "configuration": "PSRAM=enabled,PartitionScheme=default_8MB,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=8M,UploadSpeed=1500000,LoopCore=1,EventsCore=1,DebugLevel=none,EraseFlash=none"
-}

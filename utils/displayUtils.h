@@ -26,7 +26,7 @@ void xycenteredPrint(String text, int textSize) {
 
 void cursorOnTop() {
   if (statusBar) {
-    DISP.setCursor(0, 30, 1);
+    DISP.setCursor(0, 31, 1);
   } else {
     DISP.setCursor(0, 0, 1);
   }

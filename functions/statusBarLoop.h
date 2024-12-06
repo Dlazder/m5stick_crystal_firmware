@@ -5,7 +5,7 @@ void statusBar_batteryLoop() {
   auto currentTime = StickCP2.Rtc.getDateTime();
   if (checkTimer(3000, true, &statusBarTimer)) battery = StickCP2.Power.getBatteryLevel();
   DISP.setTextColor(FGCOLOR, BGCOLOR);
-  DISP.printf(" %d%%", battery);
+  DISP.printf("; %d%%", battery);
 }
 
 void statusBarLoop() {

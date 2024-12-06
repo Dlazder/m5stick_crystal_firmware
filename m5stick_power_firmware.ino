@@ -23,6 +23,7 @@ void setup() {
   StickCP2.begin(cfg);
   DISP.setRotation(1);
   DISP.setBrightness(brightness);
+  cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
   Serial.begin(115200);
 }
