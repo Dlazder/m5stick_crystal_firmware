@@ -1,14 +1,33 @@
-void centeredPrint(String text, int textSize) {
+int getScreenWidthInSymbols() {
+  int size = DISP.getTextSizeY();
+
+  switch (size) {
+    case 2:
+      return 20;
+    case 3:
+      return 13;
+  }
+}
+
+void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   int currentTextSize = DISP.getTextSizeX();
   DISP.setTextSize(textSize);
   int displayWidth = DISP.width();
   int textWidth = DISP.textWidth(text);
   int padding = (displayWidth - textWidth) / 2;
-  DISP.setCursor(0, 60, 1);
-  DISP.print("                    ");
-  DISP.setCursor(padding, 60, 1);
-  DISP.print(text);
+  int cursorY = DISP.getCursorY();
+  DISP.setCursor(0, cursorY, 1);
+  for (int i = 0; i < getScreenWidthInSymbols(); i++) {
+    DISP.print(" ");
+  }
+
+  if (newLine) {
+    DISP.setCursor(padding, cursorY, 1);
+  } else {
+    DISP.setCursor(padding, 60, 1);
+  }
+  DISP.println(text);
   DISP.setTextSize(currentTextSize);
 }
 
