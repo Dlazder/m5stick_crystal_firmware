@@ -1,3 +1,4 @@
+#include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/settingsLoop.h"
 #include "../functions/clockLoop.h"

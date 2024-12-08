@@ -46,6 +46,9 @@ void loop() {
     case 6:
       rotationLoop();
       break;
+    default:
+      defaultLoop();
+      break;
   }
 
   if (statusBar) {
