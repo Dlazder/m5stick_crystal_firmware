@@ -3,14 +3,22 @@ void drawMenu(MENU menu[], int size) {
   if (cursor == size) cursor = cursor % size;
   if (cursor < 0) cursor = size - 1;
   
-  if (cursor > 4) {
-    for (int i = 0 + (cursor - 4); i < size; i++) {
+  if (cursor > 2) {
+
+    for (int i = 0 + (cursor - 2); i < size; i++) {
       if (cursor == i) {
         DISP.setTextColor(BGCOLOR, FGCOLOR);
       }
       DISP.printf(" %-12s\n", menu[i].name);
       DISP.setTextColor(FGCOLOR, BGCOLOR);
     }
+    
+    if (size > 3) {
+      for (int i = 0; i < 4; i++) {
+        DISP.println("            ");
+      }
+    }
+
   } else {
     for (int i = 0; i < size; i++) {
       if (cursor == i) {
@@ -18,6 +26,11 @@ void drawMenu(MENU menu[], int size) {
       }
       DISP.printf(" %-12s\n", menu[i].name);
       DISP.setTextColor(FGCOLOR, BGCOLOR);
+    }
+    if (size > 3) {
+      for (int i = 0; i < 4; i++) {
+        DISP.println("            ");
+      }
     }
   }
 }

@@ -9,6 +9,13 @@ int getScreenWidthInSymbols() {
   }
 }
 
+void clearScreenWithSymbols() {
+  DISP.setTextSize(MEDIUM_TEXT);
+  for (int i = 0; i < 5; i++) {
+    DISP.println("             ");
+  }
+}
+
 void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   int currentTextSize = DISP.getTextSizeX();
@@ -45,7 +52,7 @@ void xycenteredPrint(String text, int textSize) {
 
 void cursorOnTop() {
   if (statusBar) {
-    DISP.setCursor(0, 31, 1);
+    DISP.setCursor(0, 39, 1);
   } else {
     DISP.setCursor(0, 0, 1);
   }
