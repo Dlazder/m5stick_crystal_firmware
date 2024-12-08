@@ -9,14 +9,7 @@
 #include "./utils/procManagmentUtils.h"
 #include "./utils/menuUtils.h"
 
-#include "./functions/mainMenuLoop.h"
-#include "./functions/settingsLoop.h"
-#include "./functions/clockLoop.h"
-#include "./functions/batteryLoop.h"
-#include "./functions/brightnessLoop.h"
-#include "./functions/rotationLoop.h"
-#include "./functions/statusBarLoop.h"
-#include "./functions/wifiApLoop.h"
+#include "./globals/functions.h"
 
 void setup() {
   auto cfg = M5.config();
