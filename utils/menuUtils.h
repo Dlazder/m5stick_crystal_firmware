@@ -2,7 +2,6 @@ void drawMenu(MENU menu[], int size) {
   DISP.setTextSize(MEDIUM_TEXT);
   if (cursor == size) cursor = cursor % size;
   if (cursor < 0) cursor = size - 1;
-  
   if (cursor > 2) {
 
     for (int i = 0 + (cursor - 2); i < size; i++) {
@@ -49,11 +48,18 @@ void menuLoop(MENU menu[], int size) {
     currentProc = menu[cursor].command;
     Serial.printf("Switching to %d process\n", currentProc);
     isSwitching = true;
+    return;
   }
   if (webControlUpWasPressed()) {
     cursor--;
     
     cursorOnTop();
     drawMenu(menu, size);
+  }
+  if (isWebDataRequested) {
+    responseState = generateResponse("menu", generateMenuString(menu, size));
+    Serial.println(responseState);
+
+    isWebDataRequested = false;
   }
 }

@@ -39,3 +39,6 @@ int globalPreviousTimer = 0;
 int isWebInterfaceEnabled = false;
 int btnAWasPressed = false;
 int btnBWasPressed = false;
+
+bool isWebDataRequested = true;
+String responseState = "";

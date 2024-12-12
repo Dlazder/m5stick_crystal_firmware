@@ -16,15 +16,23 @@ void webServerSetup() {
     String data = webServer.arg("data");
     if (data == "down") {
       webControlDown();
+      isWebDataRequested = true;
+      webServer.send(200, "text/plane", "success");
     } else if (data == "up") {
       webControlUp();
+      isWebDataRequested = true;
+      webServer.send(200, "text/plane", "success");
     } else if (data == "a") {
       pressBtnA();
+      isWebDataRequested = true;
+      webServer.send(200, "text/plane", "success");
     } else if (data == "b") {
       pressBtnB();
+      isWebDataRequested = true;
+      webServer.send(200, "text/plane", "success");
+    } else if (data == "get") {
+      webServer.send(200, "text/plane", responseState);
     }
-    // a.replace("<", "&lt")
-    // a.replace(">", "&gt")
   });
   webServer.begin();
 }
