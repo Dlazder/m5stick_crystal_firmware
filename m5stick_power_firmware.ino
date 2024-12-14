@@ -47,7 +47,9 @@ void loop() {
     statusBarLoop();
   }
 
-  if (isWebInterfaceEnabled) {
+  // If isWebDataRequested = true, this means that the process function has not yet updated the response variable.
+  // Once the value is updated, the variable will become false. Until this happens, we do not process requests so as not to send outdated information to the client.
+  if (isWebInterfaceEnabled && !isWebDataRequested) {
     webServer.handleClient();
   }
 }

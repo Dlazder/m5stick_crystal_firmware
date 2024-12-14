@@ -56,10 +56,7 @@ void menuLoop(MENU menu[], int size) {
     cursorOnTop();
     drawMenu(menu, size);
   }
-  if (isWebDataRequested) {
+  if (isStateRequested()) {
     responseState = generateResponse("menu", generateMenuString(menu, size));
-    Serial.println(responseState);
-
-    isWebDataRequested = false;
   }
 }

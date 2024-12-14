@@ -13,12 +13,12 @@ document.querySelector('.btn-down').addEventListener('click', () => {
 });
 
 document.querySelector('.btn-a').addEventListener('click', () => {
-	sendToServer({data: 'a'}).then(res => res.text()).then(setTimeout(() => {sendToServer({data: 'get'}).then(res => res.text()).then(res => draw(res))}, 50));
+	sendToServer({data: 'a'}).then(res => res.text()).then(sendToServer({data: 'get'}).then(res => res.text()).then(res => draw(res)));
 });
 
 
 document.querySelector('.btn-b').addEventListener('click', () => {
-	sendToServer({data: 'b'}).then(res => res.text()).then(setTimeout(() => {sendToServer({data: 'get'}).then(res => res.text()).then(res => draw(res))}, 50));
+	sendToServer({data: 'b'}).then(res => res.text()).then(sendToServer({data: 'get'}).then(res => res.text()).then(res => draw(res)));
 });
 
 function parse(dataString) {

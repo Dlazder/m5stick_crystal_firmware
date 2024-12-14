@@ -18,4 +18,7 @@ void rotationLoop() {
     centeredPrint("rotation", SMALL_TEXT, true);
   }
   checkExit(3);
+  if (isStateRequested()) {
+    
+  }
 }

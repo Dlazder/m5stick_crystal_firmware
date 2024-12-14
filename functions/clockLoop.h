@@ -9,4 +9,7 @@ void clockLoop() {
   }
   oldSeconds = dt.time.seconds;
   checkExit(0);
+  if (isStateRequested()) {
+
+  }
 }

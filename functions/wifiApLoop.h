@@ -17,19 +17,19 @@ void webServerSetup() {
     if (data == "down") {
       webControlDown();
       isWebDataRequested = true;
-      webServer.send(200, "text/plane", "success");
+      webServer.send(200, "text/plane", "ok");
     } else if (data == "up") {
       webControlUp();
       isWebDataRequested = true;
-      webServer.send(200, "text/plane", "success");
+      webServer.send(200, "text/plane", "ok");
     } else if (data == "a") {
       pressBtnA();
       isWebDataRequested = true;
-      webServer.send(200, "text/plane", "success");
+      webServer.send(200, "text/plane", "ok");
     } else if (data == "b") {
       pressBtnB();
       isWebDataRequested = true;
-      webServer.send(200, "text/plane", "success");
+      webServer.send(200, "text/plane", "ok");
     } else if (data == "get") {
       webServer.send(200, "text/plane", responseState);
     }
@@ -51,4 +51,7 @@ void wifiApLoop() {
     centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   }
   checkExit(0);
+  if (isStateRequested()) {
+    
+  }
 }

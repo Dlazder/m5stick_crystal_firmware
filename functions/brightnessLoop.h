@@ -17,4 +17,7 @@ void brightnessLoop() {
     centeredPrint(text, SMALL_TEXT);
   }
   checkExit(3);
+  if (isStateRequested()) {
+    
+  }
 }

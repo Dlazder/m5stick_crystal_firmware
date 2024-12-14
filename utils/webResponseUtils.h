@@ -21,3 +21,10 @@ String generateResponse(String type, String otherData) {
   res += otherData;
   return res;
 }
+
+bool isStateRequested() {
+  if (isWebDataRequested) {
+    isWebDataRequested = false;
+    return true;
+  } else return false;
+}
