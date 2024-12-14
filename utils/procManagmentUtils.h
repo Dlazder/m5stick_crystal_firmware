@@ -1,10 +1,10 @@
 void checkExit(int proc) {
   StickCP2.update();
-  if (BtnBWasPressed()) {
+  if (isBtnBWasPressed()) {
     btnAWasPressed = false;
     btnBWasPressed = false;
-    currentProc = proc;
-    Serial.printf("Switching to %d process\n", currentProc);
+    process = proc;
+    Serial.printf("Switching to %d process\n", process);
     DISP.clear();
     cursorOnTop();
     isSwitching = true;

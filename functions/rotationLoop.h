@@ -6,7 +6,7 @@ void rotationLoop() {
     centeredPrint("rotation", SMALL_TEXT, true);
     updateTimer();
   }
-  if (BtnAWasPressed() && checkTimer(100)) {
+  if (isBtnAWasPressed() && checkTimer(100)) {
     if (rotation == 1) {
       rotation = 3;
     } else rotation = 1;
@@ -18,7 +18,7 @@ void rotationLoop() {
     centeredPrint("rotation", SMALL_TEXT, true);
   }
   checkExit(3);
-  if (isStateRequested()) {
+  if (isWebDataRequested()) {
     
   }
 }

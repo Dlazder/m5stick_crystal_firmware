@@ -5,7 +5,7 @@ void defaultLoop() {
 		centeredPrint("defined in swicher", SMALL_TEXT, true);
 	}
 	checkExit(0);
-	if (isStateRequested()) {
+	if (isWebDataRequested()) {
 		
 	}
 }

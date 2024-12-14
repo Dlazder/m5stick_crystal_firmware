@@ -16,7 +16,7 @@ void setup() {
 void loop() {
   globalTimer = millis();
   /* process functions switcher */
-  switch (currentProc) {
+  switch (process) {
     case 0:
       mainMenuLoop();
       break;
@@ -47,9 +47,9 @@ void loop() {
     statusBarLoop();
   }
 
-  // If isWebDataRequested = true, this means that the process function has not yet updated the response variable.
+  // If webDataRequested = true, this means that the process function has not yet updated the response variable.
   // Once the value is updated, the variable will become false. Until this happens, we do not process requests so as not to send outdated information to the client.
-  if (isWebInterfaceEnabled && !isWebDataRequested) {
+  if (isWebInterfaceEnabled && !webDataRequested) {
     webServer.handleClient();
   }
 }

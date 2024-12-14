@@ -12,7 +12,7 @@ void statusBarLoop() {
   DISP.setTextColor(FGCOLOR);
   DISP.setCursor(8, 8, 1);
   DISP.setTextSize(SMALL_TEXT);
-  DISP.printf("PID: %d; ", currentProc);
+  DISP.printf("PID: %d; ", process);
   statusBar_batteryLoop();
   DISP.drawLine(0, 30, 250, 30, FGCOLOR);
 }

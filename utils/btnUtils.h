@@ -1,4 +1,4 @@
-bool BtnBWasPressed() {
+bool isBtnBWasPressed() {
   if (btnBWasPressed) {
     btnBWasPressed = false;
     return true;
@@ -7,7 +7,7 @@ bool BtnBWasPressed() {
   } else return false;
 }
 
-bool BtnAWasPressed() {
+bool isBtnAWasPressed() {
   if (btnAWasPressed) {
     btnAWasPressed = false;
     return true;

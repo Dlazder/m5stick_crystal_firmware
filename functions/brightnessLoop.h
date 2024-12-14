@@ -5,7 +5,7 @@ void brightnessLoop() {
     centeredPrint(text, SMALL_TEXT);
     updateTimer();
   }
-  if (BtnAWasPressed() && checkTimer(100)) {
+  if (isBtnAWasPressed() && checkTimer(100)) {
     DISP.setCursor(0, 60, 1);
     char text[50];
     sprintf(text, "brightness: %d", brightness);
@@ -17,7 +17,7 @@ void brightnessLoop() {
     centeredPrint(text, SMALL_TEXT);
   }
   checkExit(3);
-  if (isStateRequested()) {
+  if (isWebDataRequested()) {
     
   }
 }

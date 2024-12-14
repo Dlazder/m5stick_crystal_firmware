@@ -22,9 +22,9 @@ String generateResponse(String type, String otherData) {
   return res;
 }
 
-bool isStateRequested() {
-  if (isWebDataRequested) {
-    isWebDataRequested = false;
+bool isWebDataRequested() {
+  if (webDataRequested) {
+    webDataRequested = false;
     return true;
   } else return false;
 }

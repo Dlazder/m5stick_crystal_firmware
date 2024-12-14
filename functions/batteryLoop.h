@@ -14,7 +14,7 @@ void batteryLoop() {
     centeredPrint(text, SMALL_TEXT);
   }
   checkExit(0);
-  if (isStateRequested()) {
+  if (isWebDataRequested()) {
     
   }
 }

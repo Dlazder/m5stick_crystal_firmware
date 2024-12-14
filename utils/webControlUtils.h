@@ -6,13 +6,13 @@ void webControlUp() {
 void webControlDown() {
   webControlDownPressed = true;
 }
-bool webControlDownWasPressed() {
+bool isWebControlDownWasPressed() {
   if (webControlDownPressed) {
     webControlDownPressed = false;
     return true;
   } else return false;
 }
-bool webControlUpWasPressed() {
+bool isWebControlUpWasPressed() {
   if (webControlUpPressed) {
     webControlUpPressed = false;
     return true;

@@ -36,27 +36,27 @@ void drawMenu(MENU menu[], int size) {
 
 void menuLoop(MENU menu[], int size) {
   StickCP2.update();
-  if (BtnBWasPressed() || webControlDownWasPressed()) {
+  if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
     cursorOnTop();
     cursor++;
     drawMenu(menu, size);
     // StickCP2.Speaker.tone(8000, 20);
   }
-  if (BtnAWasPressed()) {
+  if (isBtnAWasPressed()) {
     DISP.clear();
     cursorOnTop();
-    currentProc = menu[cursor].command;
-    Serial.printf("Switching to %d process\n", currentProc);
+    process = menu[cursor].command;
+    Serial.printf("Switching to %d process\n", process);
     isSwitching = true;
     return;
   }
-  if (webControlUpWasPressed()) {
+  if (isWebControlUpWasPressed()) {
     cursor--;
     
     cursorOnTop();
     drawMenu(menu, size);
   }
-  if (isStateRequested()) {
+  if (isWebDataRequested()) {
     responseState = generateResponse("menu", generateMenuString(menu, size));
   }
 }

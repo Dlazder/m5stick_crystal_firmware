@@ -19,7 +19,7 @@ struct MENU {
 };
 
 int cursor = 0;
-int currentProc = 0;
+int process = 0;
 bool isSwitching = true;
 int rotation = 1;
 
@@ -40,5 +40,5 @@ int isWebInterfaceEnabled = false;
 int btnAWasPressed = false;
 int btnBWasPressed = false;
 
-bool isWebDataRequested = true;
+bool webDataRequested = true;
 String responseState = "";
