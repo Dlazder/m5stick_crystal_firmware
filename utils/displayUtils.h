@@ -11,6 +11,7 @@ int getScreenWidthInSymbols() {
 
 void clearScreenWithSymbols() {
   DISP.setTextSize(MEDIUM_TEXT);
+  DISP.setTextColor(FGCOLOR, BGCOLOR);
   for (int i = 0; i < 5; i++) {
     DISP.println("             ");
   }

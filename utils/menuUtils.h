@@ -5,32 +5,20 @@ void drawMenu(MENU menu[], int size) {
   if (cursor > 2) {
 
     for (int i = 0 + (cursor - 2); i < size; i++) {
-      if (cursor == i) {
-        DISP.setTextColor(BGCOLOR, FGCOLOR);
-      }
+      cursor == i ? DISP.setTextColor(BGCOLOR, FGCOLOR) : DISP.setTextColor(FGCOLOR, BGCOLOR);
+      
       DISP.printf(" %-12s\n", menu[i].name);
-      DISP.setTextColor(FGCOLOR, BGCOLOR);
     }
     
-    if (size > 3) {
-      for (int i = 0; i < 4; i++) {
-        DISP.println("            ");
-      }
-    }
+    clearScreenWithSymbols();
 
   } else {
     for (int i = 0; i < size; i++) {
-      if (cursor == i) {
-        DISP.setTextColor(BGCOLOR, FGCOLOR);
-      }
+      cursor == i ? DISP.setTextColor(BGCOLOR, FGCOLOR) : DISP.setTextColor(FGCOLOR, BGCOLOR);
+
       DISP.printf(" %-12s\n", menu[i].name);
-      DISP.setTextColor(FGCOLOR, BGCOLOR);
     }
-    if (size > 3) {
-      for (int i = 0; i < 4; i++) {
-        DISP.println("            ");
-      }
-    }
+    clearScreenWithSymbols();
   }
 }
 
@@ -43,7 +31,8 @@ void menuLoop(MENU menu[], int size) {
     // StickCP2.Speaker.tone(8000, 20);
   }
   if (isBtnAWasPressed()) {
-    DISP.clear();
+    cursorOnTop();
+    clearScreenWithSymbols();
     cursorOnTop();
     process = menu[cursor].command;
     Serial.printf("Switching to %d process\n", process);
