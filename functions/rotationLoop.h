@@ -19,6 +19,7 @@ void rotationLoop() {
   }
   checkExit(3);
   if (isWebDataRequested()) {
-    
+    String res = generateFunctionElement("press A<br>to change<br>rotation", SMALL_TEXT, "center");
+    webData = generateWebData("function", res);
   }
 }

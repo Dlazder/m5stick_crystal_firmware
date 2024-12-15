@@ -15,6 +15,9 @@ void batteryLoop() {
   }
   checkExit(0);
   if (isWebDataRequested()) {
-    
+    int battery = StickCP2.Power.getBatteryLevel();
+    char text[10];
+    sprintf(text, "%d%%", battery);
+    webData = generateWebData("function", generateFunctionElement(text, SMALL_TEXT, "center"));
   }
 }

@@ -41,4 +41,5 @@ int btnAWasPressed = false;
 int btnBWasPressed = false;
 
 bool webDataRequested = true;
-String responseState = "";
+String webData = "";
+String webDataType = "";

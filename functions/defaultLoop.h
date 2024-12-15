@@ -6,6 +6,7 @@ void defaultLoop() {
 	}
 	checkExit(0);
 	if (isWebDataRequested()) {
-		
+		String res = generateFunctionElement("this PID is not", SMALL_TEXT, "center") + generateFunctionElement("defined in switcher", SMALL_TEXT, "center");
+		webData = generateWebData("function", res);
 	}
 }

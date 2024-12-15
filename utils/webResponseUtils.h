@@ -3,15 +3,17 @@ String generateMenuString(MENU menu[], int size) {
   for (int i = 0; i < size; i++) {
     String name_str = menu[i].name;
     String command_str = String(menu[i].command);
-    string += name_str + "," + command_str;
-    if (i != size - 1) {
-      string += ";";
-    }
+    string += name_str + "," + command_str + ";";
   }
   return string;
 }
 
-String generateResponse(String type, String otherData) {
+String generateFunctionElement(String text, int textSize, String align) {
+  String elementString = text + "," + String(textSize) + "," + align + ";";
+  return elementString;
+}
+
+String generateWebData(String type, String otherData) {
   String res = "";
   if (type == "menu") {
     res = type + ";" + cursor + ";";

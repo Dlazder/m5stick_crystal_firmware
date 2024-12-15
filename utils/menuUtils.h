@@ -46,6 +46,6 @@ void menuLoop(MENU menu[], int size) {
     drawMenu(menu, size);
   }
   if (isWebDataRequested()) {
-    responseState = generateResponse("menu", generateMenuString(menu, size));
+    webData = generateWebData("menu", generateMenuString(menu, size));
   }
 }

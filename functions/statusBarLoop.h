@@ -9,7 +9,7 @@ void statusBar_batteryLoop() {
 }
 
 void statusBarLoop() {
-  DISP.setTextColor(FGCOLOR);
+  DISP.setTextColor(FGCOLOR, BGCOLOR);
   DISP.setCursor(8, 8, 1);
   DISP.setTextSize(SMALL_TEXT);
   DISP.printf("PID: %d; ", process);

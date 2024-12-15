@@ -28,10 +28,13 @@ void webServerSetup() {
       webServer.send(200, "text/plane", "ok");
     } else if (data == "b") {
       pressBtnB();
+      if (webDataType != "function") webDataRequested = true;
+      webServer.send(200, "text/plane", "ok");
+    } else if (data == "update")  {
       webDataRequested = true;
       webServer.send(200, "text/plane", "ok");
     } else if (data == "get") {
-      webServer.send(200, "text/plane", responseState);
+      webServer.send(200, "text/plane", webData);
     }
   });
   webServer.begin();
@@ -52,6 +55,7 @@ void wifiApLoop() {
   }
   checkExit(0);
   if (isWebDataRequested()) {
-    
+    String res = generateFunctionElement("Wi-Fi AP enabled", SMALL_TEXT, String("center"));
+    webData = generateWebData("function", res);
   }
 }

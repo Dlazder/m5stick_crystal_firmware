@@ -18,6 +18,8 @@ void brightnessLoop() {
   }
   checkExit(3);
   if (isWebDataRequested()) {
-    
+    char text[50];
+    sprintf(text, "brightness: %d", brightness / brightnessDividor);
+    webData = generateWebData("function", generateFunctionElement(text, SMALL_TEXT, "center"));
   }
 }
