@@ -1,9 +1,9 @@
 void rotationLoop() {
   if (isSetup()) {
     DISP.setCursor(0, 60, 1);
-    centeredPrint("press A", SMALL_TEXT, true);
-    centeredPrint("to change", SMALL_TEXT, true);
-    centeredPrint("rotation", SMALL_TEXT, true);
+    printlnCenter("press A", SMALL_TEXT);
+    printlnCenter("to change", SMALL_TEXT);
+    printlnCenter("rotation", SMALL_TEXT);
     updateTimer();
   }
   if (isBtnAWasPressed() && checkTimer(100)) {
@@ -13,9 +13,9 @@ void rotationLoop() {
     DISP.setRotation(rotation);
     DISP.setCursor(0, 60, 1);
     DISP.clear();
-    centeredPrint("press A", SMALL_TEXT, true);
-    centeredPrint("to change", SMALL_TEXT, true);
-    centeredPrint("rotation", SMALL_TEXT, true);
+    printlnCenter("press A", SMALL_TEXT);
+    printlnCenter("to change", SMALL_TEXT);
+    printlnCenter("rotation", SMALL_TEXT);
   }
   checkExit(3);
   if (isWebDataRequested()) {

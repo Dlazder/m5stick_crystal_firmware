@@ -39,6 +39,10 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextSize(currentTextSize);
 }
 
+void printlnCenter(String text, int textSize) {
+  centeredPrint(text, textSize, true);
+}
+
 void xycenteredPrint(String text, int textSize) {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   int displayWidth = DISP.width();
