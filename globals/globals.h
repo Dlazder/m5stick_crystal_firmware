@@ -9,6 +9,9 @@ using std::to_string;
 
 #include "conf.h"
 
+#include <Preferences.h>
+Preferences preferences;
+
 int SMALL_TEXT = 2;
 int MEDIUM_TEXT = 3;
 int BIG_TEXT = 4;

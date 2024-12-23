@@ -6,11 +6,17 @@
 void setup() {
   auto cfg = M5.config();
   StickCP2.begin(cfg);
-  DISP.setRotation(1);
+  Serial.begin(115200);
+  preferences.begin("storage", false);
+  
+  rotation = getData("rotation", rotation);
+  DISP.setRotation(rotation);
+
+  brightness = getData("brightness", brightness);
   DISP.setBrightness(brightness);
+
   cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
-  Serial.begin(115200);
 }
 
 void loop() {

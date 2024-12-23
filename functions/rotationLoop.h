@@ -10,6 +10,7 @@ void rotationLoop() {
     if (rotation == 1) {
       rotation = 3;
     } else rotation = 1;
+    writeData("rotation", rotation);
     DISP.setRotation(rotation);
     DISP.setCursor(0, 60, 1);
     DISP.clear();
