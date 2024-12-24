@@ -15,6 +15,8 @@ void setup() {
   brightness = getData("brightness", brightness);
   DISP.setBrightness(brightness);
 
+  FGCOLOR = getData("color", TFT_WHITE);
+
   cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
 }
@@ -43,6 +45,9 @@ void loop() {
       break;
     case 6:
       rotationLoop();
+      break;
+    case 7:
+      colorsLoop();
       break;
     default:
       defaultLoop();

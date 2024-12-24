@@ -7,3 +7,4 @@
 #include "../functions/rotationLoop.h"
 #include "../functions/statusBarLoop.h"
 #include "../functions/wifiApLoop.h"
+#include "../functions/colorsLoop.h"
