@@ -8,3 +8,5 @@
 #include "../functions/statusBarLoop.h"
 #include "../functions/wifiApLoop.h"
 #include "../functions/colorsLoop.h"
+#include "../functions/wifiScanLoop.h"
+#include "../functions/wifiAttackMenuLoop.h"

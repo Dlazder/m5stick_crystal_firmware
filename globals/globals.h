@@ -17,7 +17,7 @@ int MEDIUM_TEXT = 3;
 int BIG_TEXT = 4;
 
 struct MENU {
-  char name[20];
+  String name;
   int command;
 };
 

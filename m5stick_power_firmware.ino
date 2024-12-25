@@ -23,6 +23,11 @@ void setup() {
 
 void loop() {
   globalTimer = millis();
+
+  if (statusBar) {
+    statusBarLoop();
+  }
+  
   /* process functions switcher */
   switch (process) {
     case 0:
@@ -49,14 +54,18 @@ void loop() {
     case 7:
       colorsLoop();
       break;
+    case 8:
+      wifiScanLoop();
+      break;
+    case 9:
+      wifiAttackMenuLoop();
+      break;
     default:
       defaultLoop();
       break;
   }
 
-  if (statusBar) {
-    statusBarLoop();
-  }
+  
 
   // If webDataRequested = true, this means that the process function has not yet updated the response variable.
   // Once the value is updated, the variable will become false. Until this happens, we do not process requests so as not to send outdated information to the client.

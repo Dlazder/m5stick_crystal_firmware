@@ -49,3 +49,34 @@ void menuLoop(MENU menu[], int size) {
     webData = generateWebData("menu", generateMenuString(menu, size));
   }
 }
+
+bool isItemSelected = false;
+void functionMenuLoop(MENU menu[], int size) {
+  StickCP2.update();
+  if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
+    cursorOnTop();
+    cursor++;
+    drawMenu(menu, size);
+  }
+  if (isBtnAWasPressed()) {
+    cursorOnTop();
+    if (menu[cursor].command == 0 || menu[cursor].name == "rescan") {
+      cursorOnTop();
+      clearScreenWithSymbols();
+      cursorOnTop();
+      process = menu[cursor].command;
+      Serial.printf("Switching to %d process\n", process);
+      isSwitching = true;
+      return;
+    }
+    isItemSelected = true;
+  }
+  if (isWebControlUpWasPressed()) {
+    cursor--;
+    cursorOnTop();
+    drawMenu(menu, size);
+  }
+  if (isWebDataRequested()) {
+    webData = generateWebData("menu", generateMenuString(menu, size));
+  }
+}
