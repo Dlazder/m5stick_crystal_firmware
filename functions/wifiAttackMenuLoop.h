@@ -6,5 +6,5 @@ void wifiAttackMenuLoop() {
 		printlnCenter(String(WiFi.RSSI(wifiMenu[cursor].command - 2)), SMALL_TEXT);
 	}
 
-	checkExit(8);
+	checkExit();
 }

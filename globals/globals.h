@@ -23,6 +23,7 @@ struct MENU {
 
 int cursor = 0;
 int process = 0;
+int previousProcess = 0;
 bool isSwitching = true;
 int rotation = 1;
 

@@ -34,9 +34,7 @@ void menuLoop(MENU menu[], int size) {
     cursorOnTop();
     clearScreenWithSymbols();
     cursorOnTop();
-    process = menu[cursor].command;
-    Serial.printf("Switching to %d process\n", process);
-    isSwitching = true;
+    changeProcess(menu[cursor].command);
     return;
   }
   if (isWebControlUpWasPressed()) {
@@ -64,9 +62,7 @@ void functionMenuLoop(MENU menu[], int size) {
       cursorOnTop();
       clearScreenWithSymbols();
       cursorOnTop();
-      process = menu[cursor].command;
-      Serial.printf("Switching to %d process\n", process);
-      isSwitching = true;
+      changeProcess(menu[cursor].command);
       return;
     }
     isItemSelected = true;

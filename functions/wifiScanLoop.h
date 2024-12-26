@@ -25,8 +25,7 @@ void wifiScanLoop() {
 		if (isItemSelected) {
 			isItemSelected = false;
 			isWifiSelected = true;
-			process = 9;
-			isSwitching = true;
+			changeProcess(9);
 		}
 	// }
 }

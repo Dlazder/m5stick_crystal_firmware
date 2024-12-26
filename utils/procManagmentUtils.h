@@ -1,4 +1,4 @@
-void checkExit(int proc) {
+void checkExit(int proc = previousProcess) {
   StickCP2.update();
   if (isBtnBWasPressed()) {
     btnAWasPressed = false;
@@ -19,4 +19,11 @@ bool isSetup() {
   } else {
     return false;
   }
+}
+
+void changeProcess(int proc) {
+  previousProcess = process;
+  process = proc;
+  isSwitching = true;
+  Serial.printf("Switching to %d process\n", process);
 }
