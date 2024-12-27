@@ -28,7 +28,6 @@ void menuLoop(MENU menu[], int size) {
     cursorOnTop();
     cursor++;
     drawMenu(menu, size);
-    // StickCP2.Speaker.tone(8000, 20);
   }
   if (isBtnAWasPressed()) {
     cursorOnTop();
@@ -36,36 +35,6 @@ void menuLoop(MENU menu[], int size) {
     cursorOnTop();
     changeProcess(menu[cursor].command);
     return;
-  }
-  if (isWebControlUpWasPressed()) {
-    cursor--;
-    
-    cursorOnTop();
-    drawMenu(menu, size);
-  }
-  if (isWebDataRequested()) {
-    webData = generateWebData("menu", generateMenuString(menu, size));
-  }
-}
-
-bool isItemSelected = false;
-void functionMenuLoop(MENU menu[], int size) {
-  StickCP2.update();
-  if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
-    cursorOnTop();
-    cursor++;
-    drawMenu(menu, size);
-  }
-  if (isBtnAWasPressed()) {
-    cursorOnTop();
-    if (menu[cursor].command == 0 || menu[cursor].name == "rescan") {
-      cursorOnTop();
-      clearScreenWithSymbols();
-      cursorOnTop();
-      changeProcess(menu[cursor].command);
-      return;
-    }
-    isItemSelected = true;
   }
   if (isWebControlUpWasPressed()) {
     cursor--;
