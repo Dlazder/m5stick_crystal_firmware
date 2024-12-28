@@ -17,7 +17,7 @@ void wifiScanLoop() {
 			}
 		}
 		cursorOnTop();
-		drawMenu(wifiMenu, wifiCount);
+		drawMenu(wifiMenu, wifiCount + 2);
 	}
 	menuLoop(wifiMenu, wifiCount + 2);
 }
