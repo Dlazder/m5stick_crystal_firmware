@@ -25,14 +25,19 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   int textWidth = DISP.textWidth(text);
   int padding = (displayWidth - textWidth) / 2;
   int cursorY = DISP.getCursorY();
-  DISP.setCursor(0, cursorY, 1);
-  for (int i = 0; i < getScreenWidthInSymbols(); i++) {
-    DISP.print(" ");
-  }
+  
 
   if (newLine) {
+    DISP.setCursor(0, cursorY, 1);
+    for (int i = 0; i < getScreenWidthInSymbols(); i++) {
+      DISP.print(" ");
+    }
     DISP.setCursor(padding, cursorY, 1);
   } else {
+    DISP.setCursor(0, 60, 1);
+    for (int i = 0; i < getScreenWidthInSymbols(); i++) {
+      DISP.print(" ");
+    }
     DISP.setCursor(padding, 60, 1);
   }
   DISP.println(text);

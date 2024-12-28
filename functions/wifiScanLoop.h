@@ -1,4 +1,3 @@
-// The status bar is not displayed when scanning, needs to be fixed.
 int wifiCount = 0;
 MENU* wifiMenu = nullptr;
 void wifiScanLoop() {
