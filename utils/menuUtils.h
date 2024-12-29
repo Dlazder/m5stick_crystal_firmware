@@ -22,7 +22,8 @@ void drawMenu(MENU menu[], int size) {
   }
 }
 
-void menuLoop(MENU menu[], int size) {
+int selectedItem = 0;
+void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
   StickCP2.update();
   if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
     cursorOnTop();
@@ -34,6 +35,7 @@ void menuLoop(MENU menu[], int size) {
     clearScreenWithSymbols();
     cursorOnTop();
     changeProcess(menu[cursor].command);
+    if (updateSelectedItem) selectedItem = menu[cursor].command;
     return;
   }
   if (isWebControlUpWasPressed()) {
@@ -44,4 +46,11 @@ void menuLoop(MENU menu[], int size) {
   if (isWebDataRequested()) {
     webData = generateWebData("menu", generateMenuString(menu, size));
   }
+}
+
+bool isMenuItemSelected(int pid) {
+  if (pid == selectedItem) {
+    selectedItem = -1;
+    return true;
+  } else return false;
 }
