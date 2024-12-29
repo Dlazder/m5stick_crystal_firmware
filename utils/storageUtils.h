@@ -1,4 +1,4 @@
-void writeData(const char* key, int data) {
+void setData(const char* key, int data) {
 	preferences.putUInt(key, data);
 }
 

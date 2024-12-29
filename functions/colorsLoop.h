@@ -10,7 +10,7 @@ void colorsLoop() {
 			currentColorIndex = 0;
 		}
 		FGCOLOR = colors[currentColorIndex];
-		writeData("color", FGCOLOR);
+		setData("color", FGCOLOR);
 		centeredPrint("press A", SMALL_TEXT);
 		Serial.println(currentColorIndex);
 	}
