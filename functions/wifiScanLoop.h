@@ -2,8 +2,8 @@ int wifiCount = 0;
 MENU* wifiMenu = nullptr;
 void wifiScanLoop() {
 	if (isSetup()) {
-		cursor = 0;
 		if (wifiCount == 0 || isMenuItemSelected(8)) {
+			cursor = 0;
 			centeredPrint("Scanning...", SMALL_TEXT);
 			wifiCount = WiFi.scanNetworks();
 			wifiMenu = new MENU[wifiCount + 2];
