@@ -10,3 +10,4 @@
 #include "../functions/colorsLoop.h"
 #include "../functions/wifiScanLoop.h"
 #include "../functions/wifiAttackMenuLoop.h"
+#include "../functions/settingsStatusBarLoop.h"

@@ -15,6 +15,8 @@ void setup() {
   brightness = getData("brightness", brightness);
   DISP.setBrightness(brightness);
 
+  statusBar = getData("statusBar", statusBar);
+
   FGCOLOR = getData("color", TFT_WHITE);
 
   cursorOnTop();
@@ -59,6 +61,9 @@ void loop() {
       break;
     case 9:
       wifiAttackMenuLoop();
+      break;
+    case 10:
+      settingsStatusBarLoop();
       break;
     default:
       defaultLoop();
