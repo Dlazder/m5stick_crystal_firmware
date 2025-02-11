@@ -5,6 +5,7 @@ void wifiScanLoop() {
 		if (wifiCount == 0 || isMenuItemSelected(8)) {
 			cursor = 0;
 			centeredPrint("Scanning...", SMALL_TEXT);
+			Serial.println("Scanning...");
 			wifiCount = WiFi.scanNetworks();
 			wifiMenu = new MENU[wifiCount + 2];
 			wifiMenu[0].name = "back";

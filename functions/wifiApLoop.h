@@ -1,4 +1,3 @@
-String ssid = "M5Stick";
 IPAddress AP_GATEWAY(172, 0, 0, 1);
 
 void webServerSetup() {

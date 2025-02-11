@@ -1,6 +1,5 @@
 #include "./globals/globals.h"
 #include "./globals/utils.h"
-
 #include "./globals/functions.h"
 
 void setup() {
@@ -60,7 +59,7 @@ void loop() {
       wifiScanLoop();
       break;
     case 9:
-      wifiAttackMenuLoop();
+      wifiDeauthLoop();
       break;
     case 10:
       settingsStatusBarLoop();
