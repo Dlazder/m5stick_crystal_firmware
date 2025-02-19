@@ -9,6 +9,7 @@ using std::to_string;
 
 #include "conf.h"
 
+// For storage utils
 #include <Preferences.h>
 Preferences preferences;
 
@@ -48,3 +49,10 @@ int btnBWasPressed = false;
 bool webDataRequested = true;
 String webData = "";
 String webDataType = "";
+
+// wifi deauth
+String ssid;
+String mac;
+int channel;
+uint8_t* bssid;
+int rssi;
