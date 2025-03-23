@@ -38,11 +38,6 @@ void wifiDeauthLoop() {
 		cursorOnTop();
 		clearScreenWithSymbols();
 		DISP.setCursor(0, 60, 1);
-		ssid = WiFi.SSID(cursor - 2);
-		mac = WiFi.BSSIDstr(cursor - 2);
-		channel = WiFi.channel(cursor - 2);
-		bssid = WiFi.BSSID(cursor - 2);
-		rssi = WiFi.RSSI(cursor - 2);
 		printlnCenter(ssid, SMALL_TEXT);
 		printlnCenter(String(WiFi.RSSI(cursor - 2)), SMALL_TEXT);
 
