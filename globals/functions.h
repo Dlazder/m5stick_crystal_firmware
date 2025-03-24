@@ -11,5 +11,6 @@
 #include "../functions/wifiScanLoop.h"
 #include "../functions/wifiDeauthLoop.h"
 #include "../functions/settingsStatusBarLoop.h"
-#include "../functions/wifiMenuLoop.h"
+#include "../functions/selectedWifiMenuLoop.h"
 #include "../functions/wifiInfoLoop.h"
+#include "../functions/wifiMenuLoop.h"

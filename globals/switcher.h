@@ -14,10 +14,11 @@ const ProcessEntry processEntries[] = {
     {6, rotationLoop},
     {7, colorsLoop},
     {8, wifiScanLoop},
-    {9, wifiMenuLoop},
+    {9, selectedWifiMenuLoop},
     {10, settingsStatusBarLoop},
     {11, wifiDeauthLoop},
-    {12, wifiInfoLoop}
+    {12, wifiInfoLoop},
+    {13, wifiMenuLoop},
 };
 
 void switcher() {
