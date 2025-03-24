@@ -1,6 +1,7 @@
 #include "./globals/globals.h"
 #include "./globals/utils.h"
 #include "./globals/functions.h"
+#include "./globals/switcher.h"
 
 void setup() {
   auto cfg = M5.config();
@@ -29,47 +30,8 @@ void loop() {
     statusBarLoop();
   }
   
-  /* process functions switcher */
-  switch (process) {
-    case 0:
-      mainMenuLoop();
-      break;
-    case 1:
-      clockLoop();
-      break;
-    case 2:
-      batteryLoop();
-      break;
-    case 3:
-      settingsLoop();
-      break;
-    case 4:
-      wifiApLoop();
-      break;
-    case 5:
-      brightnessLoop();
-      break;
-    case 6:
-      rotationLoop();
-      break;
-    case 7:
-      colorsLoop();
-      break;
-    case 8:
-      wifiScanLoop();
-      break;
-    case 9:
-      wifiDeauthLoop();
-      break;
-    case 10:
-      settingsStatusBarLoop();
-      break;
-    default:
-      defaultLoop();
-      break;
-  }
-
-  
+  /* global process functions switcher */
+  switcher();
 
   // If webDataRequested = true, this means that the process function has not yet updated the response variable.
   // Once the value is updated, the variable will become false. Until this happens, we do not process requests so as not to send outdated information to the client.
