@@ -18,8 +18,8 @@ int MEDIUM_TEXT = 3;
 int BIG_TEXT = 4;
 
 struct MENU {
-  String name;
   int command;
+  String name;
 };
 
 int cursor = 0;

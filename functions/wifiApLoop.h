@@ -52,7 +52,7 @@ void wifiApLoop() {
     DISP.setTextSize(SMALL_TEXT);
     centeredPrint("WiFi Ap enabled", SMALL_TEXT);
   }
-  checkExit(0);
+  checkExit();
   if (isWebDataRequested()) {
     String res = generateFunctionElement("Wi-Fi AP enabled", SMALL_TEXT, String("center"));
     webData = generateWebData("function", res);

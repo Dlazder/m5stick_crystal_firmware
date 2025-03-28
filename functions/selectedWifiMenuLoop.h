@@ -1,7 +1,7 @@
 MENU selectedWifiMenu[] = {
-	{"back", 8},
-	{"info", 12},
-	{"deauth", 11}
+    {8, "back"},
+    {12, "info"},
+    {11, "deauth"}
 };
 int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(MENU);
 

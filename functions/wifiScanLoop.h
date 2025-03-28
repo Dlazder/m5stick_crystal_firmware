@@ -3,6 +3,10 @@ MENU* wifiScanMenu = nullptr;
 void wifiScanLoop() {
 	if (isSetup()) {
 		if (wifiCount == 0 || isMenuItemSelected(8)) {
+			// clear memory
+			if (wifiScanMenu != nullptr) {
+				delete[] wifiScanMenu;
+			}
 			cursor = 0;
 			centeredPrint("Scanning...", SMALL_TEXT);
 			Serial.println("Scanning...");

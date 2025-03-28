@@ -1,7 +1,7 @@
 MENU wifiMenu[] = {
-	{"back", 0},
-	{"Wi-Fi AP", 4},
-	{"scan", 8}
+    {0, "back"},
+    {4, "Wi-Fi AP"},
+    {8, "scan"}
 };
 
 int wifiMenuSize = sizeof(wifiMenu) / sizeof(MENU);

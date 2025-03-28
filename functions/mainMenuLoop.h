@@ -1,14 +1,14 @@
 MENU mainMenu[] = {
-  {"clock", 1},
-  {"Battery info", 2},
-  {"settings", 3},
-  {"Wi-Fi", 13}
+	{1, "clock"},
+	{2, "Battery info"},
+	{3, "settings"},
+	{13, "Wi-Fi"}
 };
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 void mainMenuLoop() {
-  if (isSetup()) {
-    cursorOnTop();
-    drawMenu(mainMenu, mainMenuSize);
-  }
-  menuLoop(mainMenu, mainMenuSize);
+	if (isSetup()) {
+		cursorOnTop();
+		drawMenu(mainMenu, mainMenuSize);
+	}
+	menuLoop(mainMenu, mainMenuSize);
 }
