@@ -2,6 +2,7 @@ void drawMenu(MENU menu[], int size) {
   DISP.setTextSize(MEDIUM_TEXT);
   if (cursor == size) cursor = cursor % size;
   if (cursor < 0) cursor = size - 1;
+  if (cursor > 2 && size <= 2) cursor = 0;
   if (cursor > 2) {
 
     for (int i = 0 + (cursor - 2); i < size; i++) {

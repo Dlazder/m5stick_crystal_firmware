@@ -11,7 +11,7 @@ void settingsLoop() {
 	if (isSetup()) {
 		DISP.setTextSize(SMALL_TEXT);
 		cursorOnTop();
-		cursor = 0;
+		if (previousProcess == 0) cursor = 0;
 		drawMenu(settingsMenu, settingsMenuSize);
 	}
 	menuLoop(settingsMenu, settingsMenuSize);

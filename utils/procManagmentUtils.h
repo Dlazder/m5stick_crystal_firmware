@@ -1,4 +1,4 @@
-void checkExit(int proc = previousProcess) {
+bool checkExit(int proc = previousProcess) {
   StickCP2.update();
   if (isBtnBWasPressed()) {
     btnAWasPressed = false;
@@ -8,8 +8,9 @@ void checkExit(int proc = previousProcess) {
     DISP.clear();
     cursorOnTop();
     isSwitching = true;
-
+    return true;
   }
+  return false;
 }
 
 bool isSetup() {
