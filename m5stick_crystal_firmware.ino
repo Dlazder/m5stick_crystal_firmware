@@ -8,6 +8,7 @@ void setup() {
   StickCP2.begin(cfg);
   Serial.begin(115200);
   preferences.begin("storage", false);
+  Serial.println("Loading preferences...");
   
   rotation = getData("rotation", rotation);
   DISP.setRotation(rotation);
@@ -19,6 +20,9 @@ void setup() {
 
   FGCOLOR = getData("color", TFT_WHITE);
 
+  Serial.println("Preferences loaded");
+
+  
   cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
 }

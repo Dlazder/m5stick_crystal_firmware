@@ -14,3 +14,5 @@
 #include "../functions/selectedWifiMenuLoop.h"
 #include "../functions/wifiInfoLoop.h"
 #include "../functions/wifiMenuLoop.h"
+#include "../functions/bluetoothMenuLoop.h"
+#include "../functions/bluetoothShutterLoop.h"

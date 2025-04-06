@@ -12,5 +12,4 @@ void wifiMenuLoop() {
 		drawMenu(wifiMenu, wifiMenuSize);
 	}
 	menuLoop(wifiMenu, wifiMenuSize);
-	checkExit(0);
 }

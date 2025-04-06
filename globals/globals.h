@@ -13,6 +13,7 @@ using std::to_string;
 #include <Preferences.h>
 Preferences preferences;
 
+int TINY_TEXT = 1;
 int SMALL_TEXT = 2;
 int MEDIUM_TEXT = 3;
 int BIG_TEXT = 4;
@@ -28,7 +29,8 @@ int previousProcess = 0;
 bool isSwitching = true;
 int rotation = 1;
 
-#define DISP StickCP2.Display
+#define DEVICE StickCP2
+#define DISP DEVICE.Display
 
 uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;
@@ -56,3 +58,8 @@ String mac;
 int channel;
 uint8_t* bssid;
 int rssi;
+
+
+// bluetooth
+#include <BleKeyboard.h>
+BleKeyboard bleKeyboard;
