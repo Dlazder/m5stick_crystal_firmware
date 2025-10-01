@@ -3,7 +3,10 @@ name: Build firmware
 on:
   push:
     branches: [main]
+    tags: ['v*']
 
+permissions:
+  contents: write 
 
 jobs:
   build:
@@ -18,7 +21,7 @@ jobs:
         with:
           version: "1.1.0"
       
-      - name: Configure Arduino CLI (enable unsafe install; add library repo url)
+      - name: Configure Arduino CLI
         run: |
           arduino-cli config set library.enable_unsafe_install true
           arduino-cli config add board_manager.additional_urls https://static-cdn.m5stack.com/resource/arduino/package_m5stack_index.json
@@ -77,7 +80,7 @@ jobs:
           }' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
 
           echo "Done."
-          
+
       - name: Compile firmware
         run: |
           arduino-cli compile --fqbn m5stack:esp32:m5stack_stickc_plus2 \
@@ -99,4 +102,31 @@ jobs:
         with:
           name: firmware
           path: build/firmware.bin
-          retention-days: 30
+          retention-days: 90
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v') && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: firmware
+
+      - name: List files
+        run: ls -la
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Release ${{ github.ref_name }}
+            
+            Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+          files: ./firmware.bin
+          generate_release_notes: true
