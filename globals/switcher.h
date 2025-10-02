@@ -21,6 +21,9 @@ const ProcessEntry processEntries[] = {
     {13, wifiMenuLoop},
     {14, bluetoothMenuLoop},
     {15, bluetoothShutterLoop},
+    {16, toggleStatusBarLoop},
+    {17, toggleStatusBarPidLoop},
+    {18, toggleStatusBarBatteryLoop},
 };
 
 void switcher() {

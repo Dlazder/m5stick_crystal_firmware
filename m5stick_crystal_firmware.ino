@@ -17,6 +17,8 @@ void setup() {
   DISP.setBrightness(brightness);
 
   statusBar = getData("statusBar", statusBar);
+  statusBarPid = getData("statusBarPid", statusBarPid);
+  statusBarBattery = getData("statusBarBattery", statusBarBattery);
 
   FGCOLOR = getData("color", TFT_WHITE);
 
