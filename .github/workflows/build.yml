@@ -125,7 +125,6 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body: |
-            Release ${{ github.ref_name }}
             
             Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
           files: ./firmware.bin
