@@ -1,14 +1,19 @@
+// pid: 10
+MENU settingsStatusBarMenu[] = {
+	{3, "back"},
+	{16, "statusBar"},
+	{17, "PID"},
+	{18, "battery"},
+	// {19, "clock"}
+};
+
+int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);
+
 void settingsStatusBarLoop() {
 	if (isSetup()) {
-		centeredPrint("press A", SMALL_TEXT);
-		updateTimer();
+		if (previousProcess == 3) cursor = 0;
+		cursorOnTop();
+		drawMenu(settingsStatusBarMenu, settingsStatusBarMenuSize);
 	}
-
-	if (isBtnAWasPressed() && checkTimer(100)) {
-		statusBar = !getData("statusBar", statusBar);
-		setData("statusBar", statusBar);
-		DISP.clear();
-		centeredPrint("press A", SMALL_TEXT);
-	}
-	checkExit(3);
+	menuLoop(settingsStatusBarMenu, settingsStatusBarMenuSize);
 }
