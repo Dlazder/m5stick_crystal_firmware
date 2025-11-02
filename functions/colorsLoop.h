@@ -1,3 +1,5 @@
+// pid 7
+
 int currentColorIndex = 0;
 void colorsLoop() {
 	if (isSetup()) {

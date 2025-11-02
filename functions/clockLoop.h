@@ -1,3 +1,5 @@
+// pid 1
+
 int oldSeconds;
 void clockLoop() {
   auto dt = StickCP2.Rtc.getDateTime();

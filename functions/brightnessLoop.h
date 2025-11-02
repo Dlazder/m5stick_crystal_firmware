@@ -1,3 +1,5 @@
+// pid 5
+
 void brightnessLoop() {
   if (isSetup()) {
     char text[50];

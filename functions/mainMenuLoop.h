@@ -1,3 +1,5 @@
+// pid 0
+
 MENU mainMenu[] = {
 	{1, "clock"},
 	{2, "Battery info"},
