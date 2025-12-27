@@ -17,9 +17,15 @@ void clearScreenWithSymbols() {
   }
 }
 
+/**
+ * print text on center of the screen
+ * @param textSize [TINY_TEXT; SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT] - (1; 2; 3; 4)
+ * @param newLine if we printing second text row
+ */
 void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   int currentTextSize = DISP.getTextSizeX();
+
   DISP.setTextSize(textSize);
   int displayWidth = DISP.width();
   int textWidth = DISP.textWidth(text);
@@ -28,18 +34,26 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   
 
   if (newLine) {
+
     DISP.setCursor(0, cursorY, 1);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
       DISP.print(" ");
     }
     DISP.setCursor(padding, cursorY, 1);
+
   } else {
-    DISP.setCursor(0, 60, 1);
+    
+    // calculate the approximate top indent depending on whether the status bar is enabled
+    int offsetY = preferences.getUInt("statusBar", false) ? 70 : 65;
+
+    DISP.setCursor(0, offsetY, 1);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
       DISP.print(" ");
     }
-    DISP.setCursor(padding, 60, 1);
+    DISP.setCursor(padding, offsetY, 1);
+
   }
+
   DISP.println(text);
   DISP.setTextSize(currentTextSize);
 }
