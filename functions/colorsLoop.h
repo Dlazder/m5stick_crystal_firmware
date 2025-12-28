@@ -3,7 +3,10 @@
 int currentColorIndex = 0;
 void colorsLoop() {
 	if (isSetup()) {
-		centeredPrint("press A", SMALL_TEXT);
+		// centeredPrint("color: " + String(FGCOLOR), SMALL_TEXT);
+		// centeredPrint("press A", SMALL_TEXT, true);
+		String lines[] = {"color:", "press A"};
+		centeredPrintRows(lines, 2, SMALL_TEXT);
 		updateTimer();
 	}
 	if (isBtnAWasPressed() && checkTimer(100)) {
@@ -11,10 +14,14 @@ void colorsLoop() {
 		if (currentColorIndex == sizeof(colors) / sizeof(colors[0])) {
 			currentColorIndex = 0;
 		}
+		Serial.printf("current colorIndex: %d\n", currentColorIndex);
+		
 		FGCOLOR = colors[currentColorIndex];
 		setData("color", FGCOLOR);
-		centeredPrint("press A", SMALL_TEXT);
-		Serial.println(currentColorIndex);
+		// centeredPrint("color: " + String(FGCOLOR), SMALL_TEXT);
+		// centeredPrint("press A", SMALL_TEXT, true);
+		String lines[] = {"color: " + String(FGCOLOR), "press A"};
+		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}
 	checkExit(3);
 }
