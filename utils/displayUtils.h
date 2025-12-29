@@ -28,7 +28,7 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
 
   DISP.setTextSize(textSize);
   int displayWidth = DISP.width();
-  int textWidth = DISP.textWidth(text);
+  int textWidth = DISP.textWidth(text.c_str());
   int padding = (displayWidth - textWidth) / 2;
   int cursorY = DISP.getCursorY();
   
@@ -54,24 +54,12 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
 
   }
 
-  DISP.println(text);
+  DISP.println(text.c_str());
   DISP.setTextSize(currentTextSize);
 }
 
 void printlnCenter(String text, int textSize) {
   centeredPrint(text, textSize, true);
-}
-
-void xycenteredPrint(String text, int textSize) {
-  DISP.setTextColor(FGCOLOR, BGCOLOR);
-  int displayWidth = DISP.width();
-  int textWidth = DISP.textWidth(text);
-  int paddingX = (displayWidth - textWidth) / 2;
-  int displayHeight = DISP.height();
-  DISP.setCursor(paddingX, 37, 1);
-  DISP.print(text);
-  DISP.drawCenterString(text, 125, 67, 1);
-  Serial.println(DISP.getCursorY());
 }
 
 void cursorOnTop() {

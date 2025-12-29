@@ -21,11 +21,11 @@ void centeredPrintRows(String text[], int arraySize, int textSize) {
 		DISP.print(" ");
 	}
 	for (int i = 0; i < arraySize; i++) {
-		int textWidth = DISP.textWidth(text[i]);
+		int textWidth = DISP.textWidth(text[i].c_str());
 		int paddingX = (displayWidth - textWidth) / 2;
 		int cursorY = DISP.getCursorY();
 		DISP.setCursor(paddingX, cursorY, 1);
-		DISP.println(text[i]);
+		DISP.println(text[i].c_str());
 	}
 
 	
