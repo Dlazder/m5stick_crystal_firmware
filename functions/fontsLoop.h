@@ -27,6 +27,7 @@ void fontsLoop() {
       "Font:" + String(fontNames[currentFontIndex]),
       "Press A"
     };
+    DISP.clear();
     centeredPrintRows(lines, 3, SMALL_TEXT);
   }
   
