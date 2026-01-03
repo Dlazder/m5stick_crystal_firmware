@@ -1,0 +1,34 @@
+// pid 19
+
+void fontsLoop() {
+  if (isSetup()) {
+    String lines[] = {
+      "(beta)",
+      "Font:" + String(fontNames[currentFontIndex]),
+      "Press A"
+    };
+    centeredPrintRows(lines, 3, SMALL_TEXT);
+    updateTimer();
+  }
+  
+  if (isBtnAWasPressed() && checkTimer(100)) {
+    currentFontIndex++;
+    if (currentFontIndex == sizeof(systemFonts) / sizeof(systemFonts[0])) {
+      currentFontIndex = 0;
+    }
+    Serial.printf("Current font index: %d (%s)\n", currentFontIndex, fontNames[currentFontIndex]);
+    
+    DISP.setFont(systemFonts[currentFontIndex]);
+    
+    setData("fontIndex", currentFontIndex);
+    
+    String lines[] = {
+      "(beta)",
+      "Font:" + String(fontNames[currentFontIndex]),
+      "Press A"
+    };
+    centeredPrintRows(lines, 3, SMALL_TEXT);
+  }
+  
+  checkExit(3);
+}

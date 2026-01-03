@@ -8,7 +8,7 @@ void brightnessLoop() {
     updateTimer();
   }
   if (isBtnAWasPressed() && checkTimer(100)) {
-    DISP.setCursor(0, 60, 1);
+    DISP.setCursor(0, 60);
     char text[50];
     sprintf(text, "brightness: %d", brightness);
 

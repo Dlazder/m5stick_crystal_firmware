@@ -19,3 +19,4 @@
 #include "../functions/wifiMenuLoop.h"
 #include "../functions/bluetoothMenuLoop.h"
 #include "../functions/bluetoothShutterLoop.h"
+#include "../functions/fontsLoop.h"

@@ -35,22 +35,22 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
 
   if (newLine) {
 
-    DISP.setCursor(0, cursorY, 1);
+    DISP.setCursor(0, cursorY);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
       DISP.print(" ");
     }
-    DISP.setCursor(padding, cursorY, 1);
+    DISP.setCursor(padding, cursorY);
 
   } else {
     
     // calculate the approximate top indent depending on whether the status bar is enabled
     int offsetY = preferences.getUInt("statusBar", false) ? 70 : 65;
 
-    DISP.setCursor(0, offsetY, 1);
+    DISP.setCursor(0, offsetY);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
       DISP.print(" ");
     }
-    DISP.setCursor(padding, offsetY, 1);
+    DISP.setCursor(padding, offsetY);
 
   }
 
@@ -64,8 +64,8 @@ void printlnCenter(String text, int textSize) {
 
 void cursorOnTop() {
   if (statusBar) {
-    DISP.setCursor(0, 39, 1);
+    DISP.setCursor(0, 39);
   } else {
-    DISP.setCursor(0, 0, 1);
+    DISP.setCursor(0, 0);
   }
 }

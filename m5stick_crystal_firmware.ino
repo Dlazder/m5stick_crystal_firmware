@@ -20,6 +20,9 @@ void setup() {
   statusBarPid = getData("statusBarPid", statusBarPid);
   statusBarBattery = getData("statusBarBattery", statusBarBattery);
 
+  currentFontIndex = getData("fontIndex", currentFontIndex);
+  DISP.setFont(systemFonts[currentFontIndex]);
+
   FGCOLOR = getData("color", TFT_WHITE);
 
   Serial.println("Preferences loaded");

@@ -2,7 +2,7 @@
 
 void defaultLoop() {
 	if (isSetup()) {
-		DISP.setCursor(0, 60, 1);
+		DISP.setCursor(0, 60);
 		printlnCenter("this PID is not", SMALL_TEXT);
 		printlnCenter("defined in swicher", SMALL_TEXT);
 	}

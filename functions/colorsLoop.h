@@ -3,8 +3,6 @@
 int currentColorIndex = 0;
 void colorsLoop() {
 	if (isSetup()) {
-		// centeredPrint("color: " + String(FGCOLOR), SMALL_TEXT);
-		// centeredPrint("press A", SMALL_TEXT, true);
 		String lines[] = {"color:", "press A"};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 		updateTimer();
@@ -18,8 +16,6 @@ void colorsLoop() {
 		
 		FGCOLOR = colors[currentColorIndex];
 		setData("color", FGCOLOR);
-		// centeredPrint("color: " + String(FGCOLOR), SMALL_TEXT);
-		// centeredPrint("press A", SMALL_TEXT, true);
 		String lines[] = {"color: " + String(FGCOLOR), "press A"};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}

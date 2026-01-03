@@ -14,9 +14,9 @@ void centeredPrintRows(String text[], int arraySize, int textSize) {
 	
 	// calculate top indent
 	int offsetY = statusBarHeight + ((displayHeight - statusBarHeight) - textHeight) / 2;
-	DISP.setCursor(0, offsetY, 1);
+	DISP.setCursor(0, offsetY);
 
-	DISP.setCursor(0, offsetY, 1);
+	DISP.setCursor(0, offsetY);
 	for (int i = 0; i < getScreenWidthInSymbols(); i++) {
 		DISP.print(" ");
 	}
@@ -24,7 +24,7 @@ void centeredPrintRows(String text[], int arraySize, int textSize) {
 		int textWidth = DISP.textWidth(text[i].c_str());
 		int paddingX = (displayWidth - textWidth) / 2;
 		int cursorY = DISP.getCursorY();
-		DISP.setCursor(paddingX, cursorY, 1);
+		DISP.setCursor(paddingX, cursorY);
 		DISP.println(text[i].c_str());
 	}
 
