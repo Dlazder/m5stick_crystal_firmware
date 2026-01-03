@@ -10,37 +10,50 @@ int getScreenWidthInSymbols() {
 }
 
 void clearScreenWithSymbols() {
-  DISP.setTextSize(MEDIUM_TEXT);
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   for (int i = 0; i < 5; i++) {
-    DISP.println("             ");
+    DISP.println("                    ");
   }
 }
 
+/**
+ * print text on center of the screen
+ * @param textSize [TINY_TEXT; SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT] - (1; 2; 3; 4)
+ * @param newLine if we printing second text row
+ */
 void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   int currentTextSize = DISP.getTextSizeX();
+
   DISP.setTextSize(textSize);
   int displayWidth = DISP.width();
-  int textWidth = DISP.textWidth(text);
+  int textWidth = DISP.textWidth(text.c_str());
   int padding = (displayWidth - textWidth) / 2;
   int cursorY = DISP.getCursorY();
   
 
   if (newLine) {
-    DISP.setCursor(0, cursorY, 1);
+
+    DISP.setCursor(0, cursorY);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
       DISP.print(" ");
     }
-    DISP.setCursor(padding, cursorY, 1);
+    DISP.setCursor(padding, cursorY);
+
   } else {
-    DISP.setCursor(0, 60, 1);
+    
+    // calculate the approximate top indent depending on whether the status bar is enabled
+    int offsetY = preferences.getUInt("statusBar", false) ? 70 : 65;
+
+    DISP.setCursor(0, offsetY);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
       DISP.print(" ");
     }
-    DISP.setCursor(padding, 60, 1);
+    DISP.setCursor(padding, offsetY);
+
   }
-  DISP.println(text);
+
+  DISP.println(text.c_str());
   DISP.setTextSize(currentTextSize);
 }
 
@@ -48,22 +61,10 @@ void printlnCenter(String text, int textSize) {
   centeredPrint(text, textSize, true);
 }
 
-void xycenteredPrint(String text, int textSize) {
-  DISP.setTextColor(FGCOLOR, BGCOLOR);
-  int displayWidth = DISP.width();
-  int textWidth = DISP.textWidth(text);
-  int paddingX = (displayWidth - textWidth) / 2;
-  int displayHeight = DISP.height();
-  DISP.setCursor(paddingX, 37, 1);
-  DISP.print(text);
-  DISP.drawCenterString(text, 125, 67, 1);
-  Serial.println(DISP.getCursorY());
-}
-
 void cursorOnTop() {
   if (statusBar) {
-    DISP.setCursor(0, 39, 1);
+    DISP.setCursor(0, 39);
   } else {
-    DISP.setCursor(0, 0, 1);
+    DISP.setCursor(0, 0);
   }
 }

@@ -1,0 +1,22 @@
+### List of process IDs
+
+0. mainMenu
+1. clock
+2. battery info
+3. settingsMenu
+4. Wi-Fi AP
+5. brightness
+6. rotation
+7. colors
+8. Wi-Fi scan
+9. Wi-Fi network menu
+10. settings statusBar
+11. Wi-Fi deauth
+12. Wi-Fi info
+13. Wi-Fi Menu
+14. Bluetooth Menu
+15. Bluetooth camera shutter
+16. Toggle status bar
+17. Toggle PID in status bar
+18. toggle battery % in status bar
+19. change fonts (beta)

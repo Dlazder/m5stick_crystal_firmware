@@ -1,3 +1,5 @@
+// pid 5
+
 void brightnessLoop() {
   if (isSetup()) {
     char text[50];
@@ -6,7 +8,7 @@ void brightnessLoop() {
     updateTimer();
   }
   if (isBtnAWasPressed() && checkTimer(100)) {
-    DISP.setCursor(0, 60, 1);
+    DISP.setCursor(0, 60);
     char text[50];
     sprintf(text, "brightness: %d", brightness);
 

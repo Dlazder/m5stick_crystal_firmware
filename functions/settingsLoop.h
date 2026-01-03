@@ -1,9 +1,11 @@
-// pid: 3
+// pid 3
+
 MENU settingsMenu[] = {
 	{0, "back"},
 	{5, "brightness"},
 	{6, "rotation"},
 	{7, "colors"},
+	{19, "font"},
 	{10, "status bar"}
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);

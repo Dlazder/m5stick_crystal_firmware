@@ -1,4 +1,4 @@
-// pid: 14
+// pid 14
 
 MENU bluetoothMenu[] = {
 	{0, "back"},

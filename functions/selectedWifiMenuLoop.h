@@ -1,7 +1,9 @@
+// pid 9
+
 MENU selectedWifiMenu[] = {
-    {8, "back"},
-    {12, "info"},
-    {11, "deauth"}
+	{8, "back"},
+	{12, "info"},
+	{11, "deauth"}
 };
 int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(MENU);
 

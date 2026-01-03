@@ -1,6 +1,8 @@
+// pid 6
+
 void rotationLoop() {
   if (isSetup()) {
-    DISP.setCursor(0, 60, 1);
+    DISP.setCursor(0, 60);
     printlnCenter("press A", SMALL_TEXT);
     printlnCenter("to change", SMALL_TEXT);
     printlnCenter("rotation", SMALL_TEXT);
@@ -12,7 +14,7 @@ void rotationLoop() {
     } else rotation = 1;
     setData("rotation", rotation);
     DISP.setRotation(rotation);
-    DISP.setCursor(0, 60, 1);
+    DISP.setCursor(0, 60);
     DISP.clear();
     printlnCenter("press A", SMALL_TEXT);
     printlnCenter("to change", SMALL_TEXT);

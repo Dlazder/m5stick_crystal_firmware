@@ -1,3 +1,5 @@
+// pid: NONE
+
 int battery = 100;
 int statusBarTimer = 0;
 
@@ -10,7 +12,7 @@ void statusBar_batteryLoop() {
 
 void statusBarLoop() {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
-  DISP.setCursor(8, 8, 1);
+  DISP.setCursor(8, 8);
   DISP.setTextSize(SMALL_TEXT);
   if (getData("statusBarPid", statusBarPid)) {
     DISP.printf("PID: %d; ", process);

@@ -1,3 +1,5 @@
+// pid 12
+
 void wifiInfoLoop() {
 	if (isSetup()) {
 		DISP.setCursor(0, 50);

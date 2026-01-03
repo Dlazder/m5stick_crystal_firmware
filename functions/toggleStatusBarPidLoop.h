@@ -1,4 +1,5 @@
-// pid: 17
+// pid 17
+
 void toggleStatusBarPidLoop() {
 	if (isSetup()) {
 		centeredPrint("press A", SMALL_TEXT);

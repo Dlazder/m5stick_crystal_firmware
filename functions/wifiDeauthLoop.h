@@ -1,3 +1,5 @@
+// pid 11
+
 #include "esp_wifi.h"
 #include "esp_system.h"
 
@@ -37,7 +39,7 @@ void wifiDeauthLoop() {
 	if (isSetup()) {
 		cursorOnTop();
 		clearScreenWithSymbols();
-		DISP.setCursor(0, 60, 1);
+		DISP.setCursor(0, 60);
 		printlnCenter(ssid, SMALL_TEXT);
 		printlnCenter(String(WiFi.RSSI(cursor - 2)), SMALL_TEXT);
 

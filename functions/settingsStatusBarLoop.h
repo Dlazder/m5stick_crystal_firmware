@@ -1,4 +1,5 @@
-// pid: 10
+// pid 10
+
 MENU settingsStatusBarMenu[] = {
 	{3, "back"},
 	{16, "statusBar"},
