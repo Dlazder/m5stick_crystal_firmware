@@ -1,4 +1,4 @@
-### List of process IDs
+# List of process IDs
 
 0. mainMenu
 1. clock
