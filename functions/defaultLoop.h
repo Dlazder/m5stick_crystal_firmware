@@ -3,8 +3,11 @@
 void defaultLoop() {
 	if (isSetup()) {
 		DISP.setCursor(0, 60);
-		printlnCenter("this PID is not", SMALL_TEXT);
-		printlnCenter("defined in swicher", SMALL_TEXT);
+		String lines[] = {
+			"this PID is not",
+			"defined in swicher"
+		};
+		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}
 	checkExit(0);
 	if (isWebDataRequested()) {

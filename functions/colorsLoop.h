@@ -3,7 +3,7 @@
 int currentColorIndex = 0;
 void colorsLoop() {
 	if (isSetup()) {
-		String lines[] = {"color:", "press A"};
+		String lines[] = {"color: " + String(FGCOLOR), "press A"};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 		updateTimer();
 	}
