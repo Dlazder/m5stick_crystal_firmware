@@ -27,7 +27,10 @@ void setup() {
 
   Serial.println("Preferences loaded");
 
-  
+  canvas.createSprite(DISP.width(), DISP.height());
+  canvas.setTextColor(FGCOLOR);
+  canvas.setTextSize(SMALL_TEXT);
+
   cursorOnTop();
   drawMenu(mainMenu, mainMenuSize);
 }
