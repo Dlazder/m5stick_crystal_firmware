@@ -58,10 +58,6 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextSize(currentTextSize);
 }
 
-void printlnCenter(String text, int textSize) {
-  centeredPrint(text, textSize, true);
-}
-
 void cursorOnTop() {
   if (statusBar) {
     DISP.setCursor(0, 39);

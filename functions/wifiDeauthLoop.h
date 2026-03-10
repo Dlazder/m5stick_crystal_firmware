@@ -39,9 +39,13 @@ void wifiDeauthLoop() {
 	if (isSetup()) {
 		cursorOnTop();
 		clearScreenWithSymbols();
-		DISP.setCursor(0, 60);
-		printlnCenter(ssid, SMALL_TEXT);
-		printlnCenter(String(WiFi.RSSI(cursor - 2)), SMALL_TEXT);
+
+		String lines[] = {
+			ssid,
+			String(WiFi.RSSI(cursor - 2))
+		};
+
+		centeredPrintRows(lines, 2, SMALL_TEXT);
 
 		WiFi.mode(WIFI_AP);
 		WiFi.softAP(ssid, "", channel, 1, 4, false);
