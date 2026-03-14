@@ -1,3 +1,7 @@
+/**
+ * Returns the screen width in characters
+ * (How many characters can fit)
+ */
 int getScreenWidthInSymbols() {
   int size = DISP.getTextSizeY();
 
@@ -9,6 +13,11 @@ int getScreenWidthInSymbols() {
   }
 }
 
+
+/**
+ * print spaces on screen to clear screen
+ * (will be removed in future probably)
+ */
 void clearScreenWithSymbols() {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   DISP.setTextSize(SMALL_TEXT);
@@ -58,6 +67,10 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   DISP.setTextSize(currentTextSize);
 }
 
+/**
+ * Places the cursor at the top of the accessible area
+ * (depending on the presence of the status bar)
+ */
 void cursorOnTop() {
   if (statusBar) {
     DISP.setCursor(0, 39);

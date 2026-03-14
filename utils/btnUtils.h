@@ -1,3 +1,6 @@
+/**
+ * Checks physical button B clicks (and clicks from the web interface)
+ */
 bool isBtnBWasPressed() {
   if (btnBWasPressed) {
     btnBWasPressed = false;
@@ -7,6 +10,9 @@ bool isBtnBWasPressed() {
   } else return false;
 }
 
+/**
+ * Checks physical button A clicks (and clicks from the web interface)
+ */
 bool isBtnAWasPressed() {
   if (btnAWasPressed) {
     btnAWasPressed = false;
@@ -16,9 +22,17 @@ bool isBtnAWasPressed() {
   } else return false;
 }
 
+/**
+ * Emulates a button B press
+ */
 void pressBtnB() {
   btnBWasPressed = true;
 }
+
+
+/**
+ * Emulates a button A press
+ */
 void pressBtnA() {
   btnAWasPressed = true;
 }

@@ -1,6 +1,8 @@
+// All files from the utils/ folder
+
 // 1st layer utilities
 #include "../utils/btnUtils.h"
-#include "../utils/displayUtils.h"
+#include "../utils/displayUtils/displayUtils.h"
 #include "../utils/displayUtils/centeredPrintRows.h"
 #include "../utils/timerUtils.h"
 #include "../utils/webServerUtils.h"

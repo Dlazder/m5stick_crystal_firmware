@@ -1,3 +1,4 @@
+// All files from the functions/ folder
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/settingsLoop.h"
