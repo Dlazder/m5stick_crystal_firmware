@@ -2,22 +2,25 @@
 
 void brightnessLoop() {
   if (isSetup()) {
-    char text[50];
-    sprintf(text, "brightness: %d", brightness / brightnessDividor);
-    centeredPrint(text, SMALL_TEXT);
+    String lines[] = {
+      "brightness: " + String(brightness / brightnessDividor),
+      "press A"
+    };
+    centeredPrintRows(lines, 2, SMALL_TEXT);
     updateTimer();
   }
+  
   if (isBtnAWasPressed() && checkTimer(100)) {
-    DISP.setCursor(0, 60);
-    char text[50];
-    sprintf(text, "brightness: %d", brightness);
-
     brightness -= brightnessDividor;
     if (brightness <= 0 || brightness / brightnessDividor == 0) brightness = brightnessMax;
     setData("brightness", brightness);
     DISP.setBrightness(brightness);
-    sprintf(text, "brightness: %d", brightness / brightnessDividor);
-    centeredPrint(text, SMALL_TEXT);
+
+    String lines[] = {
+      "brightness: " + String(brightness / brightnessDividor),
+      "press A"
+    };
+    centeredPrintRows(lines, 2, SMALL_TEXT);
   }
   checkExit(3);
   if (isWebDataRequested()) {

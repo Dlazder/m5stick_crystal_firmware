@@ -1,11 +1,15 @@
 // pid 6
 
 void rotationLoop() {
+
+  String lines[] = {
+    "press A",
+    "to change",
+    "rotation"
+  };
+
   if (isSetup()) {
-    DISP.setCursor(0, 60);
-    printlnCenter("press A", SMALL_TEXT);
-    printlnCenter("to change", SMALL_TEXT);
-    printlnCenter("rotation", SMALL_TEXT);
+    centeredPrintRows(lines, 3, SMALL_TEXT);
     updateTimer();
   }
   if (isBtnAWasPressed() && checkTimer(100)) {
@@ -14,11 +18,8 @@ void rotationLoop() {
     } else rotation = 1;
     setData("rotation", rotation);
     DISP.setRotation(rotation);
-    DISP.setCursor(0, 60);
     DISP.clear();
-    printlnCenter("press A", SMALL_TEXT);
-    printlnCenter("to change", SMALL_TEXT);
-    printlnCenter("rotation", SMALL_TEXT);
+    centeredPrintRows(lines, 3, SMALL_TEXT);
   }
   checkExit(3);
   if (isWebDataRequested()) {

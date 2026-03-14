@@ -2,7 +2,7 @@
 
 MENU settingsStatusBarMenu[] = {
 	{3, "back"},
-	{16, "statusBar"},
+	{16, "status bar"},
 	{17, "PID"},
 	{18, "battery"},
 	// {19, "clock"}

@@ -1,3 +1,4 @@
+// All files from the functions/ folder
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/settingsLoop.h"
@@ -20,3 +21,4 @@
 #include "../functions/bluetoothMenuLoop.h"
 #include "../functions/bluetoothShutterLoop.h"
 #include "../functions/fontsLoop.h"
+#include "../functions/levelToolLoop.h"

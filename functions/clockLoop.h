@@ -8,6 +8,7 @@ void clockLoop() {
   if (dt.time.seconds != oldSeconds) {
     oldSeconds = dt.time.seconds;
     DISP.setTextColor(FGCOLOR, BGCOLOR);
+    clearScreenWithSymbols();
     centeredPrint(formatString, SMALL_TEXT);
   }
   checkExit(0);
