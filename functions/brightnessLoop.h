@@ -11,10 +11,12 @@ void brightnessLoop() {
   }
   
   if (isBtnAWasPressed() && checkTimer(100)) {
-    brightness -= brightnessDividor;
-    if (brightness <= 0 || brightness / brightnessDividor == 0) brightness = brightnessMax;
+    brightness += brightnessDividor;
+    if (brightness >= brightnessMax || brightness / brightnessDividor == 0) brightness = brightnessMin;
     setData("brightness", brightness);
     DISP.setBrightness(brightness);
+
+    Serial.printf("Brightness: %d\n", brightness);
 
     String lines[] = {
       "brightness: " + String(brightness / brightnessDividor),
@@ -22,7 +24,8 @@ void brightnessLoop() {
     };
     centeredPrintRows(lines, 2, SMALL_TEXT);
   }
-  checkExit(3);
+  checkExit();
+
   if (isWebDataRequested()) {
     char text[50];
     sprintf(text, "brightness: %d", brightness / brightnessDividor);

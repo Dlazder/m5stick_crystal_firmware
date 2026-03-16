@@ -20,3 +20,4 @@
 17. Toggle PID in status bar
 18. toggle battery % in status bar
 19. change fonts (beta)
+20. level tool

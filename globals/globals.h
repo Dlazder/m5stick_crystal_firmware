@@ -74,6 +74,7 @@ int brightnessMax = 255;
 int brightnessStep = 10;
 int brightnessDividor = brightnessMax / brightnessStep;
 int brightness = 1*brightnessDividor;
+int brightnessMin = brightnessDividor;
 
 int globalTimer = millis();
 int globalPreviousTimer = 0;
