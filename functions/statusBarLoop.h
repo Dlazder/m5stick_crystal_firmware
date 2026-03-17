@@ -20,5 +20,5 @@ void statusBarLoop() {
   if (getData("statusBarBattery", statusBarBattery)) {
     statusBar_batteryLoop();
   }
-  DISP.drawLine(0, 30, 250, 30, FGCOLOR);
+  DISP.drawLine(0, 30, DISP.width(), 30, FGCOLOR);
 }

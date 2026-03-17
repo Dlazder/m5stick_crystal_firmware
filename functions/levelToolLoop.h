@@ -6,7 +6,7 @@ bool levelToolSoundPlayed = false;
 
 void levelToolLoop() {
 
-	bool isStatusBarEnabled = preferences.getUInt("statusBar", false);
+	bool isStatusBarEnabled = statusBar;
 	int statusBarHeight = isStatusBarEnabled ? 30 : 0;
 
 	float accX, accY, accZ;
