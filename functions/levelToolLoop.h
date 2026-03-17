@@ -2,10 +2,11 @@ float filteredAngle = 0;
 const float ALPHA = 0.3;
 
 int lastAngle = 0;
+bool levelToolSoundPlayed = false;
 
 void levelToolLoop() {
 
-	bool isStatusBarEnabled = preferences.getUInt("statusBar", false);
+	bool isStatusBarEnabled = statusBar;
 	int statusBarHeight = isStatusBarEnabled ? 30 : 0;
 
 	float accX, accY, accZ;
@@ -52,7 +53,21 @@ void levelToolLoop() {
 			lastAngle = int(angle);
 		}
 	}
-	lastAngle == 0 ? canvas.setTextColor(TFT_GREEN) : canvas.setTextColor(TFT_DARKGRAY);
+
+	// turn on the led, play the sound and turn the number green at 0
+	if (lastAngle == 0) {
+		canvas.setTextColor(TFT_GREEN);
+		DEVICE.Power.setLed(1);
+		if (!levelToolSoundPlayed) {
+			DEVICE.Speaker.tone(2000, 100);
+			levelToolSoundPlayed = true;
+		}
+	} else {
+		canvas.setTextColor(TFT_DARKGRAY);
+		DEVICE.Power.setLed(0);
+		levelToolSoundPlayed = false;
+	}
+	
 	canvas.drawCenterString(String(lastAngle).c_str(), centerX, 110 - statusBarHeight);
 
 	canvas.pushSprite(0, statusBarHeight + 1);
