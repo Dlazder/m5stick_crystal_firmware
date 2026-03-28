@@ -33,6 +33,7 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install m5stack:esp32@2.1.2
           arduino-cli lib install "M5StickCPlus2"
+          arduino-cli lib install "Adafruit PN532"
 
       - name: Install required library
         run: arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Keyboard

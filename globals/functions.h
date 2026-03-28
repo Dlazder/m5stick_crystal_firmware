@@ -22,3 +22,4 @@
 #include "../functions/bluetoothShutterLoop.h"
 #include "../functions/fontsLoop.h"
 #include "../functions/levelToolLoop.h"
+#include "../functions/nfcLoop.h"

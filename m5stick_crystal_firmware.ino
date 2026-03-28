@@ -27,6 +27,11 @@ void setup() {
 
   Serial.println("Preferences loaded");
 
+  Wire.begin(G32, G33);
+  Wire.setClock(10000);
+  Wire.setTimeout(100);
+  delay(1000);
+
   canvas.createSprite(DISP.width(), DISP.height());
   canvas.setTextColor(FGCOLOR);
   canvas.setTextSize(SMALL_TEXT);
