@@ -1,3 +1,5 @@
+// pid 22
+
 // Flag to avoid repeated connect/disconnect notifications
 bool nfcModuleWasConnected = false;
 
@@ -19,7 +21,7 @@ void displayNotConnectedError() {
 }
 
 
-void nfcLoop() {
+void nfcReadLoop() {
 	if (isSetup()) {
 		String lines[] = {
 			"PN532: disconnected",
@@ -97,5 +99,8 @@ void nfcLoop() {
 		}
 	}
 
-	checkExit();
+	if (checkExit()) {
+		DEVICE.Power.setLed(0);
+		nfcModuleWasConnected = false;
+	};
 }
