@@ -2,8 +2,8 @@
 
 MENU nfcMenu[] = {
 	{0, "back"},
-	{22, "read"},
-	{23, "write"},
+	{22, "read UID"},
+	{23, "write UID"},
 	// {19, "clock"}
 };
 

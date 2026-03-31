@@ -1,5 +1,9 @@
 // pid 22
 
+uint8_t lastReadUID[7] = {0};  // 7 bytes - enough for all standard tags
+uint8_t lastReadUIDLength = 0;
+bool hasValidUID = false;
+
 // Flag to avoid repeated connect/disconnect notifications
 bool nfcModuleWasConnected = false;
 
@@ -18,6 +22,16 @@ void displayNotConnectedError() {
 	Serial.println("PN532: disconnected");
 	DEVICE.Power.setLed(1);
 	DEVICE.Speaker.tone(1000, 200);
+}
+
+String uidToString(const uint8_t* uid, uint8_t uidLength) {
+	String uidString = "";
+	for (uint8_t i = 0; i < uidLength; i++) {
+		if (uid[i] < 0x10) uidString += "0";
+		uidString += String(uid[i], HEX);
+		if (i < uidLength - 1) uidString += ":";
+	}
+	return uidString;
 }
 
 
@@ -86,16 +100,18 @@ void nfcReadLoop() {
 	
 		if (success) {
 			updateTimer();
-			String uidString = "";
-			for (uint8_t i = 0; i < uidLength; i++) {
-				if (uid[i] < 0x10) uidString += "0";
-				uidString += String(uid[i], HEX);
-				if (i < uidLength - 1) uidString += ":";
-			}
+			String uidString = uidToString(uid, uidLength);
 	
 			Serial.printf("Tag found: %s\n", uidString.c_str());
 			centeredPrint(uidString.c_str(), SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 100);
+
+			// Saving UID for writing
+			memset(lastReadUID, 0, sizeof(lastReadUID));
+			memcpy(lastReadUID, uid, uidLength);
+			lastReadUIDLength = uidLength;
+			hasValidUID = true;
+			Serial.println("UID stored for writing:" + uidString);
 		}
 	}
 

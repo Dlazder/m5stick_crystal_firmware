@@ -1,13 +1,7 @@
 // pid 23
 
-// Hardcoded UID to write (example: 04:12:34:56:78:90)
 // Modify this array with your target UID
 uint8_t DEFAULT_KEY[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-uint8_t originalUid[10];
-uint8_t originalUidLength = 0;
-
-uint8_t targetUid[] = { 0x04, 0x12, 0x34, 0x56 };
-uint8_t targetUidLength = 4;
 
 uint8_t calculateBCC(uint8_t *uid, uint8_t len) {
 	uint8_t bcc = 0;
@@ -23,17 +17,17 @@ void prepareBlock0(uint8_t *newUID, uint8_t *newBlock0, uint8_t uidLength) {
 	
 	// If UID 4 bytes - adding BCC
 	if (uidLength == 4) {
-			newBlock0[4] = calculateBCC(newUID, 4);
-			newBlock0[5] = 0x08;  // SAK for MIFARE Classic 1K
-			newBlock0[6] = 0x04;  // ATQA least significant byte
-			newBlock0[7] = 0x00;  // ATQA most significant byte
+		newBlock0[4] = calculateBCC(newUID, 4);
+		newBlock0[5] = 0x08;  // SAK for MIFARE Classic 1K
+		newBlock0[6] = 0x04;  // ATQA least significant byte
+		newBlock0[7] = 0x00;  // ATQA most significant byte
 	}
 	// For 7-byte UID (MIFARE Ultralight) structure is different
 	// But for CUID usually 4 bytes are used
 	
 	// Other bytes filled with zeros (or copied from the original tag)
 	for (int i = uidLength + 1; i < 16; i++) {
-			newBlock0[i] = 0x00;
+		newBlock0[i] = 0x00;
 	}
 }
 
@@ -43,10 +37,14 @@ bool isMifareClassic(uint8_t *uid, uint8_t uidLength) {
 }
 
 bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
+	if (!hasValidUID) {
+		Serial.println("No UID stored for writing");
+		return false;
+	}
 	uint8_t uid[10];
 	uint8_t uidLength;
 	
-	// Поиск карты (повторяем, чтобы получить свежие данные)
+	// Tag search
 	uint8_t success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, 500);
 	if (!success) {
 		Serial.println("No tag found for writing");
@@ -60,17 +58,13 @@ bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
 	}
 	Serial.println();
 	
-	// Проверяем, поддерживается ли операция
+	// Checking, if the operation is supported
 	if (!isMifareClassic(uid, uidLength)) {
 		Serial.println("Tag is not MIFARE Classic (CUID required)");
 		return false;
 	}
 	
-	// Сохраняем оригинальный UID на случай ошибки
-	memcpy(originalUid, uid, uidLength);
-	originalUidLength = uidLength;
-	
-	// Аутентификация для блока 0
+	// Authentication for block 0
 	Serial.println("Authenticating for block 0...");
 	success = nfc.mifareclassic_AuthenticateBlock(uid, uidLength, 0, 0, DEFAULT_KEY);
 	if (!success) {
@@ -78,7 +72,7 @@ bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
 		return false;
 	}
 	
-	// Подготовка новых данных для блока 0
+	// Preparing new data for block 0
 	uint8_t newBlock0[16];
 	prepareBlock0(newUID, newBlock0, newUIDLength);
 	
@@ -89,7 +83,7 @@ bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
 	}
 	Serial.println();
 	
-	// Запись нового блока 0
+	// Writing the new block 0
 	success = nfc.mifareclassic_WriteDataBlock(0, newBlock0);
 	if (!success) {
 		Serial.println("Write failed! Block 0 write error");
@@ -98,10 +92,10 @@ bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
 	
 	Serial.println("Block 0 written successfully");
 	
-	// Небольшая задержка для завершения записи
+	// Small delay for completion of writing
 	delay(200);
 	
-	// Проверка: перечитываем карту
+	// Verification: re-read the tag
 	success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, 500);
 	if (success) {
 		Serial.print("Verification - New UID: ");
@@ -111,7 +105,7 @@ bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
 		}
 		Serial.println();
 		
-		// Проверяем, совпадает ли новый UID с ожидаемым
+		// Checking if the new UID matches the expected one
 		bool uidMatches = true;
 		for (int i = 0; i < newUIDLength && i < uidLength; i++) {
 			if (uid[i] != newUID[i]) {
@@ -140,6 +134,28 @@ void nfcWriteLoop() {
 		};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 
+		// Check the stored UID
+		if (!hasValidUID) {
+			Serial.println("No UID stored for writing");
+			String lines[] = {
+				"No UID stored",
+				"Read a tag first"
+			};
+			centeredPrintRows(lines, 2, SMALL_TEXT);
+			return;
+		}
+
+		if (lastReadUIDLength != 4) {
+			Serial.println("Stored UID is not a valid CUID (4 bytes required)");
+			String lines[] = {
+				"Invalid UID",
+				"4-byte UID required"
+			};
+			centeredPrintRows(lines, 2, SMALL_TEXT);
+			return;
+		}
+
+
 		if (isPN532Connected()) {
 			nfc.begin();
 			uint32_t versiondata = nfc.getFirmwareVersion();
@@ -158,7 +174,7 @@ void nfcWriteLoop() {
 		} else displayNotConnectedError();
 	}
 
-	if (checkTimer(2000)) {
+	if (checkTimer(2000) && hasValidUID && lastReadUIDLength == 4) {
 		// Module connection check
 		if (!isPN532Connected()) {
 			if (nfcModuleWasConnected) displayNotConnectedError();
@@ -179,11 +195,14 @@ void nfcWriteLoop() {
 				DEVICE.Speaker.tone(2000, 200);
 				
 				DISP.clear();
+
+				String uidString = uidToString(lastReadUID, lastReadUIDLength);
 				String lines[] = {
 					"PN532: connected",
-					"Scanning..."
+					"UID: " + uidString,
+					"Ready to write..."
 				};
-				centeredPrintRows(lines, 2, SMALL_TEXT);
+				centeredPrintRows(lines, 3, SMALL_TEXT);
 				Serial.println("PN532: connected");
 			}
 		}
@@ -200,7 +219,7 @@ void nfcWriteLoop() {
 			sprintf(uidStr, "Found UID: %02X%02X%02X%02X", uid[0], uid[1], uid[2], uid[3]);
 			Serial.println("Tag detected, attempting to write...");
 			
-			bool writeSuccess = writeNewUID(targetUid, targetUidLength);
+			bool writeSuccess = writeNewUID(lastReadUID, lastReadUIDLength);
 			
 			if (writeSuccess) {
 				clearScreenWithSymbols();
