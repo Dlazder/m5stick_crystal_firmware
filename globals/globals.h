@@ -7,6 +7,12 @@ WebServer webServer(80);
 #include <string>
 using std::to_string;
 
+// NFC PN532
+#include <Adafruit_PN532.h>
+#include <Wire.h>
+Adafruit_PN532 nfc(G32, G33, &Wire);
+
+
 #include "conf.h"
 
 // For storage utils

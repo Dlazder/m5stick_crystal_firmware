@@ -26,6 +26,9 @@ const ProcessEntry processEntries[] = {
     {18, toggleStatusBarBatteryLoop},
     {19, fontsLoop},
     {20, levelToolLoop},
+    {21, nfcMenuLoop},
+    {22, nfcReadLoop},
+    {23, nfcWriteLoop},
 };
 
 void switcher() {

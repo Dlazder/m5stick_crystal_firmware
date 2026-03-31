@@ -2,8 +2,10 @@ name: Build firmware
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
     tags: ['v*']
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write 
@@ -31,6 +33,7 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install m5stack:esp32@2.1.2
           arduino-cli lib install "M5StickCPlus2"
+          arduino-cli lib install "Adafruit PN532"
 
       - name: Install required library
         run: arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Keyboard
@@ -38,48 +41,8 @@ jobs:
       - name: Install esptool
         run: pip install esptool
 
-      - name: debug
-        run: |
-          arduino-cli lib list
-          arduino-cli core list
-
-
       - name: Setup platform.txt
-        run: |
-          baseFolder="$HOME/.arduino15/packages/m5stack/hardware/esp32"
-          
-          # Find the latest version of the folder
-          latestVersion=$(find "$baseFolder" -maxdepth 1 -type d -exec basename {} \; | sort -V | head -n 1)
-          
-          if [ -z "$latestVersion" ]; then
-              echo "No version found."
-              read -p "Press Enter to exit."
-              exit 1
-          fi
-          
-          # Full path to the file to be edited
-          file="$baseFolder/$latestVersion/platform.txt"
-          backupFile="$baseFolder/$latestVersion/platform.txt.bkp"
-          prefix="build.extra_flags.esp32"
-          option=" -w "
-          
-          prefix2="compiler.c.elf.libs.esp32"
-          option2=" -zmuldefs "
-  
-          # Use awk to insert options after the first equals sign on lines with specified prefixes
-          awk -v prefix="$prefix" -v option="$option" -v prefix2="$prefix2" -v option2="$option2" '{
-              if ($0 ~ "^" prefix) {
-                  sub(/=/, "=" option);
-                  print;
-              } else if ($0 ~ "^" prefix2) {
-                  sub(/=/, "=" option2);
-                  print;
-              } else {
-                  print;
-              }
-          }' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-
-          echo "Done."
+        run: bash ./deauth_prerequisites/install_prerequisites_LINUX.sh
 
       - name: Compile firmware
         run: |

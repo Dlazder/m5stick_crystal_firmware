@@ -21,3 +21,6 @@
 18. toggle battery % in status bar
 19. change fonts (beta)
 20. level tool
+21. NFC menu
+22. NFC read UID
+23. NFC write UID

@@ -2,6 +2,7 @@
 
 MENU mainMenu[] = {
 	{1, "clock"},
+	{21, "NFC"},
 	{3, "settings"},
 	{13, "Wi-Fi"},
 	{14, "Bluetooth"},

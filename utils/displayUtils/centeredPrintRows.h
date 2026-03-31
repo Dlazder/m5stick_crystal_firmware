@@ -4,7 +4,7 @@ void centeredPrintRows(String text[], int arraySize, int textSize) {
 
 	DISP.setTextSize(textSize);
 
-	bool isStatusBarEnabled = preferences.getUInt("statusBar", false);
+	bool isStatusBarEnabled = statusBar;
 	int statusBarHeight = isStatusBarEnabled ? 30 : 0;
 
 	int displayWidth = DISP.width();
