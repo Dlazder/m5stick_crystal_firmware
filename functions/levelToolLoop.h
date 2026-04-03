@@ -72,5 +72,7 @@ void levelToolLoop() {
 
 	canvas.pushSprite(0, statusBarHeight + 1);
 	
-	checkExit();
+	if (checkExit()) {
+		DEVICE.Power.setLed(0);
+	}
 }
