@@ -7,6 +7,7 @@ MENU mainMenu[] = {
 	{13, "Wi-Fi"},
 	{14, "Bluetooth"},
 	{20, "level tool"},
+	{24, "flashlight"},
 	{2, "Battery info"},
 };
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);

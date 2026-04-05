@@ -24,3 +24,6 @@
 21. NFC menu
 22. NFC read UID
 23. NFC write UID
+24. Flashlight menu
+25. Flashlight
+26. Flashlight flicker

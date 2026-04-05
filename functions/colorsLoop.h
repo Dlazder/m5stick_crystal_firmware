@@ -19,5 +19,5 @@ void colorsLoop() {
 		String lines[] = {"color: " + String(FGCOLOR), "press A"};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}
-	checkExit(3);
+	checkExit();
 }

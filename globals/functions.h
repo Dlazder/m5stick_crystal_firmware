@@ -26,3 +26,8 @@
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
+
+
+#include "../functions/flashlight/flashLightMenuLoop.h"
+#include "../functions/flashlight/flashLightLoop.h"
+#include "../functions/flashlight/flashLightFlickerLoop.h"
