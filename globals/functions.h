@@ -31,3 +31,5 @@
 #include "../functions/flashlight/flashLightMenuLoop.h"
 #include "../functions/flashlight/flashLightLoop.h"
 #include "../functions/flashlight/flashLightFlickerLoop.h"
+
+#include "../functions/soundLevelLoop.h"

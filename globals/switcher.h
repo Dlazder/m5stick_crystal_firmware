@@ -31,7 +31,8 @@ const ProcessEntry processEntries[] = {
     {23, nfcWriteLoop},
     {24, flashLightMenuLoop},
     {25, flashLightLoop},
-    {26, flickerLoop}
+    {26, flickerLoop},
+    {27, soundLevelLoop},
 
 };
 
