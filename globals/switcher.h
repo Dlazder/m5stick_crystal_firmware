@@ -33,7 +33,7 @@ const ProcessEntry processEntries[] = {
     {25, flashLightLoop},
     {26, flickerLoop},
     {27, soundLevelLoop},
-
+    {28, toggleStartupSound},
 };
 
 void switcher() {

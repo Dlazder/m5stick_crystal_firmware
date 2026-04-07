@@ -24,7 +24,18 @@ void setup() {
   DISP.setFont(systemFonts[currentFontIndex]);
 
   colorIndex = getData("colorIndex", colorIndex);
+  Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
   FGCOLOR = colors[colorIndex];
+
+  startupSound = getData("startupSound", startupSound);
+  Serial.printf("Startup sound: %s\n", startupSound ? "enabled" : "disabled");
+  if (startupSound) {
+    DEVICE.Speaker.tone(1500, 200);
+    delay(200);
+    DEVICE.Speaker.tone(2000, 200);
+    delay(200);
+    DEVICE.Speaker.tone(2500, 200);
+  }
 
   Serial.println("Preferences loaded");
 
