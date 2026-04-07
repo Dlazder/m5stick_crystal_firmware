@@ -23,7 +23,8 @@ void setup() {
   currentFontIndex = getData("fontIndex", currentFontIndex);
   DISP.setFont(systemFonts[currentFontIndex]);
 
-  FGCOLOR = getData("color", TFT_WHITE);
+  colorIndex = getData("colorIndex", colorIndex);
+  FGCOLOR = colors[colorIndex];
 
   Serial.println("Preferences loaded");
 

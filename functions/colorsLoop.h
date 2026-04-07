@@ -1,22 +1,22 @@
 // pid 7
 
-int currentColorIndex = 0;
 void colorsLoop() {
 	if (isSetup()) {
-		String lines[] = {"color: " + String(FGCOLOR), "press A"};
+		String lines[] = {"color: " + String(colorsEntry[colorIndex]), "press A"};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 		updateTimer();
 	}
 	if (isBtnAWasPressed() && checkTimer(100)) {
-		currentColorIndex++;
-		if (currentColorIndex == sizeof(colors) / sizeof(colors[0])) {
-			currentColorIndex = 0;
+		colorIndex++;
+		if (colorIndex == sizeof(colors) / sizeof(colors[0])) {
+			colorIndex = 0;
 		}
-		Serial.printf("current colorIndex: %d\n", currentColorIndex);
+		Serial.printf("current colorIndex: %d\n", colorIndex);
 		
-		FGCOLOR = colors[currentColorIndex];
-		setData("color", FGCOLOR);
-		String lines[] = {"color: " + String(FGCOLOR), "press A"};
+		FGCOLOR = colors[colorIndex];
+		setData("colorIndex", colorIndex);
+		// setData("color", FGCOLOR);
+		String lines[] = {"color: " + String(colorsEntry[colorIndex]), "press A"};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}
 	checkExit();
