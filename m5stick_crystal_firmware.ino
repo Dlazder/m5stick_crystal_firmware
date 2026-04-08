@@ -1,31 +1,17 @@
-#include "./globals/globals.h"
-#include "./globals/utils.h"
-#include "./globals/functions.h"
-#include "./globals/switcher.h"
+#include "./system/globals.h"
+#include "./system/utils.h"
+#include "./system/functions.h"
+#include "./system/switcher.h"
+#include "./system/loadPreferences.h"
+#include "./system/showStartupScreen.h"
 
 void setup() {
   auto cfg = M5.config();
   StickCP2.begin(cfg);
   Serial.begin(115200);
   preferences.begin("storage", false);
-  Serial.println("Loading preferences...");
-  
-  rotation = getData("rotation", rotation);
-  DISP.setRotation(rotation);
-
-  brightness = getData("brightness", brightness);
-  DISP.setBrightness(brightness);
-
-  statusBar = getData("statusBar", statusBar);
-  statusBarPid = getData("statusBarPid", statusBarPid);
-  statusBarBattery = getData("statusBarBattery", statusBarBattery);
-
-  currentFontIndex = getData("fontIndex", currentFontIndex);
-  DISP.setFont(systemFonts[currentFontIndex]);
-
-  FGCOLOR = getData("color", TFT_WHITE);
-
-  Serial.println("Preferences loaded");
+  loadPreferences();
+  showStartupScreen();
 
   Wire.begin(G32, G33);
   Wire.setClock(10000);
@@ -36,7 +22,16 @@ void setup() {
   canvas.setTextColor(FGCOLOR);
   canvas.setTextSize(SMALL_TEXT);
 
+  if (startupSound) {
+    DEVICE.Speaker.tone(1500, 200);
+    delay(200);
+    DEVICE.Speaker.tone(2000, 200);
+    delay(200);
+    DEVICE.Speaker.tone(2500, 200);
+  }
+
   cursorOnTop();
+  DISP.clear();
   drawMenu(mainMenu, mainMenuSize);
 }
 

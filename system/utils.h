@@ -9,6 +9,7 @@
 #include "../utils/webControlUtils.h"
 #include "../utils/webResponseUtils.h"
 #include "../utils/storageUtils.h"
+#include "../utils/statusBarUtils.h"
 // 2nd layer utilities
 #include "../utils/procManagmentUtils.h"
 #include "../utils/menuUtils.h"

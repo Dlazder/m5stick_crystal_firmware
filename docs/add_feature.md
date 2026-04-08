@@ -34,7 +34,7 @@ Some utilities are already described in the [utilities documentation](./utils.md
 
 Add an include of this function next to the others.
 
-*globals/functions.h*
+*system/functions.h*
 
 ```cpp
 // other includes...
@@ -43,7 +43,7 @@ Add an include of this function next to the others.
 
 Finally, add your process to the processEntries array.
 
-*globals/switcher.h*
+*system/switcher.h*
 
 ```cpp
 const ProcessEntry processEntries[] = {

@@ -29,6 +29,11 @@ const ProcessEntry processEntries[] = {
     {21, nfcMenuLoop},
     {22, nfcReadLoop},
     {23, nfcWriteLoop},
+    {24, flashLightMenuLoop},
+    {25, flashLightLoop},
+    {26, flickerLoop},
+    {27, soundLevelLoop},
+    {28, toggleStartupSound},
 };
 
 void switcher() {
