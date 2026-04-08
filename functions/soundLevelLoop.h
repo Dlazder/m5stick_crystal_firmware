@@ -156,5 +156,7 @@ void soundLevelLoop() {
 		historySize = 0;
 	}
 
-	checkExit();
+	if (checkExit()) {
+		DEVICE.Mic.end();
+	}
 }

@@ -1,0 +1,31 @@
+void loadPreferences() {
+	Serial.println("Loading preferences...");
+
+	rotation = getData("rotation", rotation);
+	Serial.printf("Rotation: %d\n", rotation);
+  DISP.setRotation(rotation);
+
+	brightness = getData("brightness", brightness);
+	Serial.printf("Brightness: %d\n", brightness);
+  DISP.setBrightness(brightness);
+
+	statusBar = getData("statusBar", statusBar);
+	Serial.printf("Status bar: %s\n", statusBar ? "enabled" : "disabled");
+  statusBarPid = getData("statusBarPid", statusBarPid);
+	Serial.printf("Status bar PID: %s\n", statusBarPid ? "enabled" : "disabled");
+  statusBarBattery = getData("statusBarBattery", statusBarBattery);
+	Serial.printf("Status bar battery: %s\n", statusBarBattery ? "enabled" : "disabled");
+
+	currentFontIndex = getData("fontIndex", currentFontIndex);
+	Serial.printf("Font: %s\n", fontNames[currentFontIndex]);
+  DISP.setFont(systemFonts[currentFontIndex]);
+
+	colorIndex = getData("colorIndex", colorIndex);
+  Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
+  FGCOLOR = colors[colorIndex];
+
+	startupSound = getData("startupSound", startupSound);
+  Serial.printf("Startup sound: %s\n", startupSound ? "enabled" : "disabled");
+
+	Serial.println("Preferences loaded");
+}
