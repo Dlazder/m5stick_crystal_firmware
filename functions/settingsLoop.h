@@ -6,7 +6,7 @@ MENU settingsMenu[] = {
 	{6, "rotation"},
 	{7, "colors"},
 	{10, "status bar"},
-	{28, "startup sound"},
+	{28, "start sound"},
 	{19, "font"},
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
