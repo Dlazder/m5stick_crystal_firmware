@@ -11,7 +11,7 @@ void clockLoop() {
     canvas.clear();
     canvas.setTextSize(MEDIUM_TEXT);
     canvas.drawCenterString(formatString, DISP.width() / 2, ((DISP.height() - getStatusBarHeight()) - DISP.fontHeight()) / 2);
-    canvas.pushSprite(0, getStatusBarHeight() + 1);
+    canvas.pushSprite(0, getStatusBarHeight());
   }
   checkExit();
   

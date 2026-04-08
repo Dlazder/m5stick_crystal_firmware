@@ -2,7 +2,7 @@
 
 MENU wifiMenu[] = {
 	{0, "back"},
-	{4, "Wi-Fi AP"},
+	// {4, "Wi-Fi AP"},
 	{8, "scan"}
 };
 

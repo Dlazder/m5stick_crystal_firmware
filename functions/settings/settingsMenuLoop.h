@@ -10,7 +10,7 @@ MENU settingsMenu[] = {
 	{19, "font"},
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
-void settingsLoop() {
+void settingsMenuLoop() {
 	if (isSetup()) {
 		DISP.setTextSize(SMALL_TEXT);
 		cursorOnTop();

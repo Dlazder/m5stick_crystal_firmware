@@ -10,7 +10,7 @@ MENU settingsStatusBarMenu[] = {
 
 int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);
 
-void settingsStatusBarLoop() {
+void settingsStatusBarMenuLoop() {
 	if (isSetup()) {
 		if (previousProcess == 3) cursor = 0;
 		cursorOnTop();
