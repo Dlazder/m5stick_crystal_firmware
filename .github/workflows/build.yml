@@ -54,7 +54,7 @@ jobs:
 
       - name: Merge binaries
         run: |
-          esptool --chip esp32s3 merge_bin --output build/firmware.bin \
+          esptool --chip esp32s3 merge_bin --output build/crystal_firmware.bin \
             0x1000 build/m5stick_crystal_firmware.ino.bootloader.bin \
             0x8000 build/m5stick_crystal_firmware.ino.partitions.bin \
             0x10000 build/m5stick_crystal_firmware.ino.bin
@@ -63,8 +63,8 @@ jobs:
       - name: Upload firmware artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
-          path: build/firmware.bin
+          name: crystal_firmware
+          path: build/crystal_firmware.bin
           retention-days: 90
   release:
     needs: build
@@ -75,7 +75,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: firmware
+          name: crystal_firmware
 
       - name: List files
         run: ls -la
@@ -90,5 +90,5 @@ jobs:
           body: |
             
             Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
-          files: ./firmware.bin
+          files: ./crystal_firmware.bin
           generate_release_notes: true
