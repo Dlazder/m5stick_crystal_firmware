@@ -14,6 +14,7 @@ Adafruit_PN532 nfc(G32, G33, &Wire);
 
 
 #include "conf.h"
+#include "version.h"
 
 // For storage utils
 #include <Preferences.h>

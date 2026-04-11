@@ -3,7 +3,7 @@ void showStartupScreen() {
     "Crystal",
     "firmware",
 		"",
-    "v0.3.0",
+    FIRMWARE_VERSION,
   };
 	int textHeight = 4 * DISP.fontHeight();
 	int offsetY =  (DISP.height()) / 2 - textHeight;
