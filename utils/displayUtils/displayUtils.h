@@ -73,7 +73,7 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
  */
 void cursorOnTop() {
   if (statusBar) {
-    DISP.setCursor(0, 39);
+    DISP.setCursor(0, 25);
   } else {
     DISP.setCursor(0, 0);
   }

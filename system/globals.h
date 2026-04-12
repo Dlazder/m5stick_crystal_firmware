@@ -35,6 +35,7 @@ int rotation = 1;
 #define DISP DEVICE.Display
 
 M5Canvas canvas(&DISP);
+M5Canvas statusBarCanvas(&DISP);
 
 uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;

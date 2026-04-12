@@ -1,3 +1,3 @@
 int getStatusBarHeight() {
-	return statusBar ? 31 : 0;
+	return statusBar ? 20 : 0;
 }

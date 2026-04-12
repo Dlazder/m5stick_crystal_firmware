@@ -1,24 +1,33 @@
-// pid: NONE
-
-int battery = 100;
-int statusBarTimer = 0;
-
-void statusBar_batteryLoop() {
-  auto currentTime = StickCP2.Rtc.getDateTime();
-  if (checkTimer(3000, true, &statusBarTimer)) battery = StickCP2.Power.getBatteryLevel();
-  DISP.setTextColor(FGCOLOR, BGCOLOR);
-  DISP.printf("%d%%; ", battery);
-}
+// pid NONE
 
 void statusBarLoop() {
-  DISP.setTextColor(FGCOLOR, BGCOLOR);
-  DISP.setCursor(8, 8);
-  DISP.setTextSize(SMALL_TEXT);
-  if (getData("statusBarPid", statusBarPid)) {
-    DISP.printf("PID: %d; ", process);
-  }
-  if (getData("statusBarBattery", statusBarBattery)) {
-    statusBar_batteryLoop();
-  }
-  DISP.drawLine(0, 30, DISP.width(), 30, FGCOLOR);
+	static float STATUS_BAR_TEXT_SIZE = 1.5;
+	static int statusBarTimer = 0;
+	
+	statusBarCanvas.clear();
+	statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
+	statusBarCanvas.setCursor(5, 4);
+	statusBarCanvas.setTextSize(STATUS_BAR_TEXT_SIZE);
+	
+	// PID
+	if (getData("statusBarPid", statusBarPid)) {
+		statusBarCanvas.printf("#:%d; ", process);
+	}
+	
+	// Clock
+	auto dt = DEVICE.Rtc.getDateTime();
+	char formatString[30];
+	sprintf(formatString, "%02d:%02d:%02d   ", dt.time.hours, dt.time.minutes, dt.time.seconds);
+	statusBarCanvas.print(formatString);
+
+	// Battery
+	int battery = DEVICE.Power.getBatteryLevel();
+	char batteryText[10];
+	sprintf(batteryText, "%d%%", battery);
+	int batteryTextWidth = DISP.textWidth(batteryText);
+	statusBarCanvas.setCursor(DISP.width() - batteryTextWidth, 4);
+	statusBarCanvas.printf("%d%%", battery);
+
+	statusBarCanvas.drawLine(0, 19, DISP.width(), 19, FGCOLOR);
+	statusBarCanvas.pushSprite(0, 0);
 }
