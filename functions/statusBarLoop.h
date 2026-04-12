@@ -1,13 +1,12 @@
 // pid NONE
 
 void statusBarLoop() {
-	static float STATUS_BAR_TEXT_SIZE = 1.5;
 	static int statusBarTimer = 0;
 	
 	statusBarCanvas.clear();
 	statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 	statusBarCanvas.setCursor(5, 4);
-	statusBarCanvas.setTextSize(STATUS_BAR_TEXT_SIZE);
+	statusBarCanvas.setTextSize(TINY_TEXT);
 	
 	// PID
 	if (getData("statusBarPid", statusBarPid)) {

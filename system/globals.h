@@ -43,7 +43,7 @@ uint16_t colors[] = {TFT_WHITE, TFT_NAVY, TFT_DARKGREEN, TFT_DARKCYAN, TFT_MAROO
 const char* colorsEntry[] = {"WHITE", "NAVY", "DARK GREEN", "DARK CYAN", "MAROON", "PURPLE", "OLIVE", "LIGHT GREY", "DARK GREY", "BLUE", "GREEN", "CYAN", "RED", "MAGENTA", "YELLOW", "ORANGE", "GREEN YELLOW", "PINK", "BROWN", "GOLD", "SILVER", "SKY BLUE", "VIOLET"};
 int colorIndex = 0;
 
-int TINY_TEXT = 1;
+float TINY_TEXT = 1.5;
 int SMALL_TEXT = 2;
 int MEDIUM_TEXT = 3;
 int BIG_TEXT = 4;
