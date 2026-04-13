@@ -53,7 +53,7 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   } else {
     
     // calculate the approximate top indent depending on whether the status bar is enabled
-    int offsetY = preferences.getUInt("statusBar", false) ? 70 : 65;
+    int offsetY = statusBar ? 70 : 65;
 
     DISP.setCursor(0, offsetY);
     for (int i = 0; i < getScreenWidthInSymbols(); i++) {
@@ -73,7 +73,7 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
  */
 void cursorOnTop() {
   if (statusBar) {
-    DISP.setCursor(0, 25);
+    DISP.setCursor(0, getStatusBarOffset());
   } else {
     DISP.setCursor(0, 0);
   }

@@ -1,8 +1,8 @@
 void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
-	static int SCROLLBAR_X = 235;
-	static int SCROLLBAR_Y = 25;
-	static int SCROLLBAR_WIDTH = 5;
-	static int SCROLLBAR_HEIGHT = 110;
+	static int SCROLLBAR_WIDTH = 3;
+	static int SCROLLBAR_X = DISP.width() - SCROLLBAR_WIDTH;
+	static int SCROLLBAR_Y = getStatusBarOffset();
+	static int SCROLLBAR_HEIGHT = DISP.height() - SCROLLBAR_Y;
 
   if (totalItems <= visibleItems) {
     DISP.fillRect(SCROLLBAR_X, SCROLLBAR_Y, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
