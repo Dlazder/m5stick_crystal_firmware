@@ -1,7 +1,7 @@
 // pid 24
 
 MENU flashLightMenu[] = {
-	{0, "back"},
+	{29, "back"},
 	{25, "flashlight"},
 	{26, "flicker"},
 	{5, "brightness"},

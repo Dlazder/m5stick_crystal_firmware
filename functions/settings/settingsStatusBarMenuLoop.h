@@ -4,8 +4,6 @@ MENU settingsStatusBarMenu[] = {
 	{3, "back"},
 	{16, "status bar"},
 	{17, "PID"},
-	{18, "battery"},
-	// {19, "clock"}
 };
 
 int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);

@@ -1,25 +1,28 @@
 // pid 2
 
 void batteryLoop() {
-  if (isSetup()) {
-    int battery = StickCP2.Power.getBatteryLevel();
-    DISP.setTextColor(FGCOLOR, BGCOLOR);
-    char text[10];
-    sprintf(text, "%d%%", battery);
-    centeredPrint(text, SMALL_TEXT);
-  }
-if (checkTimer(3000)) {
-    int battery = StickCP2.Power.getBatteryLevel();
-    DISP.setTextColor(FGCOLOR, BGCOLOR);
-    char text[10];
-    sprintf(text, "%d%%", battery);
-    centeredPrint(text, SMALL_TEXT);
-  }
-  checkExit(0);
-  if (isWebDataRequested()) {
-    int battery = StickCP2.Power.getBatteryLevel();
-    char text[10];
-    sprintf(text, "%d%%", battery);
-    webData = generateWebData("function", generateFunctionElement(text, SMALL_TEXT, "center"));
-  }
+	int battery = StickCP2.Power.getBatteryLevel();
+	
+	DISP.setTextColor(FGCOLOR, BGCOLOR);
+
+	String lines[] = {
+		String(battery) + "%",
+		String(DEVICE.Power.getBatteryVoltage()) + " V",
+	};
+
+	if (isSetup()) {
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+	}
+
+	if (checkTimer(2000)) {
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+	}
+	
+	checkExit();
+
+	if (isWebDataRequested()) {
+		char text[10];
+		sprintf(text, "%d%%", battery);
+		webData = generateWebData("function", generateFunctionElement(text, MEDIUM_TEXT, "center"));
+	}
 }

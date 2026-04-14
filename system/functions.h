@@ -13,7 +13,6 @@
 #include "../functions/settings/settingsStatusBarMenuLoop.h"
 #include "../functions/settings/toggleStatusBarLoop.h"
 #include "../functions/settings/toggleStatusBarPidLoop.h"
-#include "../functions/settings/toggleStatusBarBatteryLoop.h"
 #include "../functions/settings/rotationLoop.h"
 #include "../functions/settings/brightnessLoop.h"
 #include "../functions/settings/fontsLoop.h"
@@ -44,8 +43,10 @@
 
 
 // Others
+#include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"
 #include "../functions/other/levelToolLoop.h"
+#include "../functions/other/systemInfoLoop.h"
 // Flashlight
 #include "../functions/other/flashlight/flashLightMenuLoop.h"
 #include "../functions/other/flashlight/flashLightLoop.h"

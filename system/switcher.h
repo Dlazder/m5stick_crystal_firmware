@@ -23,7 +23,6 @@ const ProcessEntry processEntries[] = {
     {15, bluetoothShutterLoop},
     {16, toggleStatusBarLoop},
     {17, toggleStatusBarPidLoop},
-    {18, toggleStatusBarBatteryLoop},
     {19, fontsLoop},
     {20, levelToolLoop},
     {21, nfcMenuLoop},
@@ -34,6 +33,8 @@ const ProcessEntry processEntries[] = {
     {26, flickerLoop},
     {27, soundLevelLoop},
     {28, toggleStartupSound},
+    {29, otherMenuLoop},
+    {30, systemInfoLoop},
 };
 
 void switcher() {
