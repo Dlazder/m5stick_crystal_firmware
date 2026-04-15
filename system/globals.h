@@ -107,4 +107,6 @@ int rssi;
 
 // bluetooth
 #include <BleKeyboard.h>
-BleKeyboard bleKeyboard;
+BleKeyboard bleKeyboard("M5 Crystal keyboard", "M5 Crystal");
+#include <BleMouse.h>
+BleMouse bleMouse("M5 Crystal mouse", "M5 Crystal");

@@ -1,30 +1,38 @@
-// pid= 15
+// pid 15
 
-bool isBleShutterConnected = false;
 
 void bluetoothShutterLoop() {
+	static bool isBleConnected = false;
+
 	if (isSetup()) {
 		bleKeyboard.begin();
-		if (!bleKeyboard.isConnected()) {
-			centeredPrint("Not connected", SMALL_TEXT);
-		} else {
-			centeredPrint("Connected", SMALL_TEXT);
-			isBleShutterConnected = true;
-		}
-		
+		centeredPrint("Waiting connection", SMALL_TEXT);
+		updateTimer();
 	}
-	if (!isBleShutterConnected) {
-		if (bleKeyboard.isConnected()) {
+
+	if (bleKeyboard.isConnected()) {
+		if (!isBleConnected) {
+			centeredPrint("Connected", SMALL_TEXT);
+			isBleConnected = true;
+		}
+	} else {
+		if (isBleConnected) {
+			isBleConnected = false;
 			clearScreenWithSymbols();
-			centeredPrint("Connected", SMALL_TEXT);
-			isBleShutterConnected = true;
+			centeredPrint("Not connected", SMALL_TEXT);
 		}
 	}
-	if (isBtnAWasPressed()) {
+
+	if (isBtnAWasPressed() && checkTimer(100, true)) {
+		Serial.println("Button A pressed");
 		bleKeyboard.write(KEY_RETURN);
 	}
 
 	if (checkExit()) {
-		// The BLE-KEYboard library does not allow you to disconnect from the device.
+		bleKeyboard.end();
+		isBleConnected = false;
+		centeredPrint("Disconnecting...", SMALL_TEXT);
+		// The BLE-KEYboard library does not allow you to disconnect from the device completely.
+		//We need to modify the library, but then firmware crashes may occur.
 	}
 }

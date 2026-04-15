@@ -48,7 +48,7 @@ void drawMenu(MENU menu[], int size) {
 
 int selectedItem = 0;
 void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
-	StickCP2.update();
+	DEVICE.update();
 	if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
 		cursorOnTop();
 		cursor++;

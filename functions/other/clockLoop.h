@@ -6,7 +6,7 @@ void clockLoop() {
   }
 
   static int oldSeconds;
-  auto dt = StickCP2.Rtc.getDateTime();
+  auto dt = DEVICE.Rtc.getDateTime();
   char formatString[30];
   sprintf(formatString, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
   if (dt.time.seconds != oldSeconds) {

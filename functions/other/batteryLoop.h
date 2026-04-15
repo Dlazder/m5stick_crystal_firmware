@@ -1,7 +1,7 @@
 // pid 2
 
 void batteryLoop() {
-	int battery = StickCP2.Power.getBatteryLevel();
+	int battery = DEVICE.Power.getBatteryLevel();
 	
 	DISP.setTextColor(FGCOLOR, BGCOLOR);
 

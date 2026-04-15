@@ -5,7 +5,7 @@ bool isBtnBWasPressed() {
   if (btnBWasPressed) {
     btnBWasPressed = false;
     return true;
-  } else if (StickCP2.BtnB.wasPressed()) {
+  } else if (DEVICE.BtnB.wasPressed()) {
     return true;
   } else return false;
 }
@@ -17,7 +17,7 @@ bool isBtnAWasPressed() {
   if (btnAWasPressed) {
     btnAWasPressed = false;
     return true;
-  } else if (StickCP2.BtnA.wasPressed()) {
+  } else if (DEVICE.BtnA.wasPressed()) {
     return true;
   } else return false;
 }

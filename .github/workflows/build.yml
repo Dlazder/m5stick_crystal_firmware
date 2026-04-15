@@ -36,7 +36,9 @@ jobs:
           arduino-cli lib install "Adafruit PN532"
 
       - name: Install required library
-        run: arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Keyboard
+        run: |
+          arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Keyboard
+          arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Mouse
 
       - name: Install esptool
         run: pip install esptool

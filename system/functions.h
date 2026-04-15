@@ -1,10 +1,8 @@
 // All files from the functions/ folder
 
-// unsorted functions (for now)
+// system unsortable functions
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
-#include "../functions/clockLoop.h"
-#include "../functions/batteryLoop.h"
 #include "../functions/statusBarLoop.h"
 
 
@@ -31,6 +29,7 @@
 
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"
+#include "../functions/bluetooth/bluetoothMouseLoop.h"
 #include "../functions/bluetooth/bluetoothShutterLoop.h"
 
 
@@ -40,13 +39,13 @@
 #include "../functions/nfc/nfcWriteLoop.h"
 
 
-
-
 // Others
 #include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"
 #include "../functions/other/levelToolLoop.h"
 #include "../functions/other/systemInfoLoop.h"
+#include "../functions/other/batteryLoop.h"
+#include "../functions/other/clockLoop.h"
 // Flashlight
 #include "../functions/other/flashlight/flashLightMenuLoop.h"
 #include "../functions/other/flashlight/flashLightLoop.h"
