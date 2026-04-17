@@ -62,7 +62,7 @@ void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
 		if (updateSelectedItem) selectedItem = menu[cursor].command;
 		return;
 	}
-	if (isWebControlUpWasPressed()) {
+	if (isBtnPWRWasPressed() || isWebControlUpWasPressed()) {
 		cursor--;
 		cursorOnTop();
 		drawMenu(menu, size);
