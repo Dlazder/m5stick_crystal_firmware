@@ -2,8 +2,9 @@
 
 MENU bluetoothMenu[] = {
 	{0, "back"},
-	{15, "shutter"},
 	{31, "air mouse"},
+	{32, "presenter"},
+	{15, "shutter"},
 };
 int bluetoothMenuSize = sizeof(bluetoothMenu) / sizeof(MENU);
 

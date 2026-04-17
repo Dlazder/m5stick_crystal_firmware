@@ -29,5 +29,7 @@
 26. Flashlight flicker
 27. Sound level
 28. toggle startup sound setting
-29. other menu loop
+29. "other" menu
 30. system info
+31. Bluetooth mouse
+32. Bluetooth presenter

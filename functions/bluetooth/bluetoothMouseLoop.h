@@ -42,6 +42,7 @@ void bluetoothMouseLoop() {
 	if (bleMouse.isConnected()) {
 		if (!isBleConnected) {
 			centeredPrint("Connected", SMALL_TEXT);
+			DEVICE.Speaker.tone(2000, 200);
 			isBleConnected = true;
 		}
 		
@@ -67,15 +68,6 @@ void bluetoothMouseLoop() {
 		
 		if (deltaX != 0 || deltaY != 0) {
 			bleMouse.move(deltaX, deltaY);
-			
-			// Serial.print("Raw: X=");
-			// Serial.print(smoothedX, 3);
-			// Serial.print(", Y=");
-			// Serial.print(smoothedY, 3);
-			// Serial.print(" | Move: X=");
-			// Serial.print(deltaX);
-			// Serial.print(", Y=");
-			// Serial.println(deltaY);
 		}
 			
 	} else {
@@ -83,6 +75,7 @@ void bluetoothMouseLoop() {
 			isBleConnected = false;
 			clearScreenWithSymbols();
 			centeredPrint("Not connected", SMALL_TEXT);
+			DEVICE.Speaker.tone(2000, 200);
 			smoothedX = 0;
 			smoothedY = 0;
 		}
@@ -94,16 +87,13 @@ void bluetoothMouseLoop() {
 	// }
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
-		Serial.println("Buttons PWR pressed");
 		bleMouse.click(MOUSE_RIGHT);
 	}
 
 	if (DEVICE.BtnA.isPressed()) {
 		bleMouse.press(MOUSE_LEFT);
-		Serial.println("Button A is being held");
 	} else {
 		bleMouse.release(MOUSE_LEFT);
-		Serial.println("Button A is released");
 	}
 		
 	if (checkExit()) {
