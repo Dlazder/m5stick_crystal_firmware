@@ -13,6 +13,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.VERSION }}
 
     steps:
       - name: Checkout code
@@ -47,10 +49,11 @@ jobs:
         run: bash ./deauth_prerequisites/install_prerequisites_LINUX.sh
       
       - name: Get version
+        id: get_version
         run: |
           VERSION=$(grep FIRMWARE_VERSION system/version.h | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "$VERSION" > firmware_version.txt
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Compile firmware
         run: |
@@ -83,12 +86,8 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: crystal_firmware_v${{ env.VERSION }}
+          name: crystal_firmware_v${{ needs.build.outputs.version }}
 
-      - name: Get version from artefact
-        run: |
-          VERSION=$(cat firmware_version.txt)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: List files
         run: ls -la
@@ -103,5 +102,5 @@ jobs:
           body: |
             
             Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
-          files: ./crystal_firmware_v${{ env.VERSION }}.bin
+          files: ./crystal_firmware_v${{ needs.build.outputs.version }}.bin
           generate_release_notes: true
