@@ -1,3 +1,7 @@
+int btnAWasPressed = false;
+int btnBWasPressed = false;
+int btnPWRWasPressed = false;
+
 /**
  * Checks physical button B clicks (and clicks from the web interface)
  */
@@ -23,16 +27,34 @@ bool isBtnAWasPressed() {
 }
 
 /**
+ * Checks a physical power button clicks (and clicks from the web interface)
+ */ 
+bool isBtnPWRWasPressed() {
+  if (btnPWRWasPressed) {
+    btnPWRWasPressed = false;
+    return true;
+  } else if (M5.BtnPWR.wasClicked()) {
+    return true;
+  } else return false;
+}
+
+/**
  * Emulates a button B press
  */
 void pressBtnB() {
   btnBWasPressed = true;
 }
 
-
 /**
  * Emulates a button A press
  */
 void pressBtnA() {
   btnAWasPressed = true;
+}
+
+/**
+ * Emulates a button PWR press
+ */
+void pressBtnPWR() {
+  btnPWRWasPressed = true;
 }

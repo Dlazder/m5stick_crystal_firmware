@@ -90,8 +90,7 @@ int globalTimer = millis();
 int globalPreviousTimer = 0;
 
 int isWebInterfaceEnabled = false;
-int btnAWasPressed = false;
-int btnBWasPressed = false;
+
 
 bool webDataRequested = true;
 String webData = "";
