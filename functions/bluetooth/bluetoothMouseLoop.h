@@ -88,14 +88,22 @@ void bluetoothMouseLoop() {
 		}
 	}
 		
-	if (isBtnAWasPressed() && checkTimer(50, true)) {
-		Serial.println("Button A pressed");
-		bleMouse.click();
-	}
+	// if (isBtnAWasPressed() && checkTimer(50, true)) {
+	// 	Serial.println("Button A pressed");
+	// 	bleMouse.click();
+	// }
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
 		Serial.println("Buttons PWR pressed");
 		bleMouse.click(MOUSE_RIGHT);
+	}
+
+	if (DEVICE.BtnA.isPressed()) {
+		bleMouse.press(MOUSE_LEFT);
+		Serial.println("Button A is being held");
+	} else {
+		bleMouse.release(MOUSE_LEFT);
+		Serial.println("Button A is released");
 	}
 		
 	if (checkExit()) {
