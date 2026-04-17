@@ -1,0 +1,34 @@
+// pid 5
+
+void brightnessLoop() {
+  if (isSetup()) {
+    String lines[] = {
+      "brightness: " + String(brightness / brightnessDividor),
+      "press A"
+    };
+    centeredPrintRows(lines, 2, SMALL_TEXT);
+    updateTimer();
+  }
+  
+  if (isBtnAWasPressed() && checkTimer(100)) {
+    brightness += brightnessDividor;
+    if (brightness >= brightnessMax || brightness / brightnessDividor == 0) brightness = brightnessMin;
+    setData("brightness", brightness);
+    DISP.setBrightness(brightness);
+
+    Serial.printf("Brightness: %d\n", brightness);
+
+    String lines[] = {
+      "brightness: " + String(brightness / brightnessDividor),
+      "press A"
+    };
+    centeredPrintRows(lines, 2, SMALL_TEXT);
+  }
+  checkExit();
+
+  if (isWebDataRequested()) {
+    char text[50];
+    sprintf(text, "brightness: %d", brightness / brightnessDividor);
+    webData = generateWebData("function", generateFunctionElement(text, SMALL_TEXT, "center"));
+  }
+}

@@ -1,3 +1,7 @@
 int getStatusBarHeight() {
-	return statusBar ? 30 : 0;
+	return statusBar ? 20 : 0;
+}
+
+int getStatusBarOffset() {
+	return statusBar ? 25 : 0;
 }

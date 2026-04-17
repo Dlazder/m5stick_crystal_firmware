@@ -1,37 +1,53 @@
 // All files from the functions/ folder
+
+// system unsortable functions
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
-#include "../functions/settingsLoop.h"
-#include "../functions/clockLoop.h"
-#include "../functions/batteryLoop.h"
-#include "../functions/brightnessLoop.h"
-#include "../functions/rotationLoop.h"
 #include "../functions/statusBarLoop.h"
-#include "../functions/wifiApLoop.h"
-#include "../functions/colorsLoop.h"
-#include "../functions/wifiScanLoop.h"
-#include "../functions/wifiDeauthLoop.h"
-#include "../functions/settingsStatusBarLoop.h"
-#include "../functions/toggleStatusBarLoop.h"
-#include "../functions/toggleStatusBarPidLoop.h"
-#include "../functions/toggleStatusBarBatteryLoop.h"
-#include "../functions/selectedWifiMenuLoop.h"
-#include "../functions/wifiInfoLoop.h"
-#include "../functions/wifiMenuLoop.h"
-#include "../functions/bluetoothMenuLoop.h"
-#include "../functions/bluetoothShutterLoop.h"
-#include "../functions/fontsLoop.h"
-#include "../functions/levelToolLoop.h"
 
+
+// Settings functions
+#include "../functions/settings/settingsMenuLoop.h"
+#include "../functions/settings/settingsStatusBarMenuLoop.h"
+#include "../functions/settings/toggleStatusBarLoop.h"
+#include "../functions/settings/toggleStatusBarPidLoop.h"
+#include "../functions/settings/rotationLoop.h"
+#include "../functions/settings/brightnessLoop.h"
+#include "../functions/settings/fontsLoop.h"
+#include "../functions/settings/colorsLoop.h"
 #include "../functions/settings/toggleStartupSound.h"
 
+
+// Wi-Fi functions
+#include "../functions/wifi/wifiApLoop.h"
+#include "../functions/wifi/wifiScanLoop.h"
+#include "../functions/wifi/wifiDeauthLoop.h"
+#include "../functions/wifi/selectedWifiMenuLoop.h"
+#include "../functions/wifi/wifiInfoLoop.h"
+#include "../functions/wifi/wifiMenuLoop.h"
+
+
+// Bluetooth functions
+#include "../functions/bluetooth/bluetoothMenuLoop.h"
+#include "../functions/bluetooth/bluetoothMouseLoop.h"
+#include "../functions/bluetooth/bluetoothShutterLoop.h"
+#include "../functions/bluetooth/bluetoothPresenterLoop.h"
+
+
+// NFC functions
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
 
 
-#include "../functions/flashlight/flashLightMenuLoop.h"
-#include "../functions/flashlight/flashLightLoop.h"
-#include "../functions/flashlight/flashLightFlickerLoop.h"
-
-#include "../functions/soundLevelLoop.h"
+// Others
+#include "../functions/other/otherMenuLoop.h"
+#include "../functions/other/soundLevelLoop.h"
+#include "../functions/other/levelToolLoop.h"
+#include "../functions/other/systemInfoLoop.h"
+#include "../functions/other/batteryLoop.h"
+#include "../functions/other/clockLoop.h"
+// Flashlight
+#include "../functions/other/flashlight/flashLightMenuLoop.h"
+#include "../functions/other/flashlight/flashLightLoop.h"
+#include "../functions/other/flashlight/flashLightFlickerLoop.h"

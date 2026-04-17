@@ -14,6 +14,7 @@ Adafruit_PN532 nfc(G32, G33, &Wire);
 
 
 #include "conf.h"
+#include "version.h"
 
 // For storage utils
 #include <Preferences.h>
@@ -34,14 +35,15 @@ int rotation = 1;
 #define DISP DEVICE.Display
 
 M5Canvas canvas(&DISP);
+M5Canvas statusBarCanvas(&DISP);
 
 uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;
-uint16_t colors[] = {TFT_WHITE, TFT_NAVY, TFT_DARKGREEN, TFT_DARKCYAN, TFT_MAROON, TFT_PURPLE, TFT_OLIVE, TFT_LIGHTGREY, TFT_DARKGREY, TFT_BLUE, TFT_GREEN, TFT_CYAN, TFT_RED, TFT_MAGENTA, TFT_YELLOW, TFT_ORANGE, TFT_GREENYELLOW, TFT_PINK, TFT_BROWN, TFT_GOLD, TFT_SILVER, TFT_SKYBLUE, TFT_VIOLET};
-const char* colorsEntry[] = {"WHITE", "NAVY", "DARK GREEN", "DARK CYAN", "MAROON", "PURPLE", "OLIVE", "LIGHT GREY", "DARK GREY", "BLUE", "GREEN", "CYAN", "RED", "MAGENTA", "YELLOW", "ORANGE", "GREEN YELLOW", "PINK", "BROWN", "GOLD", "SILVER", "SKY BLUE", "VIOLET"};
+uint16_t colors[] = {TFT_WHITE, TFT_RED, TFT_ORANGE, TFT_YELLOW, TFT_GREEN, TFT_CYAN, TFT_BLUE, TFT_VIOLET, TFT_MAGENTA};
+const char* colorsEntry[] = {"WHITE", "RED", "ORANGE", "YELLOW", "GREEN", "CYAN", "BLUE", "VIOLET", "MAGENTA"};
 int colorIndex = 0;
 
-int TINY_TEXT = 1;
+float TINY_TEXT = 1.5;
 int SMALL_TEXT = 2;
 int MEDIUM_TEXT = 3;
 int BIG_TEXT = 4;
@@ -88,8 +90,7 @@ int globalTimer = millis();
 int globalPreviousTimer = 0;
 
 int isWebInterfaceEnabled = false;
-int btnAWasPressed = false;
-int btnBWasPressed = false;
+
 
 bool webDataRequested = true;
 String webData = "";
@@ -105,4 +106,6 @@ int rssi;
 
 // bluetooth
 #include <BleKeyboard.h>
-BleKeyboard bleKeyboard;
+BleKeyboard bleKeyboard("M5 Crystal keyboard", "M5 Crystal");
+#include <BleMouse.h>
+BleMouse bleMouse("M5 Crystal mouse", "M5 Crystal");

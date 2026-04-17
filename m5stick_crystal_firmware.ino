@@ -7,7 +7,7 @@
 
 void setup() {
   auto cfg = M5.config();
-  StickCP2.begin(cfg);
+  DEVICE.begin(cfg);
   Serial.begin(115200);
   preferences.begin("storage", false);
   loadPreferences();
@@ -21,6 +21,9 @@ void setup() {
   canvas.createSprite(DISP.width(), DISP.height());
   canvas.setTextColor(FGCOLOR);
   canvas.setTextSize(SMALL_TEXT);
+
+  statusBarCanvas.createSprite(DISP.width(), 20);
+  statusBarCanvas.setTextColor(FGCOLOR);
 
   if (startupSound) {
     DEVICE.Speaker.tone(1500, 200);

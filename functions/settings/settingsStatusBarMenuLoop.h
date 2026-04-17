@@ -1,0 +1,18 @@
+// pid 10
+
+MENU settingsStatusBarMenu[] = {
+	{3, "back"},
+	{16, "status bar"},
+	{17, "PID"},
+};
+
+int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);
+
+void settingsStatusBarMenuLoop() {
+	if (isSetup()) {
+		if (previousProcess == 3) cursor = 0;
+		cursorOnTop();
+		drawMenu(settingsStatusBarMenu, settingsStatusBarMenuSize);
+	}
+	menuLoop(settingsStatusBarMenu, settingsStatusBarMenuSize);
+}

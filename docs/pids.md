@@ -18,7 +18,7 @@
 15. Bluetooth camera shutter
 16. Toggle status bar
 17. Toggle PID in status bar
-18. toggle battery % in status bar
+18. REMOVED (toggle battery % in status bar)
 19. change fonts (beta)
 20. level tool
 21. NFC menu
@@ -27,3 +27,9 @@
 24. Flashlight menu
 25. Flashlight
 26. Flashlight flicker
+27. Sound level
+28. toggle startup sound setting
+29. "other" menu
+30. system info
+31. Bluetooth mouse
+32. Bluetooth presenter

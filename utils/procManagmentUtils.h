@@ -4,7 +4,7 @@
  * @param proc [optional] process id (pid)
  */
 bool checkExit(int proc = previousProcess) {
-  StickCP2.update();
+  DEVICE.update();
   if (isBtnBWasPressed()) {
     btnAWasPressed = false;
     btnBWasPressed = false;

@@ -3,10 +3,11 @@ void showStartupScreen() {
     "Crystal",
     "firmware",
 		"",
-    "v0.3.0",
+    "v" + String(FIRMWARE_VERSION),
   };
 	int textHeight = 4 * DISP.fontHeight();
 	int offsetY =  (DISP.height()) / 2 - textHeight;
+	DISP.setTextColor(FGCOLOR);
 	DISP.setTextSize(2.5);
 	DISP.setCursor(0, offsetY);
 
@@ -17,6 +18,4 @@ void showStartupScreen() {
 		DISP.setCursor(paddingX, cursorY);
 		DISP.println(lines[i].c_str());
 	}
-
-  // centeredPrintRows(lines, 4, SMALL_TEXT);
 }
