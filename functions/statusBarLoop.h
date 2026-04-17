@@ -2,6 +2,7 @@
 
 void statusBarLoop() {
 	static int statusBarTimer = 0;
+	static int battery = DEVICE.Power.getBatteryLevel();
 	
 	statusBarCanvas.clear();
 	statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
@@ -20,7 +21,9 @@ void statusBarLoop() {
 	statusBarCanvas.print(formatString);
 
 	// Battery
-	int battery = DEVICE.Power.getBatteryLevel();
+	if (checkTimer(3000, true, &statusBarTimer)) {
+		battery = DEVICE.Power.getBatteryLevel();
+	}
 	char batteryText[10];
 	sprintf(batteryText, "%d%%", battery);
 	int batteryTextWidth = DISP.textWidth(batteryText);
