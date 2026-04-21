@@ -1,4 +1,4 @@
-#include "M5StickCPlus2.h"
+#include "M5Unified.h"
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <WebServer.h>
@@ -31,7 +31,7 @@ int previousProcess = 0;
 bool isSwitching = true;
 int rotation = 1;
 
-#define DEVICE StickCP2
+#define DEVICE M5
 #define DISP DEVICE.Display
 
 M5Canvas canvas(&DISP);

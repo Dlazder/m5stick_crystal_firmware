@@ -32,7 +32,8 @@ jobs:
         run: |
           arduino-cli core update-index
           arduino-cli core install m5stack:esp32@2.1.2
-          arduino-cli lib install "M5StickCPlus2"
+          arduino-cli lib install "M5GFX"
+          arduino-cli lib install "M5Unified"
           arduino-cli lib install "Adafruit PN532"
 
       - name: Install required library
