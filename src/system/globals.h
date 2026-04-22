@@ -1,3 +1,5 @@
+#include <stdint.h>
+#include "system/deauth_patch.h"
 #include "M5Unified.h"
 #include <WiFi.h>
 #include <DNSServer.h>
