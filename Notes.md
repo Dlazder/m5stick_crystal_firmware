@@ -4,4 +4,3 @@ Status bar height: 30
 
 Check later:
 screen clearing in centeredPrintRows function
-status bar battery settings doesn't save

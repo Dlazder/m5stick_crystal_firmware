@@ -2,12 +2,12 @@
 
 MENU otherMenu[] = {
 	{0, "back"},
+	{30, "system"},
 	{1, "clock"},
 	{27, "sound level"},
 	{24, "flashlight"},
 	{20, "level tool"},
-	{2, "Battery info"},
-	{30, "System info"},
+	{2, "battery info"},
 };
 int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
 

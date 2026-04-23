@@ -2,6 +2,7 @@
 
 MENU settingsMenu[] = {
 	{0, "back"},
+	{35, "clock"},
 	{5, "brightness"},
 	{6, "rotation"},
 	{7, "colors"},

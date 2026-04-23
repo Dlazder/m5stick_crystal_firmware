@@ -5,12 +5,14 @@
 
 wifi_ap_record_t ap_record;
 
-extern "C" int ieee80211_raw_frame_sanity_check(int32_t arg, int32_t arg2, int32_t arg3){
-	if (arg == 31337)
-		return 1;
-	else
-		return 0;
-}
+// #ifndef PLATFORMIO
+// extern "C" int ieee80211_raw_frame_sanity_check(int32_t arg, int32_t arg2, int32_t arg3){
+// 	if (arg == 31337)
+// 		return 1;
+// 	else
+// 		return 0;
+// }
+// #endif
 
 static const uint8_t deauth_frame_default[] = {
 	0xc0, 0x00, 0x3a, 0x01,
