@@ -24,12 +24,6 @@
 		<td><code>cursorOnTop();
 		</code></td>
 	</tr>
-	<tr>
-		<td><code>getScreenWidthInSymbols</code><br>Returns the screen width in characters
-		(How many characters can fit)</td>
-		<td><code>getScreenWidthInSymbols();
-		</code></td>
-	</tr>
 </table>
 
 ## Button utils

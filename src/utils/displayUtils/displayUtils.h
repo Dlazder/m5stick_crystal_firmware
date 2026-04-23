@@ -1,18 +1,3 @@
-/**
- * Returns the screen width in characters
- * (How many characters can fit)
- */
-int getScreenWidthInSymbols() {
-  int size = DISP.getTextSizeY();
-
-  switch (size) {
-    case 2:
-      return 20;
-    case 3:
-      return 13;
-  }
-}
-
 
 /**
  * print spaces on screen to clear screen
@@ -32,39 +17,21 @@ void clearScreenWithSymbols() {
  * @param newLine if we printing second text row
  */
 void centeredPrint(String text, int textSize, bool newLine = false) {
-  DISP.setTextColor(FGCOLOR, BGCOLOR);
-  int currentTextSize = DISP.getTextSizeX();
+  if (text.length() == 0) return;
 
-  DISP.setTextSize(textSize);
-  int displayWidth = DISP.width();
-  int textWidth = DISP.textWidth(text.c_str());
-  int padding = (displayWidth - textWidth) / 2;
-  int cursorY = DISP.getCursorY();
+  canvas.clear();
+  canvas.setTextColor(FGCOLOR, BGCOLOR);
+  canvas.setTextSize(textSize);
   
-
-  if (newLine) {
-
-    DISP.setCursor(0, cursorY);
-    for (int i = 0; i < getScreenWidthInSymbols(); i++) {
-      DISP.print(" ");
-    }
-    DISP.setCursor(padding, cursorY);
-
-  } else {
-    
-    // calculate the approximate top indent depending on whether the status bar is enabled
-    int offsetY = statusBar ? 70 : 65;
-
-    DISP.setCursor(0, offsetY);
-    for (int i = 0; i < getScreenWidthInSymbols(); i++) {
-      DISP.print(" ");
-    }
-    DISP.setCursor(padding, offsetY);
-
-  }
-
-  DISP.println(text.c_str());
-  DISP.setTextSize(currentTextSize);
+  int textWidth = canvas.textWidth(text.c_str());
+  int textHeight = canvas.fontHeight();
+  int offsetX = (canvas.width() - textWidth) / 2;
+  int offsetY = (canvas.height() - textHeight) / 2 - (getStatusBarHeight() / 2);
+  
+  canvas.setCursor(offsetX, offsetY);
+  canvas.println(text.c_str());
+  Serial.println(offsetY);
+  canvas.pushSprite(0, getStatusBarHeight());
 }
 
 /**
