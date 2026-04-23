@@ -1,9 +1,9 @@
 #include "./system/globals.h"
+#include "./system/showStartupScreen.h"
 #include "./system/utils.h"
 #include "./system/functions.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
-#include "./system/showStartupScreen.h"
 
 void setup() {
   auto cfg = M5.config();
@@ -17,6 +17,8 @@ void setup() {
   Wire.setClock(10000);
   Wire.setTimeout(100);
   delay(1000);
+  // When starting the firmware, the state of the pressed btnPWR is stuck, which is why the menu scrolls. We update the state of the buttons to avoid this.
+  DEVICE.update();
 
   canvas.createSprite(DISP.width(), DISP.height());
   canvas.setTextColor(FGCOLOR);

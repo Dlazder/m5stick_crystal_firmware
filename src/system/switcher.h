@@ -34,9 +34,11 @@ const ProcessEntry processEntries[] = {
     {27, soundLevelLoop},
     {28, toggleStartupSound},
     {29, otherMenuLoop},
-    {30, systemInfoLoop},
+    {30, systemMenuLoop},
     {31, bluetoothMouseLoop},
     {32, bluetoothPresenterLoop},
+    {33, shutdownLoop},
+    {34, systemInfoLoop}
 };
 
 void switcher() {

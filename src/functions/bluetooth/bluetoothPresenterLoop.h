@@ -16,7 +16,6 @@ void bluetoothPresenterLoop() {
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
-			clearScreenWithSymbols();
 			centeredPrint("Not connected", SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}

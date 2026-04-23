@@ -44,10 +44,13 @@
 #include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"
 #include "../functions/other/levelToolLoop.h"
-#include "../functions/other/systemInfoLoop.h"
 #include "../functions/other/batteryLoop.h"
 #include "../functions/other/clockLoop.h"
 // Flashlight
 #include "../functions/other/flashlight/flashLightMenuLoop.h"
 #include "../functions/other/flashlight/flashLightLoop.h"
 #include "../functions/other/flashlight/flashLightFlickerLoop.h"
+// System
+#include "../functions/other/system/systemInfoLoop.h"
+#include "../functions/other/system/systemMenuLoop.h"
+#include "../functions/other/system/shutdownLoop.h"
