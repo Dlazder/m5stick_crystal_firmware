@@ -35,3 +35,4 @@
 32. Bluetooth presenter
 33. shutdown
 34. system info
+35. clock settings

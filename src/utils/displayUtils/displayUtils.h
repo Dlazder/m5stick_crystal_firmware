@@ -30,7 +30,6 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
   
   canvas.setCursor(offsetX, offsetY);
   canvas.println(text.c_str());
-  Serial.println(offsetY);
   canvas.pushSprite(0, getStatusBarHeight());
 }
 

@@ -8,6 +8,7 @@
 
 // Settings functions
 #include "../functions/settings/settingsMenuLoop.h"
+#include "../functions/settings/settingsClockLoop.h"
 #include "../functions/settings/settingsStatusBarMenuLoop.h"
 #include "../functions/settings/toggleStatusBarLoop.h"
 #include "../functions/settings/toggleStatusBarPidLoop.h"
