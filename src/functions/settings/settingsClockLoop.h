@@ -44,7 +44,6 @@ void settingsClockLoop() {
 	DEVICE.update();
 	if (isBtnBWasPressed() && checkTimer(100, true)) {
 		currentState = (currentState + 1) % 3;
-
 		drawclockSettingsUi(currentState, tempHours, tempMinutes);
 	}
 
@@ -54,6 +53,23 @@ void settingsClockLoop() {
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		} else if (currentState == 1) {
 			tempMinutes = (tempMinutes + 1) % 60;
+			drawclockSettingsUi(currentState, tempHours, tempMinutes);
+		} else if (currentState == 2) {
+			dt.time.hours = tempHours;
+			dt.time.minutes = tempMinutes;
+			dt.time.seconds = 0;
+			DEVICE.Rtc.setDateTime(&dt);
+			changeProcess(3);
+		}
+	}
+
+
+	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
+		if (currentState == 0) {
+			tempHours = (tempHours - 1) % 24;
+			drawclockSettingsUi(currentState, tempHours, tempMinutes);
+		} else if (currentState == 1) {
+			tempMinutes = (tempMinutes - 1) % 60;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		} else if (currentState == 2) {
 			dt.time.hours = tempHours;
