@@ -33,6 +33,7 @@
 #include "../functions/bluetooth/bluetoothMouseLoop.h"
 #include "../functions/bluetooth/bluetoothShutterLoop.h"
 #include "../functions/bluetooth/bluetoothPresenterLoop.h"
+#include "../functions/bluetooth/bluetoothScanLoop.h"
 
 
 // NFC functions

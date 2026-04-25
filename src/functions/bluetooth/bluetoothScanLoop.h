@@ -1,0 +1,53 @@
+// pid 36
+
+int bleCount = 0;
+MENU* bleScanMenu = nullptr;
+
+void bluetoothScanLoop() {
+	if (isSetup()) {
+		if (bleCount == 0 || isMenuItemSelected(36)) {
+			if (bleScanMenu != nullptr) {
+				delete[] bleScanMenu;
+				bleScanMenu = nullptr;
+			}
+			cursor = 0;
+			centeredPrint("Scanning...", SMALL_TEXT);
+			Serial.println("BLE Scanning...");
+
+			BLEDevice::init("");
+
+			BLEScan* pScan = BLEDevice::getScan();
+			pScan->setActiveScan(true);
+			pScan->setInterval(100);
+			pScan->setWindow(99);
+
+			pScan->clearResults();
+
+			BLEScanResults results = pScan->start(5, false);
+			bleCount = results.getCount();
+
+			bleScanMenu = new MENU[bleCount + 2];
+			bleScanMenu[0].name = "back";
+			bleScanMenu[0].command = 0;
+			bleScanMenu[1].name = "rescan";
+			bleScanMenu[1].command = 36;
+
+			for (int i = 0; i < bleCount; i++) {
+				BLEAdvertisedDevice device = results.getDevice(i);
+				Serial.printf("Device %d -- name: %s, MAC: %s\n", i, device.getName().c_str(), device.getAddress().toString().c_str());
+				String devName = device.getName().c_str();
+				String name = (device.haveName() && devName.length() > 0)
+					? devName.substring(0, 14)
+					: String(device.getAddress().toString().c_str()).substring(0, 14);
+
+				bleScanMenu[i + 2].name = name;
+				bleScanMenu[i + 2].command = 37;
+			}
+
+			pScan->clearResults();
+		}
+		cursorOnTop();
+		drawMenu(bleScanMenu, bleCount + 2);
+	}
+	menuLoop(bleScanMenu, bleCount + 2, true);
+}

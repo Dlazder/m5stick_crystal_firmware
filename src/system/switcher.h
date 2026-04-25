@@ -40,6 +40,7 @@ const ProcessEntry processEntries[] = {
     {33, shutdownLoop},
     {34, systemInfoLoop},
     {35, settingsClockLoop},
+    {36, bluetoothScanLoop},
 };
 
 void switcher() {

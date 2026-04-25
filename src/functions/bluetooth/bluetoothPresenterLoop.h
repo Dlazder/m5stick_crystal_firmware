@@ -1,9 +1,21 @@
+// pid 32
+
 void bluetoothPresenterLoop() {
 	static bool isBleConnected = false;
 
 	if (isSetup()) {
-		bleKeyboard.begin();
-		centeredPrint("Wating connection", SMALL_TEXT);
+		if (bleMouseBegan) {
+			centeredPrint("Restarting...", SMALL_TEXT);
+			delay(1500);
+			ESP.restart();
+		}
+		if (!bleKeyboardBegan) {
+			bleKeyboard.begin();
+			bleKeyboardBegan = true;
+		} else {
+			BLEDevice::startAdvertising();
+		}
+		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
 	}
 
@@ -30,7 +42,7 @@ void bluetoothPresenterLoop() {
 	}
 
 	if (checkExit()) {
-		bleKeyboard.end();
+		BLEDevice::getAdvertising()->stop();
 		isBleConnected = false;
 		centeredPrint("Disconnecting...", SMALL_TEXT);
 	}

@@ -107,7 +107,15 @@ int rssi;
 
 
 // bluetooth
+#include <BLEDevice.h>
+#include <BLEScan.h>
+
 #include <BleKeyboard.h>
 BleKeyboard bleKeyboard("M5 Crystal keyboard", "M5 Crystal");
 #include <BleMouse.h>
 BleMouse bleMouse("M5 Crystal mouse", "M5 Crystal");
+
+// Shared BLE peripheral state — keyboard and mouse tasks cannot coexist.
+// These flags are global so shutter/presenter share the same keyboard began state.
+bool bleKeyboardBegan = false;
+bool bleMouseBegan = false;

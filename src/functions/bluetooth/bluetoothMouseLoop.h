@@ -32,9 +32,19 @@ void bluetoothMouseLoop() {
 	static bool isBleConnected = false;
 	
 	float accX, accY, accZ;
-	
 	if (isSetup()) {
-		bleMouse.begin();
+		updateTimer();
+		if (bleKeyboardBegan) {
+			centeredPrint("Restarting...", SMALL_TEXT);
+			delay(1500);
+			ESP.restart();
+		}
+		if (!bleMouseBegan) {
+			bleMouse.begin();
+			bleMouseBegan = true;
+		} else {
+			BLEDevice::startAdvertising();
+		}
 		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
 	}
@@ -96,8 +106,10 @@ void bluetoothMouseLoop() {
 	}
 		
 	if (checkExit()) {
-		bleMouse.end();
+		BLEDevice::getAdvertising()->stop();
 		isBleConnected = false;
+		smoothedX = 0;
+		smoothedY = 0;
 		centeredPrint("Disconnecting...", SMALL_TEXT);
 	}
 }

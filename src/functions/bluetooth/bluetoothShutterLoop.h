@@ -1,11 +1,20 @@
 // pid 15
 
-
 void bluetoothShutterLoop() {
 	static bool isBleConnected = false;
 
 	if (isSetup()) {
-		bleKeyboard.begin();
+		if (bleMouseBegan) {
+			centeredPrint("Restarting...", SMALL_TEXT);
+			delay(1500);
+			ESP.restart();
+		}
+		if (!bleKeyboardBegan) {
+			bleKeyboard.begin();
+			bleKeyboardBegan = true;
+		} else {
+			BLEDevice::startAdvertising();
+		}
 		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
 	}
@@ -29,10 +38,8 @@ void bluetoothShutterLoop() {
 	}
 
 	if (checkExit()) {
-		bleKeyboard.end();
+		BLEDevice::getAdvertising()->stop();
 		isBleConnected = false;
 		centeredPrint("Disconnecting...", SMALL_TEXT);
-		// The BLE-KEYboard library does not allow you to disconnect from the device completely.
-		//We need to modify the library, but then firmware crashes may occur.
 	}
 }
