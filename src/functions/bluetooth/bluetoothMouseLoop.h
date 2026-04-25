@@ -30,26 +30,19 @@ void bluetoothMouseLoop() {
 	static float smoothedX = 0;
 	static float smoothedY = 0;
 	static bool isBleConnected = false;
-	
+
 	float accX, accY, accZ;
 	if (isSetup()) {
 		updateTimer();
-		if (bleKeyboardBegan) {
-			centeredPrint("Restarting...", SMALL_TEXT);
-			delay(1500);
-			ESP.restart();
-		}
-		if (!bleMouseBegan) {
-			bleMouse.begin();
-			bleMouseBegan = true;
-		} else {
-			BLEDevice::startAdvertising();
+		if (!bleCompositeBegan) {
+			bleKeyboard.begin();
+			bleCompositeBegan = true;
 		}
 		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
 	}
-	
-	if (bleMouse.isConnected()) {
+
+	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			centeredPrint("Connected", SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
@@ -79,7 +72,7 @@ void bluetoothMouseLoop() {
 		if (deltaX != 0 || deltaY != 0) {
 			bleMouse.move(deltaX, deltaY);
 		}
-			
+
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
@@ -104,9 +97,8 @@ void bluetoothMouseLoop() {
 	} else {
 		bleMouse.release(MOUSE_LEFT);
 	}
-		
+
 	if (checkExit()) {
-		BLEDevice::getAdvertising()->stop();
 		isBleConnected = false;
 		smoothedX = 0;
 		smoothedY = 0;

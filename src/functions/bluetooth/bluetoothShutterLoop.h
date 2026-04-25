@@ -4,16 +4,9 @@ void bluetoothShutterLoop() {
 	static bool isBleConnected = false;
 
 	if (isSetup()) {
-		if (bleMouseBegan) {
-			centeredPrint("Restarting...", SMALL_TEXT);
-			delay(1500);
-			ESP.restart();
-		}
-		if (!bleKeyboardBegan) {
+		if (!bleCompositeBegan) {
 			bleKeyboard.begin();
-			bleKeyboardBegan = true;
-		} else {
-			BLEDevice::startAdvertising();
+			bleCompositeBegan = true;
 		}
 		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
@@ -38,7 +31,6 @@ void bluetoothShutterLoop() {
 	}
 
 	if (checkExit()) {
-		BLEDevice::getAdvertising()->stop();
 		isBleConnected = false;
 		centeredPrint("Disconnecting...", SMALL_TEXT);
 	}

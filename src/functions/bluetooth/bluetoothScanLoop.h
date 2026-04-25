@@ -28,17 +28,17 @@ void bluetoothScanLoop() {
 
 			bleScanMenu = new MENU[bleCount + 2];
 			bleScanMenu[0].name = "back";
-			bleScanMenu[0].command = 0;
+			bleScanMenu[0].command = 14;
 			bleScanMenu[1].name = "rescan";
 			bleScanMenu[1].command = 36;
 
 			for (int i = 0; i < bleCount; i++) {
 				BLEAdvertisedDevice device = results.getDevice(i);
-				Serial.printf("Device %d -- name: %s, MAC: %s\n", i, device.getName().c_str(), device.getAddress().toString().c_str());
+				Serial.printf("Device %d; name: %s; MAC: %s\n", i, device.getName().c_str(), device.getAddress().toString().c_str());
 				String devName = device.getName().c_str();
 				String name = (device.haveName() && devName.length() > 0)
 					? devName.substring(0, 14)
-					: String(device.getAddress().toString().c_str()).substring(0, 14);
+					: String(device.getAddress().toString().substr(0, 14).c_str());
 
 				bleScanMenu[i + 2].name = name;
 				bleScanMenu[i + 2].command = 37;

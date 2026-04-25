@@ -30,7 +30,7 @@ void drawMenu(MENU menu[], int size) {
 		for (int i = 0 + (cursor - 2); i < size; i++) {
 			cursor == i ? DISP.setTextColor(BGCOLOR, FGCOLOR) : DISP.setTextColor(FGCOLOR, BGCOLOR);
 			
-			DISP.printf(" %-14s\n", menu[i].name);
+			DISP.printf(" %-14s\n", menu[i].name.c_str());
 		}
 		
 		clearScreenWithSymbols();
@@ -39,7 +39,7 @@ void drawMenu(MENU menu[], int size) {
 		for (int i = 0; i < size; i++) {
 			cursor == i ? DISP.setTextColor(BGCOLOR, FGCOLOR) : DISP.setTextColor(FGCOLOR, BGCOLOR);
 
-			DISP.printf(" %-14s\n", menu[i].name);
+			DISP.printf(" %-14s\n", menu[i].name.c_str());
 		}
 		clearScreenWithSymbols();
 	}
