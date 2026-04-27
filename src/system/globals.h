@@ -111,6 +111,10 @@ int rssi;
 #include <BLEScan.h>
 #include <BleCombo.h>
 
+String bleName;
+String bleAddress;
+int bleRssi;
+
 BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
 BleComboMouse bleMouse(&bleKeyboard);
 

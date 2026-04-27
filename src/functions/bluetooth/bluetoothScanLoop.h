@@ -41,10 +41,8 @@ void bluetoothScanLoop() {
 					: String(device.getAddress().toString().substr(0, 14).c_str());
 
 				bleScanMenu[i + 2].name = name;
-				bleScanMenu[i + 2].command = 37;
+				bleScanMenu[i + 2].command = 38;
 			}
-
-			pScan->clearResults();
 		}
 		cursorOnTop();
 		drawMenu(bleScanMenu, bleCount + 2);
