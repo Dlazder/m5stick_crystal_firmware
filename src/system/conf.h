@@ -15,3 +15,6 @@ String wifiPassword = "";
 
 // Set to true to enable the startup sound
 bool startupSound = false;
+
+// keyboard gyro mode
+bool kbGyroEnabled = true;

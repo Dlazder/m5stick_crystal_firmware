@@ -17,6 +17,7 @@
 #include "../functions/settings/fontsLoop.h"
 #include "../functions/settings/colorsLoop.h"
 #include "../functions/settings/toggleStartupSound.h"
+#include "../functions/settings/toggleKbGyroLoop.h"
 
 
 // Wi-Fi functions
