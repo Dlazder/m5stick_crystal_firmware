@@ -3,6 +3,7 @@
 MENU selectedBluetoothMenu[] = {
 	{36, "back"},
 	{39, "info"},
+	{40, "find"},
 };
 int selectedBluetoothMenuSize = sizeof(selectedBluetoothMenu) / sizeof(MENU);
 

@@ -44,6 +44,7 @@ const ProcessEntry processEntries[] = {
     {37, bluetoothKeyboardLoop},
     {38, selectedBluetoothMenuLoop},
     {39, bluetoothInfoLoop},
+    {40, bluetoothFinderLoop},
 };
 
 void switcher() {
