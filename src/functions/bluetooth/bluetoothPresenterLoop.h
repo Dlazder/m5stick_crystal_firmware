@@ -1,9 +1,14 @@
+// pid 32
+
 void bluetoothPresenterLoop() {
 	static bool isBleConnected = false;
 
 	if (isSetup()) {
-		bleKeyboard.begin();
-		centeredPrint("Wating connection", SMALL_TEXT);
+		if (!bleCompositeBegan) {
+			bleKeyboard.begin();
+			bleCompositeBegan = true;
+		}
+		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
 	}
 
@@ -30,7 +35,6 @@ void bluetoothPresenterLoop() {
 	}
 
 	if (checkExit()) {
-		bleKeyboard.end();
 		isBleConnected = false;
 		centeredPrint("Disconnecting...", SMALL_TEXT);
 	}

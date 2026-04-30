@@ -27,5 +27,8 @@ void loadPreferences() {
 	startupSound = getData("startupSound", startupSound);
   Serial.printf("Startup sound: %s\n", startupSound ? "enabled" : "disabled");
 
+	kbGyroEnabled = getData("kbGyro", kbGyroEnabled);
+	Serial.printf("KB gyro: %s\n", kbGyroEnabled ? "enabled" : "disabled");
+
 	Serial.println("Preferences loaded");
 }

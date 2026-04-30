@@ -107,7 +107,24 @@ int rssi;
 
 
 // bluetooth
-#include <BleKeyboard.h>
-BleKeyboard bleKeyboard("M5 Crystal keyboard", "M5 Crystal");
-#include <BleMouse.h>
-BleMouse bleMouse("M5 Crystal mouse", "M5 Crystal");
+#include <BLEDevice.h>
+#include <BLEScan.h>
+#include <BleCombo.h>
+
+#include <BLEAdvertising.h>
+#include <esp_gap_ble_api.h>
+
+String bleName;
+String bleAddress;
+int bleRssi;
+String bleManufacturer;
+String bleManufacturerRaw;
+int8_t bleTxPower = -128;
+uint8_t bleAdvFlags = 0xFF;
+String bleServiceUUIDs;
+String bleAppearance;
+
+BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
+BleComboMouse bleMouse(&bleKeyboard);
+
+bool bleCompositeBegan = false;

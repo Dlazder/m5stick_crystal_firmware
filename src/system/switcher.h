@@ -40,6 +40,12 @@ const ProcessEntry processEntries[] = {
     {33, shutdownLoop},
     {34, systemInfoLoop},
     {35, settingsClockLoop},
+    {36, bluetoothScanLoop},
+    {37, bluetoothKeyboardLoop},
+    {38, selectedBluetoothMenuLoop},
+    {39, bluetoothInfoLoop},
+    {40, bluetoothFinderLoop},
+    {41, toggleKbGyroLoop},
 };
 
 void switcher() {

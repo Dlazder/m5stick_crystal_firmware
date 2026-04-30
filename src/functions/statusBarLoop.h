@@ -27,6 +27,28 @@ void statusBarLoop() {
 	char batteryText[10];
 	sprintf(batteryText, "%d%%", battery);
 	int batteryTextWidth = DISP.textWidth(batteryText);
+
+	// Bluetooth indicator
+	if (bleCompositeBegan && bleKeyboard.isConnected()) {
+		const float svgH = 86.0f;
+		const float h = 14.0f;
+		const float scale = h / svgH;
+		const int by = 2;
+		int bleIndicatorWidth = (int)(50.695f * scale) + 3;
+		int bx = DISP.width() - batteryTextWidth - bleIndicatorWidth - 10;
+
+		auto px = [&](float x) { return bx + (int)(x * scale); };
+		auto py = [&](float y) { return by + (int)(y * scale); };
+
+		statusBarCanvas.drawLine(px(28.649f), py(6.825f),  px(28.649f), py(80.035f), FGCOLOR);
+		statusBarCanvas.drawLine(px(28.649f), py(6.825f),  px(50.695f), py(28.871f), FGCOLOR);
+		statusBarCanvas.drawLine(px(50.695f), py(28.871f), px(36.136f), py(43.430f), FGCOLOR);
+		statusBarCanvas.drawLine(px(36.136f), py(43.430f), px(50.695f), py(57.989f), FGCOLOR);
+		statusBarCanvas.drawLine(px(50.695f), py(57.989f), px(28.649f), py(80.035f), FGCOLOR);
+		statusBarCanvas.drawLine(px(28.649f), py(35.889f), px(12.112f), py(28.172f), FGCOLOR);
+		statusBarCanvas.drawLine(px(28.649f), py(50.971f), px(12.112f), py(58.688f), FGCOLOR);
+	}
+
 	statusBarCanvas.setCursor(DISP.width() - batteryTextWidth, 4);
 	statusBarCanvas.printf("%d%%", battery);
 

@@ -40,8 +40,7 @@ jobs:
 
       - name: Install required library
         run: |
-          arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Keyboard
-          arduino-cli lib install --git-url https://github.com/T-vK/ESP32-BLE-Mouse
+          arduino-cli lib install --git-url https://github.com/blackketter/ESP32-BLE-Combo.git
 
       - name: Install esptool
         run: pip install esptool
@@ -52,7 +51,7 @@ jobs:
       - name: Get version
         id: get_version
         run: |
-          VERSION=$(grep FIRMWARE_VERSION system/version.h | cut -d '"' -f 2)
+          VERSION=$(grep FIRMWARE_VERSION src/system/version.h | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 

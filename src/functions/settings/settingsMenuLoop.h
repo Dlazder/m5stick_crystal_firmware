@@ -2,13 +2,14 @@
 
 MENU settingsMenu[] = {
 	{0, "back"},
-	{35, "clock"},
+	{35, "time"},
 	{5, "brightness"},
 	{6, "rotation"},
 	{7, "colors"},
 	{10, "status bar"},
-	{28, "start sound"},
+	{28, "startup sound"},
 	{19, "font"},
+	{41, "keyboard gyro"},
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 void settingsMenuLoop() {

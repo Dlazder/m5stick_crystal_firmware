@@ -17,6 +17,7 @@
 #include "../functions/settings/fontsLoop.h"
 #include "../functions/settings/colorsLoop.h"
 #include "../functions/settings/toggleStartupSound.h"
+#include "../functions/settings/toggleKbGyroLoop.h"
 
 
 // Wi-Fi functions
@@ -33,6 +34,11 @@
 #include "../functions/bluetooth/bluetoothMouseLoop.h"
 #include "../functions/bluetooth/bluetoothShutterLoop.h"
 #include "../functions/bluetooth/bluetoothPresenterLoop.h"
+#include "../functions/bluetooth/bluetoothScanLoop.h"
+#include "../functions/bluetooth/bluetoothKeyboardLoop.h"
+#include "../functions/bluetooth/selectedBluetoothMenuLoop.h"
+#include "../functions/bluetooth/bluetoothInfoLoop.h"
+#include "../functions/bluetooth/bluetoothFinderLoop.h"
 
 
 // NFC functions
