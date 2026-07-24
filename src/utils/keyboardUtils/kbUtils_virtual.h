@@ -89,8 +89,8 @@ bool keyboardLoop(
 		smoothX = smoothX * 0.7f + accX * 0.3f;
 		smoothY = smoothY * 0.7f + accY * 0.3f;
 
-		float tiltX = constrain(smoothY, -KB_GYRO_MAX, KB_GYRO_MAX) / KB_GYRO_MAX;
-		float tiltY = constrain(smoothX, -KB_GYRO_MAX, KB_GYRO_MAX) / KB_GYRO_MAX;
+		float tiltX = constrain(IMU_KB_X(smoothX, smoothY), -KB_GYRO_MAX, KB_GYRO_MAX) / KB_GYRO_MAX;
+		float tiltY = constrain(IMU_KB_Y(smoothX, smoothY), -KB_GYRO_MAX, KB_GYRO_MAX) / KB_GYRO_MAX;
 
 		if (abs(tiltX - lastMappedX) > KB_GYRO_HYSTERESIS || abs(tiltY - lastMappedY) > KB_GYRO_HYSTERESIS) {
 			lastMappedX = tiltX;

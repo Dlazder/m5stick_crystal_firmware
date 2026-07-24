@@ -7,6 +7,8 @@
 
 #if defined(CARDPUTER)
     #include "cardputer.h"
+#elif defined(STICKS3)
+    #include "m5sticks3.h"
 #else
     #include "m5stickc_plus2.h"
 #endif

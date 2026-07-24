@@ -24,6 +24,10 @@
 #define IMU_LEVEL_ROLL(ax, ay)        ( -atan2((ay), (ax)) * 180 / PI )
 #define IMU_LEVEL_ANGLE(ax, ay)       ( abs(atan2((ax), (ay)) * 180 / PI) )
 
+// IMU axis mapping for gyro keyboard (not used — Cardputer has physical KB)
+#define IMU_KB_X(ax, ay)              ( -(ax) )
+#define IMU_KB_Y(ax, ay)              ( (ay) )
+
 // NFC I2C pins (Cardputer GROVE port — G2=SDA, G1=SCL)
 #define NFC_SDA  2
 #define NFC_SCL  1

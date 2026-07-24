@@ -21,6 +21,10 @@
 #define IMU_LEVEL_ROLL(ax, ay)        ( atan2((ax), (ay)) * 180 / PI )
 #define IMU_LEVEL_ANGLE(ax, ay)       ( abs(atan2((ay), (ax)) * 180 / PI) )
 
+// IMU axis mapping for gyro keyboard (same as mouse for StickC Plus2)
+#define IMU_KB_X(ax, ay)              ( (ay) )
+#define IMU_KB_Y(ax, ay)              ( (ax) )
+
 // NFC I2C pins
 #define NFC_SDA  G32
 #define NFC_SCL  G33

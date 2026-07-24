@@ -79,7 +79,7 @@ static void _drawPinTable(const char* title,
 void connectionGuideNFC() {
 	const char* title = "Connect PN532 module";
 
-	#if HAS_PHYSICAL_KB
+	#if CARDPUTER
 		const char* rows[][2] = {
 			{"VCC","3.3V"},
 			{"GND", "GND"},
@@ -88,6 +88,15 @@ void connectionGuideNFC() {
 		};
 		int rowCount = 4;
 		const char* hRight = "Cardputer (GROVE)";
+	#elif STICKS3
+		const char* rows[][2] = {
+			{"VCC", "3.3V"},
+			{"GND", "GND"},
+			{"SDA", "G9"},
+			{"SCL", "G10"},
+		};
+		int rowCount = 4;
+		const char* hRight = "StickS3";
 	#else
 		const char* rows[][2] = {
 			{"VCC", "3.3V"},
@@ -106,7 +115,7 @@ void connectionGuideNFC() {
 void connectionGuideIR() {
 	const char* title = "Connect IR Receiver";
 
-	#if HAS_PHYSICAL_KB
+	#if CARDPUTER
 		const char* rows[][2] = {
 			{"VCC", "5V IN/OUT"},
 			{"GND", "GND"},
@@ -114,6 +123,14 @@ void connectionGuideIR() {
 		};
 		int rowCount = 3;
 		const char* hRight = "Cardputer";
+	#elif STICKS3
+		const char* rows[][2] = {
+			{"VCC", "3.3V"},
+			{"GND", "GND"},
+			{"OUT", "G0"},
+		};
+		int rowCount = 3;
+		const char* hRight = "StickS3";
 	#else
 		const char* rows[][2] = {
 			{"VCC", "3.3V"},
