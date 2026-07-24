@@ -51,6 +51,23 @@ inline void deviceUpdate() {
 inline void deviceSpeakerBegin() { DEVICE.Speaker.begin(); }
 inline void deviceSpeakerEnd() { DEVICE.Speaker.end(); }
 
+// Microphone calibration table — maps raw M5 dB (dbFS + 94) to real dB SPL
+// TODO: calibrate with a reference SPL meter for M5StickS3
+static const float DEVICE_CALIB_TABLE[][2] = {
+	{6.0f,  48.0f},
+	{12.0f, 50.0f},
+	{30.0f, 52.0f},
+	{40.0f, 55.0f},
+	{42.0f, 57.0f},
+	{50.0f, 60.0f},
+	{65.0f, 65.0f},
+	{67.0f, 73.0f},
+	{75.0f, 75.0f},
+	{80.0f, 80.0f},
+	{89.0f, 93.0f},
+};
+static constexpr int DEVICE_CALIB_TABLE_SIZE = sizeof(DEVICE_CALIB_TABLE) / sizeof(DEVICE_CALIB_TABLE[0]);
+
 // Time
 struct DeviceTime { int hours; int minutes; int seconds; };
 

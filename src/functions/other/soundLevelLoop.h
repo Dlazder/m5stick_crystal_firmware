@@ -2,40 +2,17 @@ static constexpr int SAMPLE_RATE = 44000;
 static constexpr size_t SAMPLES = 4096;
 static int16_t DATA[SAMPLES];
 
-// Calibration table (phone_dB, m5_raw + 96db)
-static const float CALIB_TABLE[][2] = {
-	{6.0f, 45.0f},
-	{12.0f, 45.0f},
-	{15.0f, 45.0f},
-	{31.0f, 46.0f},
-	{40.0f, 47.0f},
-	{45.0f, 49.0f},
-	{58.0f, 51.0f},
-	{64.0f, 54.0f},
-	{71.0f, 61.0f},
-	{81.0f, 68.0f},
-	{91.0f, 75.0f},
-	{100.0f, 80.0f}
-};
-static constexpr int CALIB_TABLE_SIZE = 12;
-
+// Linear interpolation through device-specific calibration table
 static float calibrateSoundLevel(float m5_raw) {
-	// Linear interpolation between calibration points
-	if (m5_raw <= CALIB_TABLE[0][1]) {
-		return CALIB_TABLE[0][0]; // Clamp to min
-	}
-	if (m5_raw >= CALIB_TABLE[CALIB_TABLE_SIZE - 1][1]) {
-		return CALIB_TABLE[CALIB_TABLE_SIZE - 1][0]; // Clamp to max
-	}
-	
-	// Find the two points to interpolate between
-	for (int i = 0; i < CALIB_TABLE_SIZE - 1; i++) {
-		if (m5_raw >= CALIB_TABLE[i][1] && m5_raw <= CALIB_TABLE[i + 1][1]) {
-			float x1 = CALIB_TABLE[i][1];
-			float y1 = CALIB_TABLE[i][0];
-			float x2 = CALIB_TABLE[i + 1][1];
-			float y2 = CALIB_TABLE[i + 1][0];
-			// Linear interpolation: y = y1 + (x - x1) * (y2 - y1) / (x2 - x1)
+	if (m5_raw <= DEVICE_CALIB_TABLE[0][1])
+		return DEVICE_CALIB_TABLE[0][0];
+	if (m5_raw >= DEVICE_CALIB_TABLE[DEVICE_CALIB_TABLE_SIZE - 1][1])
+		return DEVICE_CALIB_TABLE[DEVICE_CALIB_TABLE_SIZE - 1][0];
+
+	for (int i = 0; i < DEVICE_CALIB_TABLE_SIZE - 1; i++) {
+		if (m5_raw >= DEVICE_CALIB_TABLE[i][1] && m5_raw <= DEVICE_CALIB_TABLE[i + 1][1]) {
+			float x1 = DEVICE_CALIB_TABLE[i][1],     y1 = DEVICE_CALIB_TABLE[i][0];
+			float x2 = DEVICE_CALIB_TABLE[i + 1][1], y2 = DEVICE_CALIB_TABLE[i + 1][0];
 			return y1 + (m5_raw - x1) * (y2 - y1) / (x2 - x1);
 		}
 	}
@@ -44,7 +21,7 @@ static float calibrateSoundLevel(float m5_raw) {
 
 float getSoundLevel() {
 	DEVICE.Mic.record(DATA, SAMPLES, SAMPLE_RATE, false);
-	
+
 	// RMS calc
 	double sum = 0;
 	for (size_t i = 0; i < SAMPLES; i++) {
@@ -52,12 +29,12 @@ float getSoundLevel() {
 		sum += s * s;
 	}
 	float rms = sqrt(sum / SAMPLES);
-	
-	// dB into SPL with table-based calibration
+
+	// dB into SPL with per-device calibration
 	float dbFS = 20 * log10(rms + 1e-12);
 	float m5_raw = dbFS + 94.0f;
 	float dbSPL = calibrateSoundLevel(m5_raw);
-	
+
 	return dbSPL;
 }
 

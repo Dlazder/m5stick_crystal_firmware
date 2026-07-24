@@ -51,6 +51,22 @@ inline void deviceUpdate() {
 inline void deviceSpeakerBegin() { /* always on */ }
 inline void deviceSpeakerEnd()   { /* always on */ }
 
+// Microphone calibration table — maps raw M5 dB (dbFS + 94) to real dB SPL
+static const float DEVICE_CALIB_TABLE[][2] = {
+    {6.0f,  45.0f},
+    {12.0f, 45.0f},
+    {15.0f, 45.0f},
+    {31.0f, 46.0f},
+    {40.0f, 47.0f},
+    {45.0f, 49.0f},
+    {58.0f, 51.0f},
+    {64.0f, 54.0f},
+    {71.0f, 61.0f},
+    {81.0f, 68.0f},
+    {91.0f, 75.0f},
+};
+static constexpr int DEVICE_CALIB_TABLE_SIZE = sizeof(DEVICE_CALIB_TABLE) / sizeof(DEVICE_CALIB_TABLE[0]);
+
 // Time
 struct DeviceTime { int hours; int minutes; int seconds; };
 

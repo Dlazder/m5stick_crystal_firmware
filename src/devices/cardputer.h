@@ -68,6 +68,23 @@ inline void deviceUpdate() {
 inline void deviceSpeakerBegin() { DEVICE.Speaker.begin(); }
 inline void deviceSpeakerEnd()   { DEVICE.Speaker.end(); }
 
+// Microphone calibration table — maps raw M5 dB (dbFS + 94) to real dB SPL
+// TODO: calibrate with a reference SPL meter for Cardputer
+static const float DEVICE_CALIB_TABLE[][2] = {
+	{12.0f,  20.0f},
+	{15.0f, 21.0f},
+	{30.0f, 24.0f},
+	{40.0f, 25.0f},
+	{41.0f, 28.0f},
+	{45.0f, 32.0f},
+	{55.0f, 36.0f},
+	{60.0f, 38.0f},
+	{70.0f, 40.0f},
+	{75.0f, 43.0f},
+	{76.0f, 46.0f},
+};
+static constexpr int DEVICE_CALIB_TABLE_SIZE = sizeof(DEVICE_CALIB_TABLE) / sizeof(DEVICE_CALIB_TABLE[0]);
+
 // Time
 struct DeviceTime { int hours; int minutes; int seconds; };
 
