@@ -105,8 +105,5 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
           body: ${{ env.RELEASE_BODY }}
-          files: |
-            crystal_firmware_m5stick-c-plus2_v${{ env.VERSION }}.bin
-            crystal_firmware_cardputer-adv_v${{ env.VERSION }}.bin
-            crystal_firmware_m5sticks3_v${{ env.VERSION }}.bin
+          files: crystal_firmware_*_v${{ env.VERSION }}.bin
           generate_release_notes: true
