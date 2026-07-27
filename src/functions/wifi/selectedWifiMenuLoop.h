@@ -22,6 +22,9 @@ void selectedWifiMenuLoop() {
 			channel = WiFi.channel(wifiScanIndex);
 			bssid = WiFi.BSSID(wifiScanIndex);
 			rssi = WiFi.RSSI(wifiScanIndex);
+			wifiAuthMode = WiFi.encryptionType(wifiScanIndex);
+			wifiHasWps = false;
+			wifiHasFtPsk = false;
 			cursor = 0;
 		}
 		drawMenu(selectedWifiMenu, selectedWifiMenuSize);
