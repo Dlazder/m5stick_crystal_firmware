@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // Add new processes here: X(NAME, ID, loopFunction)
 #define PROCESS_LIST \
@@ -44,6 +44,7 @@
 	X(WIFI_CHANNEL_ANALYZER, 217, wifiChannelAnalyzerLoop) \
 	X(WEB_SERVER,            218, webServerLoop) \
 	X(LFS_WEB_UI,           219, lfsWebUILoop) \
+	X(WIFI_WPS_PBC,         220, wifiWpsPbcLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \

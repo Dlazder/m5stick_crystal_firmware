@@ -22,6 +22,8 @@ struct Locale {
 	const char* MENU_WIFI_EVIL_TWIN;
 	const char* MENU_WIFI_HANDSHAKE;
 	const char* MENU_WIFI_PMKID;
+	const char* MENU_WIFI_PIXIE_DUST;
+	const char* MENU_WIFI_WPS_PBC;
 	const char* MENU_WIFI_CHANNEL_ANALYZER;
 	const char* MENU_WIFI_WEB_SERVER;
 	const char* MENU_SETTINGS_WIFI_SSID;

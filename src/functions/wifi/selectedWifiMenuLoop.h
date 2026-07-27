@@ -10,6 +10,7 @@ void selectedWifiMenuLoop() {
 		{PID::WIFI_HANDSHAKE_CAPTURE, L->MENU_WIFI_HANDSHAKE},
 		{PID::EVIL_TWIN, L->MENU_WIFI_EVIL_TWIN},
 		{PID::WIFI_PMKID_CAPTURE, L->MENU_WIFI_PMKID},
+		{PID::WIFI_WPS_PBC, L->MENU_WIFI_WPS_PBC},
 	};
 	int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(selectedWifiMenu[0]);
 
