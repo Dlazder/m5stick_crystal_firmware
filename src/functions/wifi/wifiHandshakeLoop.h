@@ -311,13 +311,7 @@ void wifiHandshakeLoop() {
 
 			handshakeCapturePath = generateUniqueFilename("/handshake_" + safeSsid, ".pcap", useLittleFS);
 
-			pcapFile = useLittleFS
-				? LittleFS.open(handshakeCapturePath, FILE_WRITE)
-				: SD.open(handshakeCapturePath, FILE_WRITE);
-			if (pcapFile) {
-				writePcapGlobalHeader(pcapFile);
-				fileOpen = true;
-			}
+			// File will be opened lazily on first handshake packet
 		}
 
 		// Set WiFi mode to APSTA: STA for promiscuous sniffing,
@@ -356,17 +350,30 @@ void wifiHandshakeLoop() {
 	// Drain ring buffer -> write PCAP packets
 	while (handshakeRingTail != handshakeRingHead) {
 		const pkt_entry& pkt = handshakeRing[handshakeRingTail];
-		if (fileOpen && pcapFile) {
-			writePcapPacket(pcapFile, pkt.data, pkt.len, pkt.rssi, pkt.timestamp, hsTargetChannel);
-		}
 		handshakeRingTail = (handshakeRingTail + 1) % HANDSHAKE_RING_SIZE;
-		// Count complete handshakes via session state machine
+
+		// Detect EAPOL handshake frames — lazy-open file on first hit
 		uint16_t fc = pkt.data[0] | (pkt.data[1] << 8);
 		if (((fc >> 2) & 0x3) == 2) { // Data frame (EAPOL)
 			if (hsProcessFrame(pkt.data)) {
 				handshakeTotalPackets++;
+				// Open file on first handshake packet
+				if (!fileOpen && handshakeCapturePath.length() > 0) {
+					pcapFile = useLittleFS
+						? LittleFS.open(handshakeCapturePath, FILE_WRITE)
+						: SD.open(handshakeCapturePath, FILE_WRITE);
+					if (pcapFile) {
+						writePcapGlobalHeader(pcapFile);
+						fileOpen = true;
+					}
+				}
 				soundSuccess();
 			}
+		}
+
+		// Write packet to PCAP (only after file is open)
+		if (fileOpen && pcapFile) {
+			writePcapPacket(pcapFile, pkt.data, pkt.len, pkt.rssi, pkt.timestamp, hsTargetChannel);
 		}
 	}
 
@@ -419,6 +426,7 @@ void wifiHandshakeLoop() {
 		WiFi.softAPdisconnect(false);
 
 		if (fileOpen && pcapFile) {
+			// Handshake was captured — close and keep the file
 			pcapFile.flush();
 			pcapFile.close();
 			fileOpen = false;
@@ -431,9 +439,7 @@ void wifiHandshakeLoop() {
 			soundSuccess();
 			delay(800);
 		} else {
-			canvas.clear();
-			soundError();
-			delay(400);
+			// No handshake captured — file was never created, just exit
 		}
 	}
 }
