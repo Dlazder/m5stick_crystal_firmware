@@ -156,6 +156,9 @@ uint8_t* bssid;
 int rssi;
 String wifiPassword;
 int wifiScanIndex;
+wifi_auth_mode_t wifiAuthMode = WIFI_AUTH_OPEN;
+bool wifiHasWps = false;
+bool wifiHasFtPsk = false;
 
 
 // bluetooth

@@ -14,18 +14,27 @@ Connect the PN532 module to the GROVE port. Switch the module to **I2C mode**.
 
 ### M5StickC Plus 2
 
-| M5StickCPlus2 GROVE | PN532 |
+| M5StickCPlus2 (GROVE) | PN532 |
 | - | - |
 | G | GND |
 | 5V | VCC |
 | G32 | SDA |
 | G33 | SCL |
 
+### M5StickS3
+
+| M5StickS3 (GROVE) | PN532 |
+| - | - |
+| G | GND |
+| 5V | VCC |
+| G9 | SDA |
+| G10 | SCL |
+
 <img src="../images/NFC_connection_example.png" alt="PN532 connection example"/>
 
 ### Cardputer-ADV
 
-| Cardputer-ADV GROVE | PN532 |
+| Cardputer-ADV (GROVE) | PN532 |
 | - | - |
 | GND | GND |
 | 5V | VCC |
@@ -33,6 +42,8 @@ Connect the PN532 module to the GROVE port. Switch the module to **I2C mode**.
 | G1 | SCL |
 
 ## SD Card
+
+### M5StickC Plus 2
 
 | M5StickCPlus2 | SD module |
 | - | - |
@@ -43,9 +54,20 @@ Connect the PN532 module to the GROVE port. Switch the module to **I2C mode**.
 | G (grove) | CS |
 | 3V3 | 3V3 |
 
+### M5StickS3
+
+| M5StickS3 | SD module |
+| - | - |
+| GND | GND |
+| G4 | MISO |
+| G5 | CLK |
+| G6 | MOSI |
+| G7 | CS |
+| 3V3 | 3V3 |
+
 ## IR reciever
 
-## M5StickC Plus 2
+### M5StickC Plus 2
 
 | M5StickCPlus2 | IR Reciever module |
 | - | - |

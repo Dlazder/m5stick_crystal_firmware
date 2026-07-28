@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        env: [m5stick-c-plus2, cardputer-adv]
+        env: [m5stick-c-plus2, cardputer-adv, m5sticks3]
 
     steps:
       - name: Checkout code
@@ -41,8 +41,8 @@ jobs:
       - name: Install esptool
         run: pip install esptool
 
-      - name: Merge binaries (cardputer-adv)
-        if: matrix.env == 'cardputer-adv'
+      - name: Merge binaries (ESP32-S3 - cardputer-adv / sticks3)
+        if: matrix.env == 'cardputer-adv' || matrix.env == 'm5sticks3'
         run: |
           esptool.py --chip esp32s3 merge_bin \
             --output .pio/build/${{ matrix.env }}/crystal_firmware_${{ matrix.env }}_v${{ env.VERSION }}.bin \
@@ -105,7 +105,5 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
           body: ${{ env.RELEASE_BODY }}
-          files: |
-            crystal_firmware_m5stick-c-plus2_v${{ env.VERSION }}.bin
-            crystal_firmware_cardputer-adv_v${{ env.VERSION }}.bin
+          files: crystal_firmware_*_v${{ env.VERSION }}.bin
           generate_release_notes: true
