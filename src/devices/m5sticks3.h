@@ -29,10 +29,12 @@
 #define NFC_SDA 9
 #define NFC_SCL 10
 
+// IR — RMT-based receiver (Arduino 3.x / ESP-IDF 5.x required)
+#define IR_USE_RMT
 // IR transmitter — built-in LED
 #define IR_SEND_PIN 46
-// IR receiver (the built-in module does not work yet)
-#define IR_RECEIVE_PIN 5
+// IR receiver — external module connected to G5
+#define IR_RECEIVE_PIN 42
 
 // KEY_BACKSPACE value for BLE keyboard
 #define BLE_KEY_BACKSPACE KEY_BACKSPACE

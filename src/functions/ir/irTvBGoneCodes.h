@@ -3,8 +3,11 @@
 // Format: { protocol, address, command, bits }
 // bits: only used for SONY (12/15/20); set 0 for all other protocols
 
+// Protocol IDs: match IRremote decode_type_t order
+// NEC=1, SONY=2, SAMSUNG=3, RC5=4, RC6=5, PANASONIC=6,
+// SHARP=7, DENON=8, JVC=9, KASEIKYO=10, ONKYO=11
 struct TvbCode {
-	decode_type_t protocol;
+	uint8_t protocol;
 	uint16_t address;
 	uint16_t command;
 	uint8_t bits;  // for SONY: 12/15/20; 0 for all others
