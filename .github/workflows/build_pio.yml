@@ -84,7 +84,7 @@ jobs:
 
       - name: Get tag commit message
         run: |
-          COMMIT_MSG=$(git log -1 --format=%B "${{ github.ref_name }}")
+          COMMIT_MSG=$(git log -1 --format=%b "${{ github.ref_name }}")
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
           echo "$COMMIT_MSG" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
