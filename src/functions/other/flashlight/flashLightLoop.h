@@ -1,4 +1,4 @@
-// pid 25
+// PID::FLASHLIGHT
 
 void flashLightLoop() {
 	static bool flashLightStatusBarWasEnabled;

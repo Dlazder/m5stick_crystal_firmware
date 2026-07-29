@@ -1,4 +1,4 @@
-// pid PID::SYSTEM
+// PID::SYSTEM
 
 void systemMenuLoop() {
 	MENU systemMenu[] = {

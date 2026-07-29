@@ -1,4 +1,4 @@
-// pid PID::WIFI_PMKID_CAPTURE
+// PID::WIFI_PMKID_CAPTURE
 
 // This feature has not been fully tested and only works in theory.
 // In the future, it is necessary to conduct testing on the vulnerable router.

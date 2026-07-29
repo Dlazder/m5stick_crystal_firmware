@@ -1,4 +1,4 @@
-// pid PID::BT_SCAN
+// PID::BT_SCAN
 
 int bleCount = 0;
 MENU* bleScanMenu = nullptr;

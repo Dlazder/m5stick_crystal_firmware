@@ -1,4 +1,4 @@
-// pid PID::BT_INFO
+// PID::BT_INFO
 
 void bluetoothInfoLoop() {
 

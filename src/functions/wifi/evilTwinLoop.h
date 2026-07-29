@@ -1,4 +1,4 @@
-// pid PID::EVIL_TWIN
+// PID::EVIL_TWIN
 
 const char* EVIL_TWIN_CREDS_FILE = "/evil_twin_creds.txt";
 IPAddress EVIL_TWIN_GATEWAY(172, 0, 0, 1);

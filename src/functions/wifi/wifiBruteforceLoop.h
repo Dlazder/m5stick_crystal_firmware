@@ -1,4 +1,4 @@
-// pid PID::WIFI_WPA_BF
+// PID::WIFI_WPA_BF
 
 #define BF_ATTEMPT_TIMEOUT_MS 3000
 

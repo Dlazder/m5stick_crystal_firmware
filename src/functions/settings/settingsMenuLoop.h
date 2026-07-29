@@ -1,4 +1,4 @@
-// pid PID::SETTINGS
+// PID::SETTINGS
 
 void settingsMenuLoop() {
 	MENU settingsMenu[] = {

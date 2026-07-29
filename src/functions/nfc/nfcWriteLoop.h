@@ -1,4 +1,4 @@
-// pid 23
+// PID::NFC_WRITE
 
 // Modify this array with your target UID
 uint8_t DEFAULT_KEY[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};

@@ -1,4 +1,4 @@
-// pid PID::NFC
+// PID::NFC
 
 void nfcMenuLoop() {
 	MENU nfcMenu[] = {

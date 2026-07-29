@@ -1,4 +1,4 @@
-// pid 22
+// PID::NFC_READ
 
 uint8_t lastReadUID[7] = {0};  // 7 bytes - enough for all standard tags
 uint8_t lastReadUIDLength = 0;

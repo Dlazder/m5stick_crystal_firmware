@@ -1,4 +1,4 @@
-// pid 34
+// PID::SYSTEM_INFO
 
 void systemInfoLoop() {
 

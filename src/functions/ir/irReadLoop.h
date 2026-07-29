@@ -8,16 +8,16 @@
 static bool irReceiverStarted = false;
 static bool irKbActive = false;
 
-static volatile bool     irNewData = false;
-static volatile irproto  irBrand = NEC;
+static volatile bool irNewData = false;
+static volatile irproto irBrand = NEC;
 static volatile uint32_t irCode = 0;
-static volatile size_t   irBits = 0;
+static volatile size_t irBits = 0;
 
 static uint16_t irLastAddress = 0;
-static uint8_t  irLastCommand = 0;
+static uint8_t irLastCommand = 0;
 static uint32_t irLastRaw = 0;
-static String   irLastProtocol = "";
-static bool     irHasSignal = false;
+static String irLastProtocol = "";
+static bool irHasSignal = false;
 
 void irReceived(irproto brand, uint32_t code, size_t len, rmt_symbol_word_t *item) {
 	if (code) {
@@ -78,7 +78,7 @@ void irReadLoop() {
 		irHasSignal = false;
 		irNewData = false;
 
-		irStopReceiver();  // kill any previous RX task and free RMT
+		irStopReceiver(); // kill any previous RX task and free RMT
 
 		connectionGuideIR();
 
@@ -133,9 +133,9 @@ void irReadLoop() {
 		} else if (irBrand == SAM) {
 			// Samsung: 16-bit address + 16-bit command
 			irLastAddress = ((uint16_t)ir_rev8((irCode >> 24) & 0xFF) << 8)
-						  |  (uint16_t)ir_rev8((irCode >> 16) & 0xFF);
+						| (uint16_t)ir_rev8((irCode >> 16) & 0xFF);
 			irLastCommand = ((uint16_t)ir_rev8((irCode >> 8) & 0xFF) << 8)
-						  |  (uint16_t)ir_rev8(irCode & 0xFF);
+						| (uint16_t)ir_rev8(irCode & 0xFF);
 		} else {
 			irLastAddress = irCode & 0xFFFF;
 			irLastCommand = (irCode >> 16) & 0xFF;

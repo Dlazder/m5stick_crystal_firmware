@@ -1,4 +1,4 @@
-// pid 5
+// PID::BRIGHTNESS
 
 void _brightnessDraw() {
   static const int barHeight = 20;

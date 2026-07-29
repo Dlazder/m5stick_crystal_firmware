@@ -1,4 +1,4 @@
-// pid 26
+// PID::FLASHLIGHT_FLICKER
 
 void flickerLoop() {
 	static bool flickerStatusBarWasEnabled;

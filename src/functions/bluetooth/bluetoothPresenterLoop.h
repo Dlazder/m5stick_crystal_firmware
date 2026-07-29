@@ -1,4 +1,4 @@
-// pid PID::BT_PRESENTER
+// PID::BT_PRESENTER
 
 void bluetoothPresenterLoop() {
 	if (isSetup()) bleConnect();

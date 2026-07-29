@@ -1,4 +1,4 @@
-// pid PID::WIFI_SCAN
+// PID::WIFI_SCAN
 
 int wifiCount = 0;
 MENU* wifiScanMenu = nullptr;

@@ -1,4 +1,4 @@
-// pid 16
+// PID::TOGGLE_STATUS_BAR
 
 void toggleStatusBarLoop() {
 	if (isSetup()) {

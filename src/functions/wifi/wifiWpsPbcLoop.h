@@ -1,6 +1,4 @@
 // PID::WIFI_WPS_PBC
-// WPS PBC (Push Button Configuration) — press WPS button on router
-// to get the Wi-Fi password without knowing it.
 
 #include "esp_wifi.h"
 #include "esp_wps.h"

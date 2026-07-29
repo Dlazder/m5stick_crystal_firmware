@@ -1,4 +1,4 @@
-// pid PID::WIFI_PCAP_TO_HASH
+// PID::WIFI_PCAP_TO_HASH
 
 // Select a .pcap file (SD card), extracts EAPOL handshake, and writes
 // a .hash file for FT-Crack / hashcat mode 22000.

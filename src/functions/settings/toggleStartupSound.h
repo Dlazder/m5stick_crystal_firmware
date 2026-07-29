@@ -1,4 +1,4 @@
-// pid 28
+// PID::STARTUP_SOUND
 
 void toggleStartupSound() {
 	if (isSetup()) {

@@ -1,4 +1,4 @@
-// pid 2
+// PID::BATTERY
 
 void batteryLoop() {
 	int battery = DEVICE.Power.getBatteryLevel();

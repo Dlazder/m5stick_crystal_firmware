@@ -1,4 +1,4 @@
-// pid PID::FLASHLIGHT_MENU
+// PID::FLASHLIGHT_MENU
 
 void flashLightMenuLoop() {
 	MENU flashLightMenu[] = {

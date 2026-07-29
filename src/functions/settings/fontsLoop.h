@@ -1,4 +1,4 @@
-// pid FONTS
+// PID::FONTS
 
 void fontsLoop() {
   if (isSetup()) {

@@ -47,3 +47,26 @@ DEVICE.Speaker.setVolume(volume);
 Text sizes are multiplied by a per-font scale factor from `fontScales[]` to normalize line height across fonts.
 
 To switch fonts call `applyFont(index)` — it sets the font on all canvases and recalculates the text size variables. Everything is declared in `src/system/globals.h`.
+
+## Colors
+
+Throughout the firmware, two primary colors are used, `BGCOLOR` and `FGCOLOR`, sometimes an additional `TFT_DARKGREY`.
+The colors array is declared in `src/system/globals.h`.
+
+FGCOLOR can be changed in the firmware settings `settings -> colors`.
+
+These colors, already defined in M5GFX, were chosen as the main ones.
+
+| Color | Color name |
+| - | - |
+| TFT_WHITE | WHITE |
+| TFT_RED | RED |
+| TFT_ORANGE | ORANGE |
+| TFT_YELLOW | YELLOW |
+| TFT_GREEN | GREEN |
+| TFT_CYAN | CYAN |
+| TFT_BLUE | BLUE |
+| TFT_VIOLET | VIOLET |
+| TFT_MAGENTA | MAGENTA |
+
+In the future, it is possible to add a third color in the form of a darker version of the colors described above, or the ability to select a color from the full RGB spectrum.

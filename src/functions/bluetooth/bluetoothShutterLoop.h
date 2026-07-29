@@ -1,4 +1,4 @@
-// pid PID::BT_SHUTTER
+// PID::BT_SHUTTER
 
 void bluetoothShutterLoop() {
 	if (isSetup()) bleConnect();

@@ -1,4 +1,4 @@
-// pid PID::BLUETOOTH
+// PID::BLUETOOTH
 
 void bluetoothMenuLoop() {
 	MENU bluetoothMenu[] = {
