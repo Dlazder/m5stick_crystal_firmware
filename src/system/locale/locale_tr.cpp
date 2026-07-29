@@ -1,0 +1,199 @@
+#include "locale.h"
+
+const Locale LANG_TR = {
+	// Common menu items
+	.MENU_BACK                   = "geri",
+	.MENU_SCAN                   = "tara",
+	.MENU_RESCAN                 = "yeniden tara",
+
+	// Wi-Fi menu
+	.MENU_WIFI                   = "Wi-Fi",
+	.MENU_WIFI_INFO              = "bilgi",
+	.MENU_WIFI_DEAUTH            = "deauth",
+	.MENU_WIFI_CONNECT           = "bağlan",
+	.MENU_WIFI_DISCONNECT        = "wifi bağlantı kes",
+	.MENU_WIFI_AP                = "Wi-Fi AP",
+	.MENU_WIFI_WEATHER           = "hava durumu",
+	.MENU_WIFI_SYNC_TIME         = "saati senkronla",
+	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
+	.MENU_WIFI_WPA_BF_ALL        = "wpa bf tüm ağlar",
+	.MENU_WIFI_DEAUTH_ALL        = "deauth tümü",
+	.MENU_WIFI_EVIL_PORTAL       = "kötü portal",
+	.MENU_WIFI_EVIL_TWIN         = "kötü ikiz",
+	.MENU_WIFI_HANDSHAKE         = "handshake yakala",
+	.MENU_WIFI_PMKID             = "PMKID yakala",
+	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
+	.MENU_WIFI_WPS_PBC           = "wps pbc",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "kanal analizörü",
+	.MENU_WIFI_WEB_SERVER        = "web sunucusu",
+	.MENU_SETTINGS_WIFI_SSID     = "Wi-Fi SSID",
+
+	// Bluetooth menu
+	.MENU_BT                     = "Bluetooth",
+	.MENU_BT_INFO                = "bilgi",
+	.MENU_BT_FIND                = "ara",
+	.MENU_BT_KEYBOARD            = "klavye",
+	.MENU_BT_AIR_MOUSE           = "hava faresi",
+	.MENU_BT_MOUSE_JIGGLER       = "fare titretme",
+	.MENU_BT_PRESENTER           = "sunucu",
+	.MENU_BT_SHUTTER             = "deklanşör",
+	.MENU_BT_BAD_BLE             = "bad BLE",
+	.MENU_BT_SNIFFER             = "BLE sniffer",
+
+	// Files menu
+	.MENU_FILES                  = "dosyalar",
+	.MENU_FILES_SDCARD           = "SD kart",
+	.MENU_FILES_DELETE           = "sil",
+	.MENU_FILES_INFO             = "bilgi",
+	.MENU_FILES_RENAME           = "yeniden adlandır",
+	.MENU_FILES_VIEW             = "görüntüle",
+	.MENU_FILES_EDIT             = "düzenle",
+	.MENU_FILES_LITTLEFS         = "littleFS",
+
+	// NFC menu
+	.MENU_NFC                    = "NFC",
+	.MENU_NFC_READ_UID           = "UID oku",
+	.MENU_NFC_WRITE_UID          = "UID yaz",
+	.MENU_NFC_ADVANCED_INFO      = "gelişmiş bilgi",
+
+	// IR menu
+	.MENU_IR                     = "IR",
+	.MENU_IR_READ                = "sinyal oku",
+	.MENU_IR_SEND                = "sinyal gönder",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+
+	// IR text
+	.TXT_IR_WAITING              = "Bekleniyor...",
+	.TXT_IR_PRESS_A_SAVE         = "A - kaydet",
+	.TXT_IR_PRESS_A_SEND         = "A - gönder",
+	.TXT_IR_SAVED                = "littleFS'ye kaydedildi",
+	.TXT_IR_SAVE_ERROR           = "Kaydetme hatası",
+	.TXT_IR_PARSE_ERROR          = "Ayrıştırma hatası",
+	.TXT_IR_TVB_RUNNING          = "Gönderiliyor...",
+	.TXT_IR_TVB_DONE             = "Tamam!",
+
+	// Settings menu
+	.MENU_SETTINGS               = "ayarlar",
+	.MENU_SETTINGS_TIME          = "saat",
+	.MENU_SETTINGS_BRIGHTNESS    = "parlaklık",
+	.MENU_SETTINGS_VOLUME        = "ses",
+	.MENU_SETTINGS_ROTATION      = "ekranı döndür",
+	.MENU_SETTINGS_COLORS        = "renkler",
+	.MENU_SETTINGS_ICONS         = "simgeler",
+	.MENU_SETTINGS_STATUS_BAR    = "durum çubuğu",
+	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
+	.MENU_SETTINGS_STARTUP_SOUND = "açılış sesi",
+	.MENU_SETTINGS_FONT          = "yazı tipi",
+	.MENU_SETTINGS_KB_GYRO       = "gyro klavye",
+	.MENU_SETTINGS_LANGUAGE      = "dil",
+	.MENU_SETTINGS_DIMMING       = "ekran karartma",
+	.MENU_SETTINGS_WEBSERVER_FS  = "web sunucu FS",
+
+	// Other menu
+	.MENU_OTHER                  = "diğer",
+	.MENU_OTHER_SYSTEM           = "sistem",
+	.MENU_OTHER_CLOCK            = "saat",
+	.MENU_OTHER_SOUND_LEVEL      = "ses seviyesi",
+	.MENU_OTHER_FLASHLIGHT       = "el feneri",
+	.MENU_OTHER_FLICKER          = "titreşim",
+	.MENU_OTHER_LEVEL_TOOL       = "su terazisi",
+
+	// USB menu
+	.MENU_USB                    = "USB",
+	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "fare titretme",
+	.MENU_USB_MOUSE              = "hava faresi",
+	.MENU_USB_KEYBOARD           = "klavye",
+	.MENU_USB_STORAGE            = "depolama",
+
+	// System menu
+	.MENU_SYSTEM_INFO            = "bilgi",
+	.MENU_SYSTEM_SHUTDOWN        = "kapat",
+	.MENU_SYSTEM_BATTERY_INFO    = "pil bilgisi",
+
+	// Common text
+	.TXT_PRESS_A                 = "A'ya bas",
+	.TXT_LEFT                    = "sol",
+	.TXT_RIGHT                   = "sağ",
+	.TXT_SELECT                  = "seç",
+	.TXT_ADJUST                  = "ayarla",
+	.TXT_SWITCH                  = "değiştir",
+	.TXT_ENABLED                 = "etkin",
+	.TXT_DISABLED                = "devre dışı",
+	.TXT_ON                      = "AÇIK",
+	.TXT_OFF                     = "KAPALI",
+	.TXT_SCANNING                = "Taranıyor...",
+	.TXT_CONNECTING              = "Bağlanıyor...",
+	.TXT_CONNECTED               = "Bağlandı",
+	.TXT_DISCONNECTED            = "Bağlantı kesildi",
+	.TXT_DISCONNECTING           = "Bağlantı kesiliyor...",
+	.TXT_WAITING_CONNECTION      = "Bağlantı bekleniyor",
+	.TXT_WORKING                 = "Çalışıyor",
+	.TXT_NOT_CONNECTED           = "Bağlı değil",
+	.TXT_FAILED                  = "Başarısız",
+	.TXT_SUCCESS                 = "Başarılı",
+	.TXT_ERROR                   = "Hata",
+	.TXT_NA                      = "yok",
+	.TXT_UNNAMED                 = "isimsiz",
+	.TXT_SAVED_SD                = "SD'ye kaydedildi",
+	.TXT_SAVED_LFS               = "LFS'ye kaydedildi",
+
+	// Wi-Fi text
+	.TXT_WIFI_AP_ENABLED         = "Wi-Fi AP etkin",
+	.TXT_WIFI_SSID_NOT_FOUND     = "SSID bulunamadı",
+	.TXT_WIFI_TIMEOUT            = "Zaman aşımı",
+	.TXT_WIFI_WRONG_PASSWORD     = "Hatalı şifre",
+	.TXT_WIFI_SYNC_FAILED        = "Senkronizasyon başarısız",
+	.TXT_WIFI_TIME_SYNCED        = "Saat senkronlandı",
+	.TXT_WIFI_NOT_CONNECTED      = "Wi-Fi yok",
+	.TXT_WIFI_BF_LOADED          = "Yüklendi: %d",
+	.TXT_WIFI_BF_DONE            = "Denendi: %d",
+	.TXT_WIFI_BF_ALL_NETS        = "Ağlar: %d",
+	.TXT_WIFI_BF_ALL_CRACKED     = "Kırıldı: %d/%d",
+	.TXT_WIFI_NO_NETWORKS        = "Ağ bulunamadı",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Kötü portal etkin",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Kimlikler yakalandı!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Kötü ikiz etkin",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Web sunucusu etkin",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Önce ağları tara",
+
+	// Bluetooth text
+	.TXT_BT_FILE_ERROR           = "Dosya hatası",
+	.TXT_BT_PRESS_A_TO_RUN       = "A - çalıştır",
+	.TXT_BT_RUNNING              = "Çalışıyor...",
+	.TXT_BT_DONE                 = "Tamam!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID desteklenmiyor",
+	.TXT_USB_STORAGE_NO_SD       = "SD kart yok",
+	.TXT_USB_STORAGE_ACTIVE      = "USB depolama etkin",
+	.TXT_USB_STORAGE_HINT        = "Çıkmak için çıkar",
+
+	// NFC text
+	.TXT_NFC_NO_UID_STORED       = "Kayıtlı UID yok",
+	.TXT_NFC_READ_TAG_FIRST      = "Önce bir etiket oku",
+	.TXT_NFC_INVALID_UID         = "Geçersiz UID",
+	.TXT_NFC_UID_4BYTE_REQUIRED  = "4-bayt UID gerekli",
+	.TXT_NFC_WRITE_SUCCESS       = "Yazma başarılı!",
+	.TXT_NFC_UID_WRITTEN         = "UID etikete yazıldı",
+	.TXT_NFC_WRITE_FAILED        = "Yazma başarısız!",
+	.TXT_NFC_WRITE_ERROR         = "Etiket yok / yazma hatası",
+	.TXT_NFC_READY_TO_WRITE      = "Yazmaya hazır...",
+
+	// Settings text
+	.TXT_SETTINGS_LANGUAGE       = "Dil: ",
+	.TXT_SETTINGS_BRIGHTNESS     = "parlaklık: ",
+	.TXT_SETTINGS_VOLUME         = "ses: ",
+	.TXT_SETTINGS_COLOR          = "renk: ",
+	.TXT_SETTINGS_FONT           = "Yazı tipi:",
+	.TXT_SETTINGS_ROTATION       = "ekranı döndür",
+	.TXT_SETTINGS_SOUND          = "Ses: ",
+	.TXT_SETTINGS_STATUS_BAR     = "durum çubuğu: ",
+	.TXT_SETTINGS_PID            = "PID: ",
+	.TXT_SETTINGS_KB_GYRO        = "Gyro klavye: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "Web sunucu FS: ",
+};
