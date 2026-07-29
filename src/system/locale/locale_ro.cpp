@@ -1,0 +1,199 @@
+#include "locale.h"
+
+const Locale LANG_RO = {
+	// Common menu items
+	.MENU_BACK                   = "înapoi",
+	.MENU_SCAN                   = "scanează",
+	.MENU_RESCAN                 = "rescanează",
+
+	// Wi-Fi menu
+	.MENU_WIFI                   = "Wi-Fi",
+	.MENU_WIFI_INFO              = "info",
+	.MENU_WIFI_DEAUTH            = "deauth",
+	.MENU_WIFI_CONNECT           = "conectează",
+	.MENU_WIFI_DISCONNECT        = "deconectează wifi",
+	.MENU_WIFI_AP                = "Wi-Fi AP",
+	.MENU_WIFI_WEATHER           = "vreme",
+	.MENU_WIFI_SYNC_TIME         = "sincronizare oră",
+	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
+	.MENU_WIFI_WPA_BF_ALL        = "wpa bf toate rețele",
+	.MENU_WIFI_DEAUTH_ALL        = "deauth toate",
+	.MENU_WIFI_EVIL_PORTAL       = "portal malițios",
+	.MENU_WIFI_EVIL_TWIN         = "geamăn malițios",
+	.MENU_WIFI_HANDSHAKE         = "captură handshake",
+	.MENU_WIFI_PMKID             = "captură PMKID",
+	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
+	.MENU_WIFI_WPS_PBC           = "wps pbc",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "analizor canale",
+	.MENU_WIFI_WEB_SERVER        = "server web",
+	.MENU_SETTINGS_WIFI_SSID     = "Wi-Fi SSID",
+
+	// Bluetooth menu
+	.MENU_BT                     = "Bluetooth",
+	.MENU_BT_INFO                = "info",
+	.MENU_BT_FIND                = "caută",
+	.MENU_BT_KEYBOARD            = "tastatură",
+	.MENU_BT_AIR_MOUSE           = "mouse aerian",
+	.MENU_BT_MOUSE_JIGGLER       = "mouse jiggler",
+	.MENU_BT_PRESENTER           = "prezentator",
+	.MENU_BT_SHUTTER             = "obturator",
+	.MENU_BT_BAD_BLE             = "bad BLE",
+	.MENU_BT_SNIFFER             = "sniffer BLE",
+
+	// Files menu
+	.MENU_FILES                  = "fișiere",
+	.MENU_FILES_SDCARD           = "card SD",
+	.MENU_FILES_DELETE           = "șterge",
+	.MENU_FILES_INFO             = "info",
+	.MENU_FILES_RENAME           = "redenumește",
+	.MENU_FILES_VIEW             = "vizualizează",
+	.MENU_FILES_EDIT             = "editează",
+	.MENU_FILES_LITTLEFS         = "littleFS",
+
+	// NFC menu
+	.MENU_NFC                    = "NFC",
+	.MENU_NFC_READ_UID           = "citește UID",
+	.MENU_NFC_WRITE_UID          = "scrie UID",
+	.MENU_NFC_ADVANCED_INFO      = "info avansate",
+
+	// IR menu
+	.MENU_IR                     = "IR",
+	.MENU_IR_READ                = "citește semnal",
+	.MENU_IR_SEND                = "trimite semnal",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+
+	// IR text
+	.TXT_IR_WAITING              = "Așteptare...",
+	.TXT_IR_PRESS_A_SAVE         = "A - salvează",
+	.TXT_IR_PRESS_A_SEND         = "A - trimite",
+	.TXT_IR_SAVED                = "Salvat în littleFS",
+	.TXT_IR_SAVE_ERROR           = "Eroare salvare",
+	.TXT_IR_PARSE_ERROR          = "Eroare analiză",
+	.TXT_IR_TVB_RUNNING          = "Trimitere...",
+	.TXT_IR_TVB_DONE             = "Gata!",
+
+	// Settings menu
+	.MENU_SETTINGS               = "setări",
+	.MENU_SETTINGS_TIME          = "oră",
+	.MENU_SETTINGS_BRIGHTNESS    = "luminozitate",
+	.MENU_SETTINGS_VOLUME        = "volum",
+	.MENU_SETTINGS_ROTATION      = "rotație ecran",
+	.MENU_SETTINGS_COLORS        = "culori",
+	.MENU_SETTINGS_ICONS         = "pictograme",
+	.MENU_SETTINGS_STATUS_BAR    = "bară stare",
+	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
+	.MENU_SETTINGS_STARTUP_SOUND = "sunet pornire",
+	.MENU_SETTINGS_FONT          = "font",
+	.MENU_SETTINGS_KB_GYRO       = "giro tastatură",
+	.MENU_SETTINGS_LANGUAGE      = "limbă",
+	.MENU_SETTINGS_DIMMING       = "ecran somn",
+	.MENU_SETTINGS_WEBSERVER_FS  = "server FS",
+
+	// Other menu
+	.MENU_OTHER                  = "altele",
+	.MENU_OTHER_SYSTEM           = "sistem",
+	.MENU_OTHER_CLOCK            = "ceas",
+	.MENU_OTHER_SOUND_LEVEL      = "nivel sunet",
+	.MENU_OTHER_FLASHLIGHT       = "lanternă",
+	.MENU_OTHER_FLICKER          = "pâlpâire",
+	.MENU_OTHER_LEVEL_TOOL       = "nivelă",
+
+	// USB menu
+	.MENU_USB                    = "USB",
+	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "mouse jiggler",
+	.MENU_USB_MOUSE              = "mouse aerian",
+	.MENU_USB_KEYBOARD           = "tastatură",
+	.MENU_USB_STORAGE            = "stocare",
+
+	// System menu
+	.MENU_SYSTEM_INFO            = "info",
+	.MENU_SYSTEM_SHUTDOWN        = "oprire",
+	.MENU_SYSTEM_BATTERY_INFO    = "info baterie",
+
+	// Common text
+	.TXT_PRESS_A                 = "apasă A",
+	.TXT_LEFT                    = "stânga",
+	.TXT_RIGHT                   = "dreapta",
+	.TXT_SELECT                  = "selectează",
+	.TXT_ADJUST                  = "ajustează",
+	.TXT_SWITCH                  = "comută",
+	.TXT_ENABLED                 = "activat",
+	.TXT_DISABLED                = "dezactivat",
+	.TXT_ON                      = "PORNIT",
+	.TXT_OFF                     = "OPRIT",
+	.TXT_SCANNING                = "Scanare...",
+	.TXT_CONNECTING              = "Conectare...",
+	.TXT_CONNECTED               = "Conectat",
+	.TXT_DISCONNECTED            = "Deconectat",
+	.TXT_DISCONNECTING           = "Deconectare...",
+	.TXT_WAITING_CONNECTION      = "Aștept conexiune",
+	.TXT_WORKING                 = "În lucru",
+	.TXT_NOT_CONNECTED           = "Neconectat",
+	.TXT_FAILED                  = "Eșuat",
+	.TXT_SUCCESS                 = "Succes",
+	.TXT_ERROR                   = "Eroare",
+	.TXT_NA                      = "n/d",
+	.TXT_UNNAMED                 = "fără nume",
+	.TXT_SAVED_SD                = "Salvat pe SD",
+	.TXT_SAVED_LFS               = "Salvat pe LFS",
+
+	// Wi-Fi text
+	.TXT_WIFI_AP_ENABLED         = "Wi-Fi AP activat",
+	.TXT_WIFI_SSID_NOT_FOUND     = "SSID negăsit",
+	.TXT_WIFI_TIMEOUT            = "Timp expirat",
+	.TXT_WIFI_WRONG_PASSWORD     = "Parolă greșită",
+	.TXT_WIFI_SYNC_FAILED        = "Sincronizare eșuată",
+	.TXT_WIFI_TIME_SYNCED        = "Oră sincronizată",
+	.TXT_WIFI_NOT_CONNECTED      = "Fără Wi-Fi",
+	.TXT_WIFI_BF_LOADED          = "Încărcat: %d",
+	.TXT_WIFI_BF_DONE            = "Încercat: %d",
+	.TXT_WIFI_BF_ALL_NETS        = "Rețele: %d",
+	.TXT_WIFI_BF_ALL_CRACKED     = "Sparte: %d/%d",
+	.TXT_WIFI_NO_NETWORKS        = "Nicio rețea",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Portal malițios activ",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Credențiale capturate!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Geamăn malițios activ",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Server web activ",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Scanează rețelele mai întâi",
+
+	// Bluetooth text
+	.TXT_BT_FILE_ERROR           = "Eroare fișier",
+	.TXT_BT_PRESS_A_TO_RUN       = "A - rulează",
+	.TXT_BT_RUNNING              = "Execuție...",
+	.TXT_BT_DONE                 = "Gata!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID nesuportat",
+	.TXT_USB_STORAGE_NO_SD       = "Fără card SD",
+	.TXT_USB_STORAGE_ACTIVE      = "Stocare USB activă",
+	.TXT_USB_STORAGE_HINT        = "Scoate pentru ieșire",
+
+	// NFC text
+	.TXT_NFC_NO_UID_STORED       = "Niciun UID stocat",
+	.TXT_NFC_READ_TAG_FIRST      = "Citește un tag mai întâi",
+	.TXT_NFC_INVALID_UID         = "UID invalid",
+	.TXT_NFC_UID_4BYTE_REQUIRED  = "UID 4 octeți necesar",
+	.TXT_NFC_WRITE_SUCCESS       = "Scriere reușită!",
+	.TXT_NFC_UID_WRITTEN         = "UID scris pe tag",
+	.TXT_NFC_WRITE_FAILED        = "Scriere eșuată!",
+	.TXT_NFC_WRITE_ERROR         = "Fără tag / eroare scriere",
+	.TXT_NFC_READY_TO_WRITE      = "Gata de scriere...",
+
+	// Settings text
+	.TXT_SETTINGS_LANGUAGE       = "Limbă: ",
+	.TXT_SETTINGS_BRIGHTNESS     = "luminozitate: ",
+	.TXT_SETTINGS_VOLUME         = "volum: ",
+	.TXT_SETTINGS_COLOR          = "culoare: ",
+	.TXT_SETTINGS_FONT           = "Font:",
+	.TXT_SETTINGS_ROTATION       = "rotație ecran",
+	.TXT_SETTINGS_SOUND          = "Sunet: ",
+	.TXT_SETTINGS_STATUS_BAR     = "bară stare: ",
+	.TXT_SETTINGS_PID            = "PID: ",
+	.TXT_SETTINGS_KB_GYRO        = "Giro tastatură: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "Server FS: ",
+};

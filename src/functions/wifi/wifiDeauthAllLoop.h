@@ -1,4 +1,4 @@
-// pid PID::WIFI_DEAUTH_ALL
+// PID::WIFI_DEAUTH_ALL
 
 static int _daIndex = 0;
 

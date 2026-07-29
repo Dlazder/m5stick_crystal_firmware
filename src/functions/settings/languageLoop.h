@@ -1,4 +1,4 @@
-// pid PID::LANGUAGE
+// PID::LANGUAGE
 
 void languageLoop() {
 	if (isSetup()) {

@@ -1,4 +1,4 @@
-// pid 41
+// PID::KB_GYRO
 
 void toggleKbGyroLoop() {
 	if (isSetup()) {

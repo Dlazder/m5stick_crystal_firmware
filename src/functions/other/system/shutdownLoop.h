@@ -1,4 +1,4 @@
-// pid 33
+// PID::SHUTDOWN
 
 void shutdownLoop() {
 	if (isSetup()) {

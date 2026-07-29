@@ -125,9 +125,9 @@ void connectionGuideIR() {
 		const char* hRight = "Cardputer";
 	#elif STICKS3
 		const char* rows[][2] = {
-			{"VCC", "3.3V"},
-			{"GND", "GND"},
-			{"OUT", "G0"},
+			{"VCC", "built-in"},
+			{"GND", "built-in"},
+			{"OUT", "built-in"},
 		};
 		int rowCount = 3;
 		const char* hRight = "StickS3";

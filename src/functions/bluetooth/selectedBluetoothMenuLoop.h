@@ -1,4 +1,4 @@
-// pid PID::BT_SELECTED
+// PID::BT_SELECTED
 
 void selectedBluetoothMenuLoop() {
 	MENU selectedBluetoothMenu[] = {

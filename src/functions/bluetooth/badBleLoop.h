@@ -1,4 +1,4 @@
-// pid PID::BAD_BLE
+// PID::BAD_BLE
 
 void badBleLoop() {
 	static bool scriptRunning = false;

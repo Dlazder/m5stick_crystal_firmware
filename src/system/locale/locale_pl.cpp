@@ -1,0 +1,199 @@
+#include "locale.h"
+
+const Locale LANG_PL = {
+	// Common menu items
+	.MENU_BACK                   = "wstecz",
+	.MENU_SCAN                   = "skanuj",
+	.MENU_RESCAN                 = "skanuj ponownie",
+
+	// Wi-Fi menu
+	.MENU_WIFI                   = "Wi-Fi",
+	.MENU_WIFI_INFO              = "info",
+	.MENU_WIFI_DEAUTH            = "deauth",
+	.MENU_WIFI_CONNECT           = "połącz",
+	.MENU_WIFI_DISCONNECT        = "rozłącz wifi",
+	.MENU_WIFI_AP                = "Wi-Fi AP",
+	.MENU_WIFI_WEATHER           = "pogoda",
+	.MENU_WIFI_SYNC_TIME         = "synchr. czasu",
+	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
+	.MENU_WIFI_WPA_BF_ALL        = "wpa bf wsz. sieci",
+	.MENU_WIFI_DEAUTH_ALL        = "deauth wszystkie",
+	.MENU_WIFI_EVIL_PORTAL       = "złośliwy portal",
+	.MENU_WIFI_EVIL_TWIN         = "złośliwy bliźniak",
+	.MENU_WIFI_HANDSHAKE         = "przechwyć handshake",
+	.MENU_WIFI_PMKID             = "przechwyć PMKID",
+	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
+	.MENU_WIFI_WPS_PBC           = "wps pbc",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "analizator kanałów",
+	.MENU_WIFI_WEB_SERVER        = "serwer WWW",
+	.MENU_SETTINGS_WIFI_SSID     = "Wi-Fi SSID",
+
+	// Bluetooth menu
+	.MENU_BT                     = "Bluetooth",
+	.MENU_BT_INFO                = "info",
+	.MENU_BT_FIND                = "szukaj",
+	.MENU_BT_KEYBOARD            = "klawiatura",
+	.MENU_BT_AIR_MOUSE           = "mysz powietrzna",
+	.MENU_BT_MOUSE_JIGGLER       = "mouse jiggler",
+	.MENU_BT_PRESENTER           = "prezenter",
+	.MENU_BT_SHUTTER             = "migawka",
+	.MENU_BT_BAD_BLE             = "bad BLE",
+	.MENU_BT_SNIFFER             = "sniffer BLE",
+
+	// Files menu
+	.MENU_FILES                  = "pliki",
+	.MENU_FILES_SDCARD           = "karta SD",
+	.MENU_FILES_DELETE           = "usuń",
+	.MENU_FILES_INFO             = "info",
+	.MENU_FILES_RENAME           = "zmień nazwę",
+	.MENU_FILES_VIEW             = "podgląd",
+	.MENU_FILES_EDIT             = "edytuj",
+	.MENU_FILES_LITTLEFS         = "littleFS",
+
+	// NFC menu
+	.MENU_NFC                    = "NFC",
+	.MENU_NFC_READ_UID           = "odczytaj UID",
+	.MENU_NFC_WRITE_UID          = "zapisz UID",
+	.MENU_NFC_ADVANCED_INFO      = "zaawansowane info",
+
+	// IR menu
+	.MENU_IR                     = "IR",
+	.MENU_IR_READ                = "odczytaj sygnał",
+	.MENU_IR_SEND                = "wyślij sygnał",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+
+	// IR text
+	.TXT_IR_WAITING              = "Oczekiwanie...",
+	.TXT_IR_PRESS_A_SAVE         = "A - zapisz",
+	.TXT_IR_PRESS_A_SEND         = "A - wyślij",
+	.TXT_IR_SAVED                = "Zapisane w littleFS",
+	.TXT_IR_SAVE_ERROR           = "Błąd zapisu",
+	.TXT_IR_PARSE_ERROR          = "Błąd analizy",
+	.TXT_IR_TVB_RUNNING          = "Wysyłanie...",
+	.TXT_IR_TVB_DONE             = "Gotowe!",
+
+	// Settings menu
+	.MENU_SETTINGS               = "ustawienia",
+	.MENU_SETTINGS_TIME          = "czas",
+	.MENU_SETTINGS_BRIGHTNESS    = "jasność",
+	.MENU_SETTINGS_VOLUME        = "głośność",
+	.MENU_SETTINGS_ROTATION      = "obróć ekran",
+	.MENU_SETTINGS_COLORS        = "kolory",
+	.MENU_SETTINGS_ICONS         = "ikony",
+	.MENU_SETTINGS_STATUS_BAR    = "pasek stanu",
+	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
+	.MENU_SETTINGS_STARTUP_SOUND = "dźwięk startowy",
+	.MENU_SETTINGS_FONT          = "czcionka",
+	.MENU_SETTINGS_KB_GYRO       = "żyro klaw.",
+	.MENU_SETTINGS_LANGUAGE      = "język",
+	.MENU_SETTINGS_DIMMING       = "przyciemnianie",
+	.MENU_SETTINGS_WEBSERVER_FS  = "serwer FS",
+
+	// Other menu
+	.MENU_OTHER                  = "inne",
+	.MENU_OTHER_SYSTEM           = "system",
+	.MENU_OTHER_CLOCK            = "zegar",
+	.MENU_OTHER_SOUND_LEVEL      = "poziom dźwięku",
+	.MENU_OTHER_FLASHLIGHT       = "latarka",
+	.MENU_OTHER_FLICKER          = "miganie",
+	.MENU_OTHER_LEVEL_TOOL       = "poziomica",
+
+	// USB menu
+	.MENU_USB                    = "USB",
+	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "mouse jiggler",
+	.MENU_USB_MOUSE              = "mysz powietrzna",
+	.MENU_USB_KEYBOARD           = "klawiatura",
+	.MENU_USB_STORAGE            = "pamięć USB",
+
+	// System menu
+	.MENU_SYSTEM_INFO            = "info",
+	.MENU_SYSTEM_SHUTDOWN        = "wyłącz",
+	.MENU_SYSTEM_BATTERY_INFO    = "info baterii",
+
+	// Common text
+	.TXT_PRESS_A                 = "wciśnij A",
+	.TXT_LEFT                    = "lewo",
+	.TXT_RIGHT                   = "prawo",
+	.TXT_SELECT                  = "wybierz",
+	.TXT_ADJUST                  = "dostosuj",
+	.TXT_SWITCH                  = "przełącz",
+	.TXT_ENABLED                 = "włączone",
+	.TXT_DISABLED                = "wyłączone",
+	.TXT_ON                      = "WŁ",
+	.TXT_OFF                     = "WYŁ",
+	.TXT_SCANNING                = "Skanowanie...",
+	.TXT_CONNECTING              = "Łączenie...",
+	.TXT_CONNECTED               = "Połączono",
+	.TXT_DISCONNECTED            = "Rozłączono",
+	.TXT_DISCONNECTING           = "Rozłączanie...",
+	.TXT_WAITING_CONNECTION      = "Oczekiwanie połączenia",
+	.TXT_WORKING                 = "Działanie",
+	.TXT_NOT_CONNECTED           = "Niepołączono",
+	.TXT_FAILED                  = "Niepowodzenie",
+	.TXT_SUCCESS                 = "Sukces",
+	.TXT_ERROR                   = "Błąd",
+	.TXT_NA                      = "b/d",
+	.TXT_UNNAMED                 = "bez nazwy",
+	.TXT_SAVED_SD                = "Zapisane na SD",
+	.TXT_SAVED_LFS               = "Zapisane na LFS",
+
+	// Wi-Fi text
+	.TXT_WIFI_AP_ENABLED         = "Wi-Fi AP włączone",
+	.TXT_WIFI_SSID_NOT_FOUND     = "Nie znaleziono SSID",
+	.TXT_WIFI_TIMEOUT            = "Limit czasu",
+	.TXT_WIFI_WRONG_PASSWORD     = "Błędne hasło",
+	.TXT_WIFI_SYNC_FAILED        = "Synchronizacja nieudana",
+	.TXT_WIFI_TIME_SYNCED        = "Czas zsynchronizowany",
+	.TXT_WIFI_NOT_CONNECTED      = "Brak Wi-Fi",
+	.TXT_WIFI_BF_LOADED          = "Wczytano: %d",
+	.TXT_WIFI_BF_DONE            = "Próbowano: %d",
+	.TXT_WIFI_BF_ALL_NETS        = "Sieci: %d",
+	.TXT_WIFI_BF_ALL_CRACKED     = "Złamano: %d/%d",
+	.TXT_WIFI_NO_NETWORKS        = "Brak sieci",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Złośliwy portal aktywny",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Dane przechwycone!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Złośliwy bliźniak aktywny",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Serwer WWW aktywny",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Najpierw skanuj sieci",
+
+	// Bluetooth text
+	.TXT_BT_FILE_ERROR           = "Błąd pliku",
+	.TXT_BT_PRESS_A_TO_RUN       = "A - uruchom",
+	.TXT_BT_RUNNING              = "Uruchamianie...",
+	.TXT_BT_DONE                 = "Gotowe!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID nieobsługiwane",
+	.TXT_USB_STORAGE_NO_SD       = "Brak karty SD",
+	.TXT_USB_STORAGE_ACTIVE      = "Pamięć USB aktywna",
+	.TXT_USB_STORAGE_HINT        = "Wysuń aby wyjść",
+
+	// NFC text
+	.TXT_NFC_NO_UID_STORED       = "Brak zapisanego UID",
+	.TXT_NFC_READ_TAG_FIRST      = "Najpierw odczytaj tag",
+	.TXT_NFC_INVALID_UID         = "Nieprawidłowy UID",
+	.TXT_NFC_UID_4BYTE_REQUIRED  = "Wymagany UID 4-bajtowy",
+	.TXT_NFC_WRITE_SUCCESS       = "Zapis udany!",
+	.TXT_NFC_UID_WRITTEN         = "UID zapisany na tagu",
+	.TXT_NFC_WRITE_FAILED        = "Zapis nieudany!",
+	.TXT_NFC_WRITE_ERROR         = "Brak tagu / błąd zapisu",
+	.TXT_NFC_READY_TO_WRITE      = "Gotowy do zapisu...",
+
+	// Settings text
+	.TXT_SETTINGS_LANGUAGE       = "Język: ",
+	.TXT_SETTINGS_BRIGHTNESS     = "jasność: ",
+	.TXT_SETTINGS_VOLUME         = "głośność: ",
+	.TXT_SETTINGS_COLOR          = "kolor: ",
+	.TXT_SETTINGS_FONT           = "Czcionka:",
+	.TXT_SETTINGS_ROTATION       = "obróć ekran",
+	.TXT_SETTINGS_SOUND          = "Dźwięk: ",
+	.TXT_SETTINGS_STATUS_BAR     = "pasek stanu: ",
+	.TXT_SETTINGS_PID            = "PID: ",
+	.TXT_SETTINGS_KB_GYRO        = "Żyro klaw.: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "Serwer FS: ",
+};

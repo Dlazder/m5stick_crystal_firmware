@@ -1,4 +1,4 @@
-// pid PID::MAIN_MENU
+// PID::MAIN_MENU
 
 void mainMenuLoop() {
 	MENU mainMenu[] = {

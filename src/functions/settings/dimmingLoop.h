@@ -1,4 +1,4 @@
-// pid PID::DIMMING
+// PID::DIMMING
 
 const int dimTimeouts[] = { 0, 30000, 60000, 180000, 300000 };
 const int dimTimeoutsCount = sizeof(dimTimeouts) / sizeof(dimTimeouts[0]);

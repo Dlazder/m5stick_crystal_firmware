@@ -1,4 +1,4 @@
-// pid 35
+// PID::SETTINGS_CLOCK
 
 void drawclockSettingsUi(int currentState, int hours, int minutes) {
 	canvas.setTextSize(BIG_TEXT);

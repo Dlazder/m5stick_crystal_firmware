@@ -1,4 +1,4 @@
-// pid PID::OTHER
+// PID::OTHER
 
 void otherMenuLoop() {
 	MENU otherMenu[] = {

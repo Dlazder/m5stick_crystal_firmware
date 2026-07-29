@@ -1,4 +1,4 @@
-// pid PID::BT_SNIFFER
+// PID::BT_SNIFFER
 
 // Live BLE advertising traffic monitor.
 //

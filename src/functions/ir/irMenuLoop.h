@@ -1,4 +1,4 @@
-// pid PID::IR
+// PID::IR
 
 void irMenuLoop() {
 	MENU irMenu[] = {

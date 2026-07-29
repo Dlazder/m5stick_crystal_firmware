@@ -1,4 +1,4 @@
-// pid PID::SETTINGS_SSID
+// PID::SETTINGS_SSID
 
 static bool ssidEditDone = false;
 

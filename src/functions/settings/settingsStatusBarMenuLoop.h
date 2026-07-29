@@ -1,4 +1,4 @@
-// pid PID::SETTINGS_STATUS_BAR
+// PID::SETTINGS_STATUS_BAR
 
 void settingsStatusBarMenuLoop() {
 	MENU settingsStatusBarMenu[] = {

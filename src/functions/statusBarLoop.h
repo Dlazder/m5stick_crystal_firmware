@@ -1,4 +1,4 @@
-// pid NONE
+// PID::SETTINGS_STATUS_BAR
 
 void statusBarLoop() {
 	static int statusBarTimer = 0;

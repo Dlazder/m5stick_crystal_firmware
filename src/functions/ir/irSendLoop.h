@@ -1,11 +1,67 @@
 // PID::IR_SEND
 
+#ifdef IR_USE_RMT
+#include "../../hal/irRmtHal.h"
+#else
+#include <IRremote.hpp>
+#endif
+
+#ifdef IR_USE_RMT
+// ── RMT-based (internal HAL) for M5StickS3 ──
+// _rev8() is provided by irReadLoop.h (included earlier)
+
+static irproto irSendProtocol = NEC;
+static uint16_t irSendAddress = 0;
+static uint16_t irSendCommand = 0;
+static uint32_t irSendCode = 0;
+static uint8_t irSendBits = 32;
+
+irproto _irProtocolFromString(const String& name) {
+	if (name == "NEC") return NEC;
+	if (name == "SONY") return SONY;
+	if (name == "SAMSUNG") return SAM;
+	if (name == "RC5") return RC5;
+	return NEC;
+}
+
+const char* _irProtocolName(irproto p) {
+	return proto[p].name;
+}
+
+bool _irParseFile(const String& path) {
+	if (!lfsBegin()) return false;
+	File f = LittleFS.open(path.c_str(), "r");
+	if (!f) return false;
+	irSendProtocol = NEC; irSendAddress = 0; irSendCommand = 0; irSendBits = 32;
+	while (f.available()) {
+		String line = f.readStringUntil('\n'); line.trim();
+		if (line.startsWith("protocol=")) {
+			irSendProtocol = _irProtocolFromString(line.substring(9));
+			if (irSendProtocol == SONY) irSendBits = 12;
+		} else if (line.startsWith("address=")) {
+			irSendAddress = (uint16_t)strtoul(line.substring(8).c_str(), nullptr, 16);
+		} else if (line.startsWith("command=")) {
+			irSendCommand = (uint16_t)strtoul(line.substring(8).c_str(), nullptr, 16);
+		}
+	}
+	f.close();
+	// Build transmission-order code from address & command
+	if (irSendProtocol == NEC) {
+		irSendCode = irBuildNEC(irSendAddress & 0xFF, irSendCommand & 0xFF);
+		irSendBits = 32;
+	} else {
+		irSendCode = irSendAddress | ((uint32_t)irSendCommand << 8);
+	}
+	return true;
+}
+
+#else
+// ── GPIO-based (IRremote) for other boards ──
+
 static decode_type_t irSendProtocol = UNKNOWN;
 static uint16_t irSendAddress = 0;
 static uint16_t irSendCommand = 0;
-static bool irFileLoaded = false;
 
-// IRremote has no reverse lookup — match string to enum manually
 decode_type_t _irProtocolFromString(const String& name) {
 	if (name == "NEC")       return NEC;
 	if (name == "NEC2")      return NEC2;
@@ -28,18 +84,11 @@ decode_type_t _irProtocolFromString(const String& name) {
 
 bool _irParseFile(const String& path) {
 	if (!lfsBegin()) return false;
-
 	File f = LittleFS.open(path.c_str(), "r");
 	if (!f) return false;
-
-	irSendProtocol = UNKNOWN;
-	irSendAddress = 0;
-	irSendCommand = 0;
-
+	irSendProtocol = UNKNOWN; irSendAddress = 0; irSendCommand = 0;
 	while (f.available()) {
-		String line = f.readStringUntil('\n');
-		line.trim();
-
+		String line = f.readStringUntil('\n'); line.trim();
 		if (line.startsWith("protocol=")) {
 			irSendProtocol = _irProtocolFromString(line.substring(9));
 		} else if (line.startsWith("address=")) {
@@ -52,12 +101,24 @@ bool _irParseFile(const String& path) {
 	return true;
 }
 
+#endif // IR_USE_RMT
+
+static bool irFileLoaded = false;
+
 void _irShowLoaded() {
+#ifdef IR_USE_RMT
+	String lines[] = {
+		String(_irProtocolName(irSendProtocol)),
+		"Addr: 0x" + String(irSendAddress, HEX),
+		"Cmd: 0x" + String(irSendCommand, HEX),
+	};
+#else
 	String lines[] = {
 		String(getProtocolString(irSendProtocol)),
 		"Addr: 0x" + String(irSendAddress, HEX),
 		"Cmd: 0x" + String(irSendCommand, HEX),
 	};
+#endif
 	centeredPrintRows(lines, 3, MEDIUM_TEXT, true);
 	drawHintCustom("enter: send", "A: send");
 }
@@ -66,16 +127,14 @@ void irSendLoop() {
 	if (isSetup()) {
 		irFileLoaded = false;
 		selectedFilePath = "";
+		M5.Power.setExtOutput(true, m5::ext_none);
 		filePickerSetup(PID::IR);
 		updateTimer();
 	}
 
-	// File picker phase
 	if (fpActive) {
 		if (filePickerLoop()) return;
-
 		if (selectedFilePath == "") return;
-
 		if (!_irParseFile(selectedFilePath)) {
 			centeredPrint(L->TXT_IR_PARSE_ERROR, MEDIUM_TEXT);
 			delay(800);
@@ -83,7 +142,6 @@ void irSendLoop() {
 			filePickerSetup(PID::IR);
 			return;
 		}
-
 		irFileLoaded = true;
 		_irShowLoaded();
 		return;
@@ -91,10 +149,14 @@ void irSendLoop() {
 
 	if (!irFileLoaded) return;
 
-	// Send on button A
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
+#ifdef IR_USE_RMT
+		irTxPin = IR_SEND_PIN;
+		sendIR(irSendProtocol, irSendCode, irSendBits, 1, 1);
+		Serial.printf("IR: sent %s code=0x%08lX\n",
+			_irProtocolName(irSendProtocol), (unsigned long)irSendCode);
+#else
 		IrSender.begin(IR_SEND_PIN);
-
 		bool ok = true;
 		switch (irSendProtocol) {
 			case NEC:       IrSender.sendNEC(irSendAddress, irSendCommand, 0);        break;
@@ -115,17 +177,16 @@ void irSendLoop() {
 			case ONKYO:     IrSender.sendOnkyo(irSendAddress, irSendCommand, 0);      break;
 			default:        ok = false; break;
 		}
-
 		if (ok) {
-			Serial.printf("IR: sent proto=%s addr=0x%04X cmd=0x%04X\n",
+			Serial.printf("IR: sent %s addr=0x%04X cmd=0x%04X\n",
 				getProtocolString(irSendProtocol), irSendAddress, irSendCommand);
-				soundBeep();
 		} else {
 			centeredPrint("Unknown proto", MEDIUM_TEXT);
 			soundError();
 			delay(800);
 		}
-
+#endif
+		soundBeep();
 		_irShowLoaded();
 	}
 

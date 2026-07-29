@@ -1,4 +1,4 @@
-// pid ROTATION
+// PID::ROTATION
 
 void rotationLoop() {
   if (isSetup()) {

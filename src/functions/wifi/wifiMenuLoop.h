@@ -1,4 +1,4 @@
-﻿// pid PID::WIFI
+﻿// PID::WIFI
 
 void wifiMenuLoop() {
 	MENU wifiMenu[] = {
