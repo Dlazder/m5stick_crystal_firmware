@@ -79,7 +79,6 @@ void lfsSetup(MENU*& menu, int& count, int backPid) {
 String lfsLoop(MENU menu[], int count, int backPid) {
 	if (count == 0) { changeProcess(backPid); return ""; }
 
-	DEVICE.update();
 
 	if (isBtnBWasPressed() || isKbDownPressed()) {
 		cursor++;
