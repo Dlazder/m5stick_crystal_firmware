@@ -1,0 +1,14 @@
+{
+    "fields": {
+        "name": "M5 Crystal (Cardputer)",
+        "description": "Multifunctional firmware for pentesting and everyday use. Built for M5Stack devices with a clean and stable codebase focused on simplicity and extensibility.",
+        "category": "cardputer",
+        "author": "Dlazder",
+        "version": "__VERSION__",
+        "github": "https://github.com/Dlazder/m5_crystal_firmware"
+    },
+    "files": {
+        "firmware": "./crystal_firmware_cardputer-adv_v__VERSION__.bin",
+        "cover": "./images/m5-burner-previews/cardputer.png"
+    }
+}
