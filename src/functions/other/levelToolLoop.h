@@ -32,7 +32,7 @@ void levelToolLoop() {
 	int centerY = canvas.height() / 2;
 	int lineLength = 60;
 	
-	float angleRad = (filteredAngle + 90) * PI / 180;
+	float angleRad = (filteredAngle + IMU_LEVEL_DISPLAY_OFFSET) * PI / 180;
 	int angle = IMU_LEVEL_ANGLE(accX, accY);
 	
 	int x1 = centerX - (lineLength / 2) * cos(angleRad);
