@@ -23,6 +23,7 @@
 #define IMU_MOUSE_Y(ax, ay)           ( (ay) )
 #define IMU_LEVEL_ROLL(ax, ay)        ( -atan2((ay), (ax)) * 180 / PI )
 #define IMU_LEVEL_ANGLE(ax, ay)       ( abs(atan2((ax), (ay)) * 180 / PI) )
+#define IMU_LEVEL_DISPLAY_OFFSET 90
 
 // IMU axis mapping for gyro keyboard (not used — Cardputer has physical KB)
 #define IMU_KB_X(ax, ay)              ( -(ax) )

@@ -14,7 +14,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_DISCONNECT         = "putuskan wifi",
     .MENU_WIFI_AP                 = "Wi-Fi AP",
     .MENU_WIFI_WEATHER            = "cuaca",
-    .MENU_WIFI_SYNC_TIME          = "sinkron waktu",
+
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf semua net",
     .MENU_WIFI_DEAUTH_ALL         = "deauth semua",
@@ -74,6 +74,7 @@ const Locale LANG_ID = {
 
     // Settings menu
     .MENU_SETTINGS                = "pengaturan",
+    .MENU_SETTINGS_UI             = "UI & layar",
     .MENU_SETTINGS_TIME           = "waktu",
     .MENU_SETTINGS_BRIGHTNESS     = "kecerahan",
     .MENU_SETTINGS_VOLUME         = "volume",
@@ -88,6 +89,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_LANGUAGE       = "bahasa",
     .MENU_SETTINGS_DIMMING        = "redupkan",
     .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
+    .MENU_SETTINGS_TIMEZONE       = "zona waktu",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",
@@ -196,4 +198,5 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
     .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
+    .TXT_SETTINGS_TIMEZONE        = "Zona waktu: ",
 };

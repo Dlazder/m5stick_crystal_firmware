@@ -57,4 +57,9 @@ void handleSettingToggle(const char* key) {
 		statusBarPid = !getData("statusBarPid", statusBarPid);
 		setData("statusBarPid", statusBarPid);
 	}
+
+	if (strcmp(key, "sbSeconds") == 0) {
+		statusBarSeconds = !getData("sbSeconds", statusBarSeconds);
+		setData("sbSeconds", statusBarSeconds);
+	}
 }

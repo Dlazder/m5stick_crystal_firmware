@@ -73,6 +73,7 @@ void wifiConnectLoop() {
 			String lines[] = { L->TXT_CONNECTED, ssid.substring(0, 16), ip };
 			centeredPrintRows(lines, 3, MEDIUM_TEXT);
 			soundSuccess();
+			autoNtpSync();
 		} else if (status == WL_CONNECT_FAILED || status == WL_NO_SSID_AVAIL || timedOut) {
 			wifiConnectResultShown = true;
 			WiFi.disconnect(true);

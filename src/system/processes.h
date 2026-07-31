@@ -2,7 +2,8 @@
 
 // Add new processes here: X(NAME, ID, loopFunction)
 #define PROCESS_LIST \
-    X(MAIN_MENU,   0,   mainMenuLoop) \
+    X(MAIN_MENU, 0, mainMenuLoop) \
+    X(PLACEHOLDER, 1, defaultLoop) \
     \
     /* Settings (100-199) */ \
     X(SETTINGS,              100, settingsMenuLoop) \
@@ -22,6 +23,9 @@
     X(WEBSERVER_FS,          114, toggleWebServerFs) \
     X(SETTINGS_SSID,         115, setSsidLoop) \
     X(ICONS,                 116, toggleIconsLoop) \
+    X(TOGGLE_STATUS_BAR_SECONDS, 117, defaultLoop) \
+    X(SETTINGS_TIMEZONE,     118, settingsTimezoneLoop) \
+    X(SETTINGS_UI,           119, settingsUIMenuLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \
@@ -32,19 +36,18 @@
     X(WIFI_ACCESS_POINT, 205, wifiApLoop) \
     X(WIFI_CONNECT,      206, wifiConnectLoop) \
     X(WIFI_DISCONNECT,   207, wifiDisconnectLoop) \
-    X(WIFI_TIME_SYNC,    208, wifiTimeSyncLoop) \
     X(WIFI_WPA_BF,       209, wifiBruteforceLoop) \
     X(WIFI_WPA_BF_ALL,   210, wifiBruteforceAllLoop) \
     X(WIFI_DEAUTH_ALL,   211, wifiDeauthAllLoop) \
-    X(EVIL_PORTAL,      212, evilPortalLoop) \
-    X(EVIL_TWIN,              213, evilTwinLoop) \
+    X(EVIL_PORTAL,       212, evilPortalLoop) \
+    X(EVIL_TWIN,         213, evilTwinLoop) \
     X(WIFI_HANDSHAKE_CAPTURE, 214, wifiHandshakeLoop) \
-	X(WIFI_PCAP_TO_HASH,     215, pcapToHashLoop)    \
-	X(WIFI_PMKID_CAPTURE,    216, wifiPmkidLoop)     \
+	X(WIFI_PCAP_TO_HASH, 215, pcapToHashLoop)    \
+	X(WIFI_PMKID_CAPTURE, 216, wifiPmkidLoop)     \
 	X(WIFI_CHANNEL_ANALYZER, 217, wifiChannelAnalyzerLoop) \
-	X(WEB_SERVER,            218, webServerLoop) \
-	X(LFS_WEB_UI,           219, lfsWebUILoop) \
-	X(WIFI_WPS_PBC,         220, wifiWpsPbcLoop) \
+	X(WEB_SERVER,        218, webServerLoop) \
+	X(LFS_WEB_UI,        219, lfsWebUILoop) \
+	X(WIFI_WPS_PBC,      220, wifiWpsPbcLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \
@@ -58,7 +61,7 @@
     X(BT_SHUTTER,   308, bluetoothShutterLoop) \
     X(BAD_BLE,      309, badBleLoop) \
     X(BT_MOUSE_JIGGLER, 310, bluetoothMouseJigglerLoop) \
-    X(BT_SNIFFER,       311, bluetoothSnifferLoop) \
+    X(BT_SNIFFER,   311, bluetoothSnifferLoop) \
     \
     /* NFC (400-499) */ \
     X(NFC,       400, nfcMenuLoop) \

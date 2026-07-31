@@ -19,7 +19,8 @@
 #define IMU_MOUSE_X(ax, ay) ( -(ax) )
 #define IMU_MOUSE_Y(ax, ay) ( (ay) )
 #define IMU_LEVEL_ROLL(ax, ay)  ( atan2((ax), (ay)) * 180 / PI )
-#define IMU_LEVEL_ANGLE(ax, ay) ( abs(atan2((ay), (ax)) * 180 / PI) )
+#define IMU_LEVEL_ANGLE(ax, ay) ( abs(atan2((ax), (ay)) * 180 / PI) )
+#define IMU_LEVEL_DISPLAY_OFFSET 0
 
 // IMU axis mapping for gyro keyboard (unswapped vs mouse for landscape)
 #define IMU_KB_X(ax, ay) ( -(ax) )

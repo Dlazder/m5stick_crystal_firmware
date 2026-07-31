@@ -44,8 +44,6 @@ void settingsClockLoop() {
 		drawclockSettingsUi(currentState, tempHours, tempMinutes);
 	}
 
-	DEVICE.update();
-
 	#if HAS_PHYSICAL_KB
 		if (isKbLeftPressed() && checkTimer(100, true)) {
 			currentState = (currentState + 1) % 2;

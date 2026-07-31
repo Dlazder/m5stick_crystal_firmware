@@ -15,6 +15,8 @@ void loadPreferences() {
 	Serial.printf("Status bar PID: %s\n", statusBarPid ? "enabled" : "disabled");
   statusBarBattery = getData("statusBarBattery", statusBarBattery);
 	Serial.printf("Status bar battery: %s\n", statusBarBattery ? "enabled" : "disabled");
+	statusBarSeconds = getData("sbSeconds", statusBarSeconds);
+	Serial.printf("Status bar clock seconds: %s\n", statusBarSeconds ? "enabled" : "disabled");
 
 	currentFontIndex = getData("fontIndex", currentFontIndex);
 	Serial.printf("Font: %s\n", fontNames[currentFontIndex]);
@@ -47,6 +49,9 @@ void loadPreferences() {
 
 	webServerFs = getData("webServerFs", webServerFs);
 	Serial.printf("WebServer FS: %s\n", webServerFs ? "enabled" : "disabled");
+
+	timezoneOffset = getData("timezone", timezoneOffset);
+	Serial.printf("Timezone offset: %d\n", timezoneOffset);
 
 	Serial.println("Preferences loaded");
 }

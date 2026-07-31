@@ -180,8 +180,6 @@ static void _fpRebuildAndDraw() {
  * @sideeffect On cancel, calls `changeProcess(cancelPid)` and clears `fpActive`.
  */
 bool filePickerLoop() {
-	DEVICE.update();
-
 	// Source selection menu
 	if (!_fpSourceSelected) {
 		if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {

@@ -14,7 +14,7 @@ const Locale LANG_RO = {
 	.MENU_WIFI_DISCONNECT        = "deconectează wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "vreme",
-	.MENU_WIFI_SYNC_TIME         = "sincronizare oră",
+
 	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa bf toate rețele",
 	.MENU_WIFI_DEAUTH_ALL        = "deauth toate",
@@ -74,6 +74,7 @@ const Locale LANG_RO = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "setări",
+	.MENU_SETTINGS_UI            = "UI & ecran",
 	.MENU_SETTINGS_TIME          = "oră",
 	.MENU_SETTINGS_BRIGHTNESS    = "luminozitate",
 	.MENU_SETTINGS_VOLUME        = "volum",
@@ -88,6 +89,7 @@ const Locale LANG_RO = {
 	.MENU_SETTINGS_LANGUAGE      = "limbă",
 	.MENU_SETTINGS_DIMMING       = "ecran somn",
 	.MENU_SETTINGS_WEBSERVER_FS  = "server FS",
+	.MENU_SETTINGS_TIMEZONE      = "fus orar",
 
 	// Other menu
 	.MENU_OTHER                  = "altele",
@@ -196,4 +198,5 @@ const Locale LANG_RO = {
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Giro tastatură: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Server FS: ",
+	.TXT_SETTINGS_TIMEZONE       = "Fus orar: ",
 };

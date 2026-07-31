@@ -4,10 +4,12 @@ bool statusBar = true;
 bool statusBarPid = false;
 // set to false to hide battery percents in statusBar
 bool statusBarBattery = true;
+// set to false to hide seconds in statusBar
+bool statusBarSeconds = true;
 
 
 // Wi-Fi access point name
-String wifiSsid = "M5Stick";
+String wifiSsid = "M5 Crystal";
 // Wi-Fi access point password
 // Leave the blank if you do not need a password
 String apWifiPassword = "";
@@ -32,3 +34,6 @@ int defaultVolumeLevel = 4;
 int defaultDimTimeoutIndex = 1;
 
 bool iconsEnabled = true;
+
+// Timezone offset from UTC in seconds (default 0 = UTC, e.g. 10800 = UTC+3)
+int timezoneOffset = 0;

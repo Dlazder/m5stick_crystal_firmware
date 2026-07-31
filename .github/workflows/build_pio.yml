@@ -107,3 +107,29 @@ jobs:
           body: ${{ env.RELEASE_BODY }}
           files: crystal_firmware_*_v${{ env.VERSION }}.bin
           generate_release_notes: true
+
+  publish-m5burner:
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+
+      - name: Get version
+        run: |
+          VERSION=$(grep FIRMWARE_VERSION src/system/version.h | cut -d '"' -f 2)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v8.0.1
+        with:
+          pattern: crystal_firmware_*_v${{ env.VERSION }}
+          merge-multiple: true
+
+      - name: Publish to M5Burner
+        env:
+          M5_AUTH_TOKEN: ${{ secrets.M5_AUTH_TOKEN }}
+        run: |
+          chmod +x scripts/publish_m5burner.sh
+          bash scripts/publish_m5burner.sh ${{ env.VERSION }}

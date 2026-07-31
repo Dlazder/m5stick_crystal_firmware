@@ -14,7 +14,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_DISCONNECT        = "отключить wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "погода",
-	.MENU_WIFI_SYNC_TIME         = "синхр. время",
+
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф все сети",
 	.MENU_WIFI_DEAUTH_ALL        = "деаут все",
@@ -74,6 +74,7 @@ const Locale LANG_RU = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "настройки",
+	.MENU_SETTINGS_UI            = "интерфейс и экран",
 	.MENU_SETTINGS_TIME          = "время",
 	.MENU_SETTINGS_BRIGHTNESS    = "яркость",
 	.MENU_SETTINGS_VOLUME        = "громкость",
@@ -88,6 +89,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_LANGUAGE      = "язык",
 	.MENU_SETTINGS_DIMMING       = "диммер",
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
+	.MENU_SETTINGS_TIMEZONE      = "часовой пояс",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",
@@ -196,4 +198,5 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гиро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
+	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
 };
