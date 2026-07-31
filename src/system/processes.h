@@ -2,7 +2,8 @@
 
 // Add new processes here: X(NAME, ID, loopFunction)
 #define PROCESS_LIST \
-    X(MAIN_MENU,   0,   mainMenuLoop) \
+    X(MAIN_MENU, 0, mainMenuLoop) \
+    X(PLACEHOLDER, 1, defaultLoop) \
     \
     /* Settings (100-199) */ \
     X(SETTINGS,              100, settingsMenuLoop) \
@@ -22,6 +23,7 @@
     X(WEBSERVER_FS,          114, toggleWebServerFs) \
     X(SETTINGS_SSID,         115, setSsidLoop) \
     X(ICONS,                 116, toggleIconsLoop) \
+    X(TOGGLE_STATUS_BAR_SECONDS, 117, defaultLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

@@ -18,7 +18,11 @@ void statusBarLoop() {
 	// Clock
 	auto dt = deviceGetTime();
 	char formatString[30];
-	sprintf(formatString, "%02d:%02d:%02d   ", dt.hours, dt.minutes, dt.seconds);
+	if (statusBarSeconds) {
+		sprintf(formatString, "%02d:%02d:%02d   ", dt.hours, dt.minutes, dt.seconds);
+	} else {
+		sprintf(formatString, "%02d:%02d   ", dt.hours, dt.minutes);
+	}
 	statusBarCanvas.print(formatString);
 
 	// Battery

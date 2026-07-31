@@ -2,9 +2,10 @@
 
 void settingsStatusBarMenuLoop() {
 	MENU settingsStatusBarMenu[] = {
-		{PID::SETTINGS,              L->MENU_BACK},
+		{PID::SETTINGS,              L->MENU_BACK, Icons::back},
 		{PID::TOGGLE_STATUS_BAR,     L->MENU_SETTINGS_STATUS_BAR, nullptr, "statusBar"},
 		{PID::TOGGLE_STATUS_BAR_PID, L->MENU_SETTINGS_STATUS_BAR_PID, nullptr, "statusBarPid"},
+		{PID::PLACEHOLDER, "seconds", nullptr, "sbSeconds"},
 	};
 	int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);
 
