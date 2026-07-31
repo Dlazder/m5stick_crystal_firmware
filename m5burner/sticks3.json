@@ -1,7 +1,7 @@
 {
     "fields": {
         "name": "M5 Crystal (StickS3)",
-        "description": "Multifunctional firmware for pentesting and everyday use. Built for M5Stack devices with a clean and stable codebase focused on simplicity and extensibility.",
+        "description": "Multifunctional firmware for pentesting and everyday use.\nWi-Fi: Scanner, deauth, WPA bruteforce, handshake capture, evil twin, evil portal, web server, channel analyzer, weather, time sync.\nBluetooth: bad BLE, sniffer, air mouse, BLE keyboard, presenter, camera shutter, bluetooth scan, device info, device finder, mouse jiggler.\nIR: read and save signal, send signal, TV-B-Gone\nNFC: read and write UID, tag info (PN532 module)\nSettings: time, rotation, font, colors, brightness, status bar, volume, startup sound, language (7 languages), screen dimming, web server FS mode, wifi SSID\nOther: clock, battery, level tool, flashlight, sound level, level tool, system info.\n\nRate my project on github.\nContributing is welcome.",
         "category": "sticks3",
         "author": "Dlazder",
         "version": "__VERSION__",

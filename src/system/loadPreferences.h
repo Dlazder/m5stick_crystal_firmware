@@ -16,7 +16,7 @@ void loadPreferences() {
   statusBarBattery = getData("statusBarBattery", statusBarBattery);
 	Serial.printf("Status bar battery: %s\n", statusBarBattery ? "enabled" : "disabled");
 	statusBarSeconds = getData("sbSeconds", statusBarSeconds);
-	Serial.printf("Status bar clock seconds: %s", statusBarSeconds ? "enabled" : "disabled");
+	Serial.printf("Status bar clock seconds: %s\n", statusBarSeconds ? "enabled" : "disabled");
 
 	currentFontIndex = getData("fontIndex", currentFontIndex);
 	Serial.printf("Font: %s\n", fontNames[currentFontIndex]);

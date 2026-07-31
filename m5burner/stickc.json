@@ -1,7 +1,7 @@
 {
     "fields": {
-        "name": "M5 Crystal (StickC Plus2)",
-        "description": "Multifunctional firmware for pentesting and everyday use. Built for M5Stack devices with a clean and stable codebase focused on simplicity and extensibility.",
+        "name": "Crystal firmware for m5stickCPlus2",
+        "description": "Multifunctional firmware for pentesting and everyday use.\nWi-Fi: Scanner, deauth, WPA bruteforce, handshake capture, evil twin, evil portal, web server, channel analyzer, weather, time sync.\nBluetooth: bad BLE, sniffer, air mouse, BLE keyboard, presenter, camera shutter, bluetooth scan, device info, device finder, mouse jiggler.\nIR: read and save signal, send signal, TV-B-Gone\nFiles: create, delete, rename and edit files, view images\nNFC: read and write UID, tag info (PN532 module)\nSettings: time, rotation, font, colors, brightness, status bar, volume, startup sound, language (7 languages), screen dimming, web server FS mode, wifi SSID\nOther: clock, battery, level tool, flashlight, sound level, system info.\n\nRate my project on github.\nContributing is welcome.",
         "category": "stickc",
         "author": "Dlazder",
         "version": "__VERSION__",
