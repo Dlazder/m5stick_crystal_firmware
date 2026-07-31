@@ -74,6 +74,7 @@ const Locale LANG_UK = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "налаштування",
+	.MENU_SETTINGS_UI            = "інтерфейс та екран",
 	.MENU_SETTINGS_TIME          = "час",
 	.MENU_SETTINGS_BRIGHTNESS    = "яскравість",
 	.MENU_SETTINGS_VOLUME        = "гучність",

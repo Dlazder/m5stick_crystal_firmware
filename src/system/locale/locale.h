@@ -74,6 +74,7 @@ struct Locale {
 
 	// Settings menu
 	const char* MENU_SETTINGS;
+	const char* MENU_SETTINGS_UI;
 	const char* MENU_SETTINGS_TIME;
 	const char* MENU_SETTINGS_BRIGHTNESS;
 	const char* MENU_SETTINGS_VOLUME;

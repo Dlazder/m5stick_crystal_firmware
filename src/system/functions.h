@@ -26,6 +26,7 @@
 #include "../functions/settings/ssidLoop.h"
 #include "../functions/settings/toggleIconsLoop.h"
 #include "../functions/settings/settingsTimezoneLoop.h"
+#include "../functions/settings/UIMenuLoop.h"
 
 
 // Wi-Fi functions

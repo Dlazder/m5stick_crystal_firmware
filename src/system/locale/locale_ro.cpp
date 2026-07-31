@@ -74,6 +74,7 @@ const Locale LANG_RO = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "setări",
+	.MENU_SETTINGS_UI            = "UI & ecran",
 	.MENU_SETTINGS_TIME          = "oră",
 	.MENU_SETTINGS_BRIGHTNESS    = "luminozitate",
 	.MENU_SETTINGS_VOLUME        = "volum",

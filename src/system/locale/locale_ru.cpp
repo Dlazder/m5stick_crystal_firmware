@@ -74,6 +74,7 @@ const Locale LANG_RU = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "настройки",
+	.MENU_SETTINGS_UI            = "интерфейс и экран",
 	.MENU_SETTINGS_TIME          = "время",
 	.MENU_SETTINGS_BRIGHTNESS    = "яркость",
 	.MENU_SETTINGS_VOLUME        = "громкость",

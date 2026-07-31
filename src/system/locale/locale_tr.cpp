@@ -74,6 +74,7 @@ const Locale LANG_TR = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "ayarlar",
+	.MENU_SETTINGS_UI            = "UI & ekran",
 	.MENU_SETTINGS_TIME          = "saat",
 	.MENU_SETTINGS_BRIGHTNESS    = "parlaklık",
 	.MENU_SETTINGS_VOLUME        = "ses",

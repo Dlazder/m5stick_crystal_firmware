@@ -74,6 +74,7 @@ const Locale LANG_ID = {
 
     // Settings menu
     .MENU_SETTINGS                = "pengaturan",
+    .MENU_SETTINGS_UI             = "UI & layar",
     .MENU_SETTINGS_TIME           = "waktu",
     .MENU_SETTINGS_BRIGHTNESS     = "kecerahan",
     .MENU_SETTINGS_VOLUME         = "volume",

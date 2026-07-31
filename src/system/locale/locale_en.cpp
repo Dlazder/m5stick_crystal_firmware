@@ -74,6 +74,7 @@ const Locale LANG_EN = {
 
 	// Settings menu
 	.MENU_SETTINGS               = "settings",
+	.MENU_SETTINGS_UI            = "UI & screen",
 	.MENU_SETTINGS_TIME          = "time",
 	.MENU_SETTINGS_BRIGHTNESS    = "brightness",
 	.MENU_SETTINGS_VOLUME        = "volume",
