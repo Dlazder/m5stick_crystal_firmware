@@ -14,7 +14,7 @@ struct Locale {
 	const char* MENU_WIFI_DISCONNECT;
 	const char* MENU_WIFI_AP;
 	const char* MENU_WIFI_WEATHER;
-	const char* MENU_WIFI_SYNC_TIME;
+
 	const char* MENU_WIFI_WPA_BF;
 	const char* MENU_WIFI_WPA_BF_ALL;
 	const char* MENU_WIFI_DEAUTH_ALL;
@@ -88,6 +88,7 @@ struct Locale {
 	const char* MENU_SETTINGS_LANGUAGE;
 	const char* MENU_SETTINGS_DIMMING;
 	const char* MENU_SETTINGS_WEBSERVER_FS;
+	const char* MENU_SETTINGS_TIMEZONE;
 
 	// Other menu
 	const char* MENU_OTHER;
@@ -197,6 +198,7 @@ struct Locale {
 	const char* TXT_SETTINGS_PID;
 	const char* TXT_SETTINGS_KB_GYRO;
 	const char* TXT_SETTINGS_WEBSERVER_FS;
+	const char* TXT_SETTINGS_TIMEZONE;
 };
 
 extern const Locale LANG_EN;

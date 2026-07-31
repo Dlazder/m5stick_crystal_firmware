@@ -3,7 +3,6 @@
 void settingsMenuLoop() {
 	MENU settingsMenu[] = {
 		{PID::MAIN_MENU,           L->MENU_BACK, Icons::back},
-		{PID::SETTINGS_CLOCK,      L->MENU_SETTINGS_TIME, Icons::clock},
 		{PID::BRIGHTNESS,          L->MENU_SETTINGS_BRIGHTNESS},
 		{PID::DIMMING,             L->MENU_SETTINGS_DIMMING},
 		{PID::ROTATION,            L->MENU_SETTINGS_ROTATION, Icons::rotation, "rotation"},
@@ -16,7 +15,9 @@ void settingsMenuLoop() {
 		{PID::LANGUAGE,            L->MENU_SETTINGS_LANGUAGE},
 		{PID::KB_GYRO,             L->MENU_SETTINGS_KB_GYRO, nullptr, "kbGyro"},
 		{PID::WEBSERVER_FS,        L->MENU_SETTINGS_WEBSERVER_FS, nullptr, "webServerFs"},
-		{PID::SETTINGS_SSID,        L->MENU_SETTINGS_WIFI_SSID},
+		{PID::SETTINGS_SSID,       L->MENU_SETTINGS_WIFI_SSID},
+		{PID::SETTINGS_CLOCK,      L->MENU_SETTINGS_TIME, Icons::clock},
+		{PID::SETTINGS_TIMEZONE,   L->MENU_SETTINGS_TIMEZONE, Icons::clock},
 	};
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 

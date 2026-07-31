@@ -26,6 +26,7 @@
 #include "../utils/wifiUtils/handshakeSession.h"
 #include "../utils/wifiUtils/pmkidUtils.h"
 #include "../utils/wifiUtils/infoUtils.h"
+#include "../utils/wifiUtils/ntpUtils.h"
 #include "../utils/badUsbUtils.h"
 #include "../utils/bleUtils.h"
 

@@ -24,6 +24,7 @@
     X(SETTINGS_SSID,         115, setSsidLoop) \
     X(ICONS,                 116, toggleIconsLoop) \
     X(TOGGLE_STATUS_BAR_SECONDS, 117, defaultLoop) \
+    X(SETTINGS_TIMEZONE,       118, settingsTimezoneLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \
@@ -34,7 +35,6 @@
     X(WIFI_ACCESS_POINT, 205, wifiApLoop) \
     X(WIFI_CONNECT,      206, wifiConnectLoop) \
     X(WIFI_DISCONNECT,   207, wifiDisconnectLoop) \
-    X(WIFI_TIME_SYNC,    208, wifiTimeSyncLoop) \
     X(WIFI_WPA_BF,       209, wifiBruteforceLoop) \
     X(WIFI_WPA_BF_ALL,   210, wifiBruteforceAllLoop) \
     X(WIFI_DEAUTH_ALL,   211, wifiDeauthAllLoop) \

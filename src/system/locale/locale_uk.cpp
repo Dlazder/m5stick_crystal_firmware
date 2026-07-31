@@ -14,7 +14,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_DISCONNECT        = "відключити wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "погода",
-	.MENU_WIFI_SYNC_TIME         = "синхр. час",
+
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф всі мережі",
 	.MENU_WIFI_DEAUTH_ALL        = "деаут всі",
@@ -88,6 +88,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_LANGUAGE      = "мова",
 	.MENU_SETTINGS_DIMMING       = "димінг",
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
+	.MENU_SETTINGS_TIMEZONE      = "часовий пояс",
 
 	// Other menu
 	.MENU_OTHER                  = "інше",
@@ -196,4 +197,5 @@ const Locale LANG_UK = {
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гіро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
+	.TXT_SETTINGS_TIMEZONE       = "Часовий пояс: ",
 };

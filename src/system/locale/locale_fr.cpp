@@ -14,7 +14,7 @@ const Locale LANG_FR = {
 	.MENU_WIFI_DISCONNECT        = "déconnecter wifi",
 	.MENU_WIFI_AP                = "point d'accès",
 	.MENU_WIFI_WEATHER           = "météo",
-	.MENU_WIFI_SYNC_TIME         = "synchro heure",
+
 	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa bf tout",
 	.MENU_WIFI_DEAUTH_ALL        = "déauth tout",
@@ -88,6 +88,7 @@ const Locale LANG_FR = {
 	.MENU_SETTINGS_LANGUAGE      = "langue",
 	.MENU_SETTINGS_DIMMING       = "écran veille",
 	.MENU_SETTINGS_WEBSERVER_FS  = "serveur web FS",
+	.MENU_SETTINGS_TIMEZONE      = "fuseau horaire",
 
 	// Other menu
 	.MENU_OTHER                  = "autre",
@@ -196,4 +197,5 @@ const Locale LANG_FR = {
 	.TXT_SETTINGS_PID            = "PID : ",
 	.TXT_SETTINGS_KB_GYRO        = "Gyro clavier : ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Serveur web FS : ",
+	.TXT_SETTINGS_TIMEZONE       = "Fuseau horaire : ",
 };

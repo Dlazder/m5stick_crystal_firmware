@@ -50,5 +50,8 @@ void loadPreferences() {
 	webServerFs = getData("webServerFs", webServerFs);
 	Serial.printf("WebServer FS: %s\n", webServerFs ? "enabled" : "disabled");
 
+	timezoneOffset = getData("timezone", timezoneOffset);
+	Serial.printf("Timezone offset: %d\n", timezoneOffset);
+
 	Serial.println("Preferences loaded");
 }

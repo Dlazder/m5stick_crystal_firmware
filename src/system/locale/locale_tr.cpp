@@ -14,7 +14,7 @@ const Locale LANG_TR = {
 	.MENU_WIFI_DISCONNECT        = "wifi bağlantı kes",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "hava durumu",
-	.MENU_WIFI_SYNC_TIME         = "saati senkronla",
+
 	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa bf tüm ağlar",
 	.MENU_WIFI_DEAUTH_ALL        = "deauth tümü",
@@ -88,6 +88,7 @@ const Locale LANG_TR = {
 	.MENU_SETTINGS_LANGUAGE      = "dil",
 	.MENU_SETTINGS_DIMMING       = "ekran karartma",
 	.MENU_SETTINGS_WEBSERVER_FS  = "web sunucu FS",
+	.MENU_SETTINGS_TIMEZONE      = "saat dilimi",
 
 	// Other menu
 	.MENU_OTHER                  = "diğer",
@@ -196,4 +197,5 @@ const Locale LANG_TR = {
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Gyro klavye: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Web sunucu FS: ",
+	.TXT_SETTINGS_TIMEZONE       = "Saat dilimi: ",
 };

@@ -25,6 +25,7 @@
 #include "../functions/settings/toggleWebServerFs.h"
 #include "../functions/settings/ssidLoop.h"
 #include "../functions/settings/toggleIconsLoop.h"
+#include "../functions/settings/settingsTimezoneLoop.h"
 
 
 // Wi-Fi functions
@@ -37,7 +38,6 @@
 #include "../functions/wifi/wifiConnectLoop.h"
 #include "../functions/wifi/weatherLoop.h"
 #include "../functions/wifi/wifiDisconnectLoop.h"
-#include "../functions/wifi/wifiTimeSyncLoop.h"
 #include "../functions/wifi/wifiBruteforceLoop.h"
 #include "../functions/wifi/wifiBruteforceAllLoop.h"
 #include "../functions/wifi/wifiDeauthAllLoop.h"
