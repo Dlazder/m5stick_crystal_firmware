@@ -60,7 +60,7 @@ static void _bleBuildMenu() {
 		String devName = device.getName().c_str();
 		String name = (device.haveName() && devName.length() > 0)
 			? devName.substring(0, 14)
-			: String(device.getAddress().toString().substr(0, 14).c_str());
+			: String(device.getAddress().toString().c_str());
 
 		bleScanMenu[i + 2].name = name;
 		bleScanMenu[i + 2].command = PID::BT_SELECTED;
