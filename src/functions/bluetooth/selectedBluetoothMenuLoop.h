@@ -2,9 +2,9 @@
 
 void selectedBluetoothMenuLoop() {
 	MENU selectedBluetoothMenu[] = {
-		{PID::BT_SCAN,   L->MENU_BACK, Icons::back},
-		{PID::BT_INFO,   L->MENU_BT_INFO},
-		{PID::BT_FINDER, L->MENU_BT_FIND},
+		{PID::BT_SCAN, L->MENU_BACK, Icons::back},
+		{PID::BT_INFO, L->MENU_BT_INFO, Icons::info},
+		{PID::BT_FINDER, L->MENU_BT_FIND, Icons::find},
 	};
 	int selectedBluetoothMenuSize = sizeof(selectedBluetoothMenu) / sizeof(MENU);
 

@@ -41,6 +41,19 @@ static inline uint32_t irNecForDisplay(uint32_t transCode) {
 		 | ((uint32_t)na << 8) | (uint32_t)a;
 }
 
+// Convert display format back to transmission-order (for playback from .ir files)
+// Display format: [~cmd, cmd, ~addr, addr] — preserves exact received bytes
+static inline uint32_t irNecFromDisplay(uint32_t displayCode) {
+	uint8_t nc = (displayCode >> 24) & 0xFF;
+	uint8_t c  = (displayCode >> 16) & 0xFF;
+	uint8_t na = (displayCode >> 8) & 0xFF;
+	uint8_t a  = displayCode & 0xFF;
+	return ((uint32_t)ir_rev8(a) << 24)
+		 | ((uint32_t)ir_rev8(na) << 16)
+		 | ((uint32_t)ir_rev8(c) << 8)
+		 | (uint32_t)ir_rev8(nc);
+}
+
 // ── Types ──
 
 enum irproto { UNK, NEC, SONY, SAM, RC5, PROTO_COUNT };

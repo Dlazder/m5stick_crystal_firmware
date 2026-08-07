@@ -65,7 +65,9 @@ void _irSaveToLFS(const char* filename) {
 void _irRestoreReceiver() {
 	irRxPin = IR_RECEIVE_PIN;
 	DEVICE.Speaker.end();
+	irStopReceiver(); // kill any previous RX task before re-creating
 	M5.Power.setExtOutput(true, m5::ext_none);
+	delay(50); // let external power stabilize before RMT init
 	xTaskCreatePinnedToCore(recvIR, "recvIR", 4096, NULL, 10, NULL, 1);
 	irReceiverStarted = true;
 	if (irHasSignal) { _irDrawUi(); } else { connectionGuideIR(); }
@@ -86,6 +88,7 @@ void irReadLoop() {
 		irTxPin = IR_SEND_PIN;
 		DEVICE.Speaker.end();
 		M5.Power.setExtOutput(true, m5::ext_none);
+		delay(50); // let external power stabilize before RMT init
 
 		// Quick GPIO test before RMT takes over the pin
 		pinMode(IR_RECEIVE_PIN, INPUT_PULLUP);
@@ -130,6 +133,14 @@ void irReadLoop() {
 			// Transmission order: [addr, ~addr, cmd, ~cmd], each byte LSB-first
 			irLastAddress = ir_rev8((irCode >> 24) & 0xFF);
 			irLastCommand = ir_rev8((irCode >> 8) & 0xFF);
+			uint8_t na = ir_rev8((irCode >> 16) & 0xFF);
+			uint8_t nc = ir_rev8(irCode & 0xFF);
+			if ((uint8_t)~irLastAddress != na || (uint8_t)~irLastCommand != nc) {
+				// Invalid NEC frame — complement check failed (likely noise)
+				Serial.printf("IR: NEC complement fail: addr=0x%02X na=0x%02X cmd=0x%02X nc=0x%02X\n",
+					irLastAddress, na, irLastCommand, nc);
+				return;
+			}
 		} else if (irBrand == SAM) {
 			// Samsung: 16-bit address + 16-bit command
 			irLastAddress = ((uint16_t)ir_rev8((irCode >> 24) & 0xFF) << 8)
@@ -147,6 +158,7 @@ void irReadLoop() {
 	}
 
 	if ((isBtnAWasPressed() || isKbEnterPressed()) && irHasSignal) {
+		irStopReceiver(); // stop RX task while keyboard is active
 		DEVICE.Speaker.begin();
 		M5.Power.setExtOutput(false, m5::ext_none);
 		irReceiverStarted = false;

@@ -15,6 +15,8 @@ static uint16_t irSendAddress = 0;
 static uint16_t irSendCommand = 0;
 static uint32_t irSendCode = 0;
 static uint8_t irSendBits = 32;
+static uint32_t irSendRaw = 0;
+static bool irHasRaw = false;
 
 irproto _irProtocolFromString(const String& name) {
 	if (name == "NEC") return NEC;
@@ -33,6 +35,7 @@ bool _irParseFile(const String& path) {
 	File f = LittleFS.open(path.c_str(), "r");
 	if (!f) return false;
 	irSendProtocol = NEC; irSendAddress = 0; irSendCommand = 0; irSendBits = 32;
+	irHasRaw = false; irSendRaw = 0;
 	while (f.available()) {
 		String line = f.readStringUntil('\n'); line.trim();
 		if (line.startsWith("protocol=")) {
@@ -42,12 +45,21 @@ bool _irParseFile(const String& path) {
 			irSendAddress = (uint16_t)strtoul(line.substring(8).c_str(), nullptr, 16);
 		} else if (line.startsWith("command=")) {
 			irSendCommand = (uint16_t)strtoul(line.substring(8).c_str(), nullptr, 16);
+		} else if (line.startsWith("raw=")) {
+			irSendRaw = (uint32_t)strtoul(line.substring(4).c_str(), nullptr, 16);
+			irHasRaw = true;
 		}
 	}
 	f.close();
-	// Build transmission-order code from address & command
+	// Build transmission-order code.
+	// Prefer raw field when available -- preserves exact received signal
+	// (e.g. non-standard NEC remotes with unusual complement bytes).
 	if (irSendProtocol == NEC) {
-		irSendCode = irBuildNEC(irSendAddress & 0xFF, irSendCommand & 0xFF);
+		if (irHasRaw) {
+			irSendCode = irNecFromDisplay(irSendRaw);
+		} else {
+			irSendCode = irBuildNEC(irSendAddress & 0xFF, irSendCommand & 0xFF);
+		}
 		irSendBits = 32;
 	} else {
 		irSendCode = irSendAddress | ((uint32_t)irSendCommand << 8);

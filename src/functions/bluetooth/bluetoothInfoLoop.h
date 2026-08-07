@@ -32,7 +32,7 @@ void bluetoothInfoLoop() {
 
 	if (isSetup()) {
 		if (count >= 7) centeredPrintRows(lines, count, SMALL_TEXT);
-		else centeredPrintRows(lines, count, MEDIUM_TEXT);
+		else centeredPrintRows(lines, count, SMALL_TEXT);
 	}
 	checkExit();
 }

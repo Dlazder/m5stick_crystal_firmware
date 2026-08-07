@@ -12,7 +12,6 @@ void onBleScanComplete(BLEScanResults results) {
 			break;
 		}
 	}
-	BLEDevice::getScan()->clearResults();
 	bleScanDone = true;
 }
 
@@ -56,8 +55,7 @@ void bluetoothFinderLoop() {
 
 	if (!scanning && checkTimer(1000)) {
 		BLEScan* pScan = BLEDevice::getScan();
-		pScan->clearResults();
-		pScan->start(1, onBleScanComplete, false);
+		pScan->start(1, onBleScanComplete, true);  // is_continue=true: keep accumulated results
 		scanning = true;
 	}
 
