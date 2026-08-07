@@ -2,8 +2,12 @@
 
 void statusBarLoop() {
 	static int statusBarTimer = 0;
-	static int battery = DEVICE.Power.getBatteryLevel();
-	
+
+	// Redraw at most once per second — avoids SPI pushSprite + I2C RTC read on every tick
+	if (!checkTimer(1000, true, &statusBarTimer)) {
+		return;
+	}
+
 	statusBarCanvas.clear();
 	statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 	statusBarCanvas.setCursor(5, 4);
@@ -26,7 +30,9 @@ void statusBarLoop() {
 	statusBarCanvas.print(formatString);
 
 	// Battery
-	if (checkTimer(3000, true, &statusBarTimer)) {
+	static int battery = DEVICE.Power.getBatteryLevel();
+	static int batteryTimer = 0;
+	if (checkTimer(5000, true, &batteryTimer)) {
 		battery = DEVICE.Power.getBatteryLevel();
 	}
 	char batteryText[10];
