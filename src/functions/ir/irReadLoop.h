@@ -133,6 +133,14 @@ void irReadLoop() {
 			// Transmission order: [addr, ~addr, cmd, ~cmd], each byte LSB-first
 			irLastAddress = ir_rev8((irCode >> 24) & 0xFF);
 			irLastCommand = ir_rev8((irCode >> 8) & 0xFF);
+			uint8_t na = ir_rev8((irCode >> 16) & 0xFF);
+			uint8_t nc = ir_rev8(irCode & 0xFF);
+			if ((uint8_t)~irLastAddress != na || (uint8_t)~irLastCommand != nc) {
+				// Invalid NEC frame — complement check failed (likely noise)
+				Serial.printf("IR: NEC complement fail: addr=0x%02X na=0x%02X cmd=0x%02X nc=0x%02X\n",
+					irLastAddress, na, irLastCommand, nc);
+				return;
+			}
 		} else if (irBrand == SAM) {
 			// Samsung: 16-bit address + 16-bit command
 			irLastAddress = ((uint16_t)ir_rev8((irCode >> 24) & 0xFF) << 8)
