@@ -65,7 +65,9 @@ void _irSaveToLFS(const char* filename) {
 void _irRestoreReceiver() {
 	irRxPin = IR_RECEIVE_PIN;
 	DEVICE.Speaker.end();
+	irStopReceiver(); // kill any previous RX task before re-creating
 	M5.Power.setExtOutput(true, m5::ext_none);
+	delay(50); // let external power stabilize before RMT init
 	xTaskCreatePinnedToCore(recvIR, "recvIR", 4096, NULL, 10, NULL, 1);
 	irReceiverStarted = true;
 	if (irHasSignal) { _irDrawUi(); } else { connectionGuideIR(); }
@@ -86,6 +88,7 @@ void irReadLoop() {
 		irTxPin = IR_SEND_PIN;
 		DEVICE.Speaker.end();
 		M5.Power.setExtOutput(true, m5::ext_none);
+		delay(50); // let external power stabilize before RMT init
 
 		// Quick GPIO test before RMT takes over the pin
 		pinMode(IR_RECEIVE_PIN, INPUT_PULLUP);
@@ -147,6 +150,7 @@ void irReadLoop() {
 	}
 
 	if ((isBtnAWasPressed() || isKbEnterPressed()) && irHasSignal) {
+		irStopReceiver(); // stop RX task while keyboard is active
 		DEVICE.Speaker.begin();
 		M5.Power.setExtOutput(false, m5::ext_none);
 		irReceiverStarted = false;
