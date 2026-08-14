@@ -1,6 +1,6 @@
 {
     "fields": {
-        "name": "M5 Crystal (Cardputer)",
+        "name": "Crystal firmware for CARDPUTER (ADV/v1.1)",
         "description": "Multifunctional firmware for pentesting and everyday use.\nWi-Fi: scanner, deauth, WPA bruteforce, handshake capture, evil twin, evil portal, web server, channel analyzer, weather, time sync, wifi info, wifi connect, password store\nBluetooth: scanner, sniffer, bad BLE, air mouse, keyboard, presenter, camera shutter, bluetooth scan, device info, device finder, mouse jiggler.\nIR: read and save signal, send signal, TV-B-Gone.\nNFC (PN-532): read and write 4-byte UID, tag info.\nUSB: BAD USB, mouse jiggler, air mouse, keyboard, mass storage\nFiles: edit, create, delete, rename files, view images.\nSettings: time, rotation, colors, fonts, brightness, status bar, volume, startup sound, language (7 languages) etc.\nOther: clock, battery, level tool, flashlight, sound level, system info\n\nRate my project on github.\nContributing is welcome.",
         "category": "cardputer",
         "author": "Dlazder",
