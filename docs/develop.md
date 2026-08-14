@@ -70,3 +70,13 @@ These colors, already defined in M5GFX, were chosen as the main ones.
 | TFT_MAGENTA | MAGENTA |
 
 In the future, it is possible to add a third color in the form of a darker version of the colors described above, or the ability to select a color from the full RGB spectrum.
+
+## Dimming
+
+Screen dimming allows you to save battery power by dimming the screen when the device is not active.
+Dimming is adjustable between the values: 30s, 1m, 3m, 5m, disabled.
+By default, dimming is enabled at 30s.
+
+In the main loop, the dimmerUpdate function is called at each iteration. It checks the timer and automatically resets it when the buttons are pressed.
+You can also wake up the screen manually by calling the `dimmerWake` function.
+This is used in flashLightLoop, flashLightFlickerLoop and levelToolLoop.

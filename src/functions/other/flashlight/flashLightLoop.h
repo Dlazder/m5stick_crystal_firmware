@@ -9,8 +9,7 @@ void flashLightLoop() {
 		DISP.fillScreen(FGCOLOR);
 	}
 
-	// Turn off dimming while using the flashlight.
-	updateTimer(&dimmingPreviousTimer);
+	dimmerWake();
 
 	if (checkExit()) {
 		statusBar = flashLightStatusBarWasEnabled;
