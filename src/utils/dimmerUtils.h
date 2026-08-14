@@ -1,11 +1,16 @@
+// Resets the dimming timer and restores full brightness if the screen was dimmed.
+void dimmerWake() {
+	if (screenIsDimmed) {
+		DISP.setBrightness(brightnessToHw(brightness));
+		screenIsDimmed = false;
+	}
+	updateTimer(&dimmingPreviousTimer);
+}
+
 void dimmerUpdate() {
 	bool anyInput = isBtnAWasPressed() || isBtnBWasPressed() || isBtnPWRWasPressed() || isAnyKbKeyPressed();
 	if (anyInput) {
-		if (screenIsDimmed) {
-			DISP.setBrightness(brightnessToHw(brightness));
-			screenIsDimmed = false;
-		}
-		updateTimer(&dimmingPreviousTimer);
+		dimmerWake();
 	}
 
 	if (screenDimTimeout > 0 && !screenIsDimmed) {
