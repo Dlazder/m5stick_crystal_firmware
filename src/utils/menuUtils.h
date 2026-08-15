@@ -25,6 +25,7 @@ const int MENU_LABEL_MAX_CHARS = 22;
 const int MENU_ICON_TEXT_GAP = 5;  // pixels between icon and text
 const int MENU_CHECKBOX_SIZE = 10; // 10x10 pixels for toggle checkboxes
 const int MENU_CHECKBOX_SCROLLBAR_GAP = 3; // gap between checkbox and scrollbar
+const int MENU_VISIBLE_ITEMS = 5; // max menu items rendered at once
 
 void drawMenu(MENU menu[], int size) {
 	if (cursor == size) cursor = cursor % size;
@@ -39,7 +40,7 @@ void drawMenu(MENU menu[], int size) {
 	int start = (cursor > 2) ? (cursor - 2) : 0;
 
 	int lineHeight = canvas.fontHeight();
-	for (int i = start; i < size; i++) {
+	for (int i = start; i < size && i < start + MENU_VISIBLE_ITEMS; i++) {
 		int y = (i - start) * lineHeight;
 		bool selected = (cursor == i);
 		canvas.fillRect(0, y, canvas.width(), lineHeight, selected ? FGCOLOR : BGCOLOR);
@@ -73,7 +74,7 @@ void drawMenu(MENU menu[], int size) {
 		}
 	}
 
-	drawScrollbar(cursor, size, 5);
+	drawScrollbar(cursor, size, MENU_VISIBLE_ITEMS);
 	canvas.pushSprite(0, getStatusBarOffset());
 }
 

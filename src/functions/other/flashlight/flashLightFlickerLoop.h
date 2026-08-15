@@ -20,5 +20,6 @@ void flickerLoop() {
 	if (checkExit()) {
 		statusBar = flickerStatusBarWasEnabled;
 		canvas.clear();
+		canvas.pushSprite(0, getStatusBarHeight());
 	}
 }
