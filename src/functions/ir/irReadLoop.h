@@ -1,5 +1,11 @@
 // PID::IR_READ
 
+void _irDrawWaiting() {
+	centeredPrint(L->TXT_IR_WAITING, MEDIUM_TEXT, true);
+	drawSpinner();
+	canvas.pushSprite(0, getStatusBarHeight());
+}
+
 #ifdef IR_USE_RMT
 #include "../../hal/irRmtHal.h"
 
@@ -68,9 +74,11 @@ void _irRestoreReceiver() {
 	irStopReceiver(); // kill any previous RX task before re-creating
 	M5.Power.setExtOutput(true, m5::ext_none);
 	delay(50); // let external power stabilize before RMT init
+	pinMode(IR_RECEIVE_PIN, INPUT_PULLUP); // receiver output idles high via pull-up
+	delay(10);
 	xTaskCreatePinnedToCore(recvIR, "recvIR", 4096, NULL, 10, NULL, 1);
 	irReceiverStarted = true;
-	if (irHasSignal) { _irDrawUi(); } else { connectionGuideIR(); }
+	if (irHasSignal) { _irDrawUi(); } else { _irDrawWaiting(); }
 }
 
 void irReadLoop() {
@@ -82,7 +90,7 @@ void irReadLoop() {
 
 		irStopReceiver(); // kill any previous RX task and free RMT
 
-		connectionGuideIR();
+		_irDrawWaiting();
 
 		irRxPin = IR_RECEIVE_PIN;
 		irTxPin = IR_SEND_PIN;
@@ -90,21 +98,8 @@ void irReadLoop() {
 		M5.Power.setExtOutput(true, m5::ext_none);
 		delay(50); // let external power stabilize before RMT init
 
-		// Quick GPIO test before RMT takes over the pin
-		pinMode(IR_RECEIVE_PIN, INPUT_PULLUP);
+		pinMode(IR_RECEIVE_PIN, INPUT_PULLUP); // receiver output idles high via pull-up
 		delay(10);
-		int idle_level = digitalRead(IR_RECEIVE_PIN);
-		Serial.printf("IR: GPIO %d idle = %d (PULLUP)\n", IR_RECEIVE_PIN, idle_level);
-
-		// Sample for 500ms, count toggles (IR remote should cause rapid changes)
-		int last = idle_level;
-		int toggles = 0;
-		uint32_t start = millis();
-		while (millis() - start < 500) {
-			int cur = digitalRead(IR_RECEIVE_PIN);
-			if (cur != last) { toggles++; last = cur; }
-		}
-		Serial.printf("IR: toggles in 500ms = %d (expect 0=no signal, >100=IR active)\n", toggles);
 
 		xTaskCreatePinnedToCore(recvIR, "recvIR", 4096, NULL, 10, NULL, 1);
 		irReceiverStarted = true;
@@ -168,6 +163,8 @@ void irReadLoop() {
 		return;
 	}
 
+	if (!irHasSignal) _irDrawWaiting();
+
 	if (checkExit()) {
 		if (irReceiverStarted) {
 			irStopReceiver();
@@ -227,7 +224,7 @@ void _irSaveToLFS(const char* filename) {
 void _irRestoreReceiver() {
 	IrReceiver.begin(IR_RECEIVE_PIN, DISABLE_LED_FEEDBACK);
 	irReceiverStarted = true;
-	if (irHasSignal) { _irDrawUi(); } else { connectionGuideIR(); }
+	if (irHasSignal) { _irDrawUi(); } else { _irDrawWaiting(); }
 }
 
 void irReadLoop() {
@@ -235,7 +232,7 @@ void irReadLoop() {
 		irReceiverStarted = false;
 		irKbActive = false;
 		irHasSignal = false;
-		connectionGuideIR();
+		_irDrawWaiting();
 		IrReceiver.begin(IR_RECEIVE_PIN, DISABLE_LED_FEEDBACK);
 		irReceiverStarted = true;
 		Serial.println("IR: GPIO receiver ready on pin " + String(IR_RECEIVE_PIN));
@@ -277,6 +274,8 @@ void irReadLoop() {
 		drawKeyboardUi();
 		return;
 	}
+
+	if (!irHasSignal) _irDrawWaiting();
 
 	if (checkExit()) {
 		if (irReceiverStarted) {
