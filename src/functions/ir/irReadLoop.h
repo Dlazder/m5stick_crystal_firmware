@@ -69,12 +69,11 @@ void _irSaveToLFS(const char* filename) {
 }
 
 void _irRestoreReceiver() {
-	irRxPin = IR_RECEIVE_PIN;
 	DEVICE.Speaker.end();
 	irStopReceiver(); // kill any previous RX task before re-creating
 	M5.Power.setExtOutput(true, m5::ext_none);
 	delay(50); // let external power stabilize before RMT init
-	pinMode(IR_RECEIVE_PIN, INPUT_PULLUP); // receiver output idles high via pull-up
+	pinMode(irRxPin, INPUT_PULLUP); // receiver output idles high via pull-up
 	delay(10);
 	xTaskCreatePinnedToCore(recvIR, "recvIR", 4096, NULL, 10, NULL, 1);
 	irReceiverStarted = true;
@@ -92,13 +91,11 @@ void irReadLoop() {
 
 		_irDrawWaiting();
 
-		irRxPin = IR_RECEIVE_PIN;
-		irTxPin = IR_SEND_PIN;
 		DEVICE.Speaker.end();
 		M5.Power.setExtOutput(true, m5::ext_none);
 		delay(50); // let external power stabilize before RMT init
 
-		pinMode(IR_RECEIVE_PIN, INPUT_PULLUP); // receiver output idles high via pull-up
+		pinMode(irRxPin, INPUT_PULLUP); // receiver output idles high via pull-up
 		delay(10);
 
 		xTaskCreatePinnedToCore(recvIR, "recvIR", 4096, NULL, 10, NULL, 1);
@@ -222,7 +219,7 @@ void _irSaveToLFS(const char* filename) {
 }
 
 void _irRestoreReceiver() {
-	IrReceiver.begin(IR_RECEIVE_PIN, DISABLE_LED_FEEDBACK);
+	IrReceiver.begin(irRxPin, DISABLE_LED_FEEDBACK);
 	irReceiverStarted = true;
 	if (irHasSignal) { _irDrawUi(); } else { _irDrawWaiting(); }
 }
@@ -233,9 +230,9 @@ void irReadLoop() {
 		irKbActive = false;
 		irHasSignal = false;
 		_irDrawWaiting();
-		IrReceiver.begin(IR_RECEIVE_PIN, DISABLE_LED_FEEDBACK);
+		IrReceiver.begin(irRxPin, DISABLE_LED_FEEDBACK);
 		irReceiverStarted = true;
-		Serial.println("IR: GPIO receiver ready on pin " + String(IR_RECEIVE_PIN));
+		Serial.println("IR: GPIO receiver ready on pin " + String(irRxPin));
 	}
 
 	if (irKbActive) {

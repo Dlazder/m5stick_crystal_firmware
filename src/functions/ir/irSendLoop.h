@@ -163,12 +163,11 @@ void irSendLoop() {
 
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
 #ifdef IR_USE_RMT
-		irTxPin = IR_SEND_PIN;
 		sendIR(irSendProtocol, irSendCode, irSendBits, 1, 1);
 		Serial.printf("IR: sent %s code=0x%08lX\n",
 			_irProtocolName(irSendProtocol), (unsigned long)irSendCode);
 #else
-		IrSender.begin(IR_SEND_PIN);
+		IrSender.begin(irTxPin);
 		bool ok = true;
 		switch (irSendProtocol) {
 			case NEC:       IrSender.sendNEC(irSendAddress, irSendCommand, 0);        break;

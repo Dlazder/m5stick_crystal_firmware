@@ -203,4 +203,9 @@ bool usbHidBegan = false;
 
 // Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition by M5Cardputer headers.
 #include "../devices/device.h"
+
+// IR pins — configurable via IR → configure pins; defaults come from the device header
+uint8_t irRxPin = IR_RECEIVE_PIN;
+uint8_t irTxPin = IR_SEND_PIN;
+
 Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);

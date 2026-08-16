@@ -38,6 +38,14 @@
 // IR receiver — external module on G8 (SDA)
 #define IR_RECEIVE_PIN 3
 
+// Available GPIOs broken out, used for IR TX/RX pin configuration.
+// Some pins drive built-in peripherals (keyboard matrix/SYS I2C: 8/9, SD: 12/40/14/39,
+// USB: 19/20) — picking one of those for IR will disable the peripheral while it is in use.
+static const uint8_t devicePins[] = {
+	1, 2, 3, 4, 5, 6, 13, 14, 15, 39
+};
+static constexpr uint8_t devicePinsCount = sizeof(devicePins) / sizeof(devicePins[0]);
+
 // KEY_BACKSPACE conflicts with M5Cardputer header — use raw HID value
 #define BLE_KEY_BACKSPACE  0xB2
 

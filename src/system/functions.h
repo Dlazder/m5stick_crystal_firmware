@@ -92,6 +92,9 @@
 #include "../functions/ir/irReadLoop.h"
 #include "../functions/ir/irSendLoop.h"
 #include "../functions/ir/irTvBGoneLoop.h"
+#include "../functions/ir/irConfigurePinsMenuLoop.h"
+#include "../functions/ir/irConfigureTxLoop.h"
+#include "../functions/ir/irConfigureRxLoop.h"
 
 
 // USB

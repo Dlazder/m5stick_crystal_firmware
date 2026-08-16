@@ -53,5 +53,9 @@ void loadPreferences() {
 	timezoneOffset = getData("timezone", timezoneOffset);
 	Serial.printf("Timezone offset: %d\n", timezoneOffset);
 
+	irRxPin = getData("irRxPin", IR_RECEIVE_PIN);
+	irTxPin = getData("irTxPin", IR_SEND_PIN);
+	Serial.printf("IR pins: RX=%d TX=%d\n", irRxPin, irTxPin);
+
 	Serial.println("Preferences loaded");
 }

@@ -86,6 +86,9 @@
     X(IR_READ,            601, irReadLoop) \
     X(IR_SEND,            602, irSendLoop) \
     X(IR_TV_B_GONE,       603, irTvBGoneLoop) \
+    X(IR_CONFIG_PINS,     604, irConfigurePinsMenuLoop) \
+    X(IR_CONFIG_TX,       605, irConfigureTxLoop) \
+    X(IR_CONFIG_RX,       606, irConfigureRxLoop) \
     \
     X(USB,                700, usbMenuLoop) \
     X(BAD_USB,            701, badUsbLoop) \
