@@ -89,6 +89,7 @@
     X(IR_CONFIG_PINS,     604, irConfigurePinsMenuLoop) \
     X(IR_CONFIG_TX,       605, irConfigureTxLoop) \
     X(IR_CONFIG_RX,       606, irConfigureRxLoop) \
+    X(IR_CONFIG_RESET,    607, irConfigureResetLoop) \
     \
     X(USB,                700, usbMenuLoop) \
     X(BAD_USB,            701, badUsbLoop) \

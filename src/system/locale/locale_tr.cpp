@@ -61,6 +61,7 @@ const Locale LANG_TR = {
 	.MENU_IR_READ                = "sinyal oku",
 	.MENU_IR_SEND                = "sinyal gönder",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "IR pinlerini sıfırla",
 
 	// IR text
 	.TXT_IR_WAITING              = "Bekleniyor...",

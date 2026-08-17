@@ -61,6 +61,7 @@ const Locale LANG_RO = {
 	.MENU_IR_READ                = "citește semnal",
 	.MENU_IR_SEND                = "trimite semnal",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "resetează pinii IR",
 
 	// IR text
 	.TXT_IR_WAITING              = "Așteptare...",

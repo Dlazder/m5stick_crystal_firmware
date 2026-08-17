@@ -61,6 +61,7 @@ const Locale LANG_UK = {
 	.MENU_IR_READ                = "читати сигнал",
 	.MENU_IR_SEND                = "надіслати сигнал",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "скинути ІЧ піни",
 
 	// IR text
 	.TXT_IR_WAITING              = "Очікування...",

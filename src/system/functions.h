@@ -95,6 +95,7 @@
 #include "../functions/ir/irConfigurePinsMenuLoop.h"
 #include "../functions/ir/irConfigureTxLoop.h"
 #include "../functions/ir/irConfigureRxLoop.h"
+#include "../functions/ir/irConfigureResetLoop.h"
 
 
 // USB

@@ -61,6 +61,7 @@ const Locale LANG_DE = {
 	.MENU_IR_READ                = "signal lesen",
 	.MENU_IR_SEND                = "signal senden",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "IR-Pins zurücksetzen",
 
 	// IR text
 	.TXT_IR_WAITING              = "Warten...",
