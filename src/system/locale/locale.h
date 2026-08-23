@@ -201,6 +201,9 @@ struct Locale {
 	const char* TXT_SETTINGS_KB_GYRO;
 	const char* TXT_SETTINGS_WEBSERVER_FS;
 	const char* TXT_SETTINGS_TIMEZONE;
+
+	// UART menu
+	const char* MENU_UART;
 };
 
 extern const Locale LANG_EN;

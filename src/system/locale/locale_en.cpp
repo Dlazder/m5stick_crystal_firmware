@@ -200,4 +200,5 @@ const Locale LANG_EN = {
 	.TXT_SETTINGS_KB_GYRO        = "KB gyro: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "WebServer FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Timezone: ",
+	.MENU_UART = "UART",
 };

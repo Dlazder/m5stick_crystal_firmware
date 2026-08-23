@@ -200,4 +200,5 @@ const Locale LANG_ES = {
 	.TXT_SETTINGS_KB_GYRO= "Giroscopio: ",
 	.TXT_SETTINGS_WEBSERVER_FS = "WebServer FS: ",
 	.TXT_SETTINGS_TIMEZONE      = "Zona horaria: ",
+	.MENU_UART = "UART",
 };

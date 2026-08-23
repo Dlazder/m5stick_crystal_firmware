@@ -200,4 +200,5 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_KB_GYRO        = "гиро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
+	.MENU_UART = "UART",
 };

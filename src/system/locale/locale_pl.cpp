@@ -200,4 +200,5 @@ const Locale LANG_PL = {
 	.TXT_SETTINGS_KB_GYRO        = "Żyro klaw.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Serwer FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Strefa czasowa: ",
+	.MENU_UART = "UART",
 };

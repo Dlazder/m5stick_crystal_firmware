@@ -200,4 +200,5 @@ const Locale LANG_TR = {
 	.TXT_SETTINGS_KB_GYRO        = "Gyro klavye: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Web sunucu FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Saat dilimi: ",
+	.MENU_UART = "UART",
 };

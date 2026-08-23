@@ -200,4 +200,5 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
     .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
     .TXT_SETTINGS_TIMEZONE        = "Zona waktu: ",
+	.MENU_UART = "UART",
 };

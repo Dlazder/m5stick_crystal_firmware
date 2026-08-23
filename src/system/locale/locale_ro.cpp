@@ -200,4 +200,5 @@ const Locale LANG_RO = {
 	.TXT_SETTINGS_KB_GYRO        = "Giro tastatură: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Server FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Fus orar: ",
+	.MENU_UART = "UART",
 };

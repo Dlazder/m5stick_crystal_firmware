@@ -98,6 +98,14 @@
 #include "../functions/ir/irConfigureResetLoop.h"
 
 
+// UART
+#include "../functions/uart/uartMenuLoop.h"
+#include "../functions/uart/uartTerminalLoop.h"
+#include "../functions/uart/uartConfigRxLoop.h"
+#include "../functions/uart/uartConfigTxLoop.h"
+#include "../functions/uart/uartConfigBaudLoop.h"
+
+
 // USB
 #include "../functions/usb/usbMenuLoop.h"
 #include "../functions/usb/badUsbLoop.h"

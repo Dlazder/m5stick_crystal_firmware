@@ -2,6 +2,7 @@
 
 #define KB_GYRO_MAX 0.8f
 #define KB_GYRO_HYSTERESIS 0.08f
+#define KB_BLINK_MS 500
 
 const int kbRowCount = 4;
 const int kbColCounts[] = { 12, 12, 12, 12 };
@@ -31,7 +32,7 @@ int  kbCursorPos = 0;
 int  kbRow = 0;
 int  kbCol = 0;
 bool kbCapsOn = false;
-int  kbBlinkCounter = 0;
+int  kbBlinkTimer = 0;
 bool kbCursorVisible = true;
 
 void kbReset() {
@@ -41,7 +42,7 @@ void kbReset() {
 	kbRow = 0;
 	kbCol = 0;
 	kbCapsOn = false;
-	kbBlinkCounter = 0;
+	kbBlinkTimer = 0;
 	kbCursorVisible = true;
 	#if HAS_PHYSICAL_KB
 	kbTextMode = true;

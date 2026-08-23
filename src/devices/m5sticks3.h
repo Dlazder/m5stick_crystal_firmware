@@ -37,6 +37,11 @@
 // IR receiver — external module connected to G5
 #define IR_RECEIVE_PIN 42
 
+// UART terminal — GROVE port (G1=TX, G2=RX)
+#define UART_TX_PIN 1
+#define UART_RX_PIN 2
+#define UART_BAUD_DEFAULT 115200
+
 // Available GPIOs broken out on the headers, used for IR TX/RX pin configuration.
 // Some pins drive built-in peripherals (SD: 4/5/6/7, NFC: 9/10, SYS I2C: 11/12, USB: 19/20) —
 // picking one of those for IR will disable the peripheral while it is in use.

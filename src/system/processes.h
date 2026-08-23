@@ -110,6 +110,13 @@
     X(SYSTEM_INFO,        809, systemInfoLoop) \
     X(SHUTDOWN,           810, shutdownLoop) \
     X(WEATHER,            811, weatherLoop) \
+    \
+    /* UART (812-819) */ \
+    X(UART,               812, uartMenuLoop) \
+    X(UART_TERMINAL,      813, uartTerminalLoop) \
+    X(UART_CONFIG_RX,     814, uartConfigRxLoop) \
+    X(UART_CONFIG_TX,     815, uartConfigTxLoop) \
+    X(UART_CONFIG_BAUD,   816, uartConfigBaudLoop) \
 
 namespace PID {
     #define X(name, id, fn) const int name = id;

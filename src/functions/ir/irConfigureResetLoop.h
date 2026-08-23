@@ -7,7 +7,7 @@ void irConfigureResetLoop() {
 			"TX: G" + String(irTxPin) + "  RX: G" + String(irRxPin),
 		};
 		centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
-		drawHintCustom("enter: confirm", "A: confirm");
+		drawHintCustom("enter: reset", "A: reset");
 		updateTimer();
 	}
 
