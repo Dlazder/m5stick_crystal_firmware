@@ -45,7 +45,7 @@ static String& _uartLine(int i) {
 static void _uartLayout() {
 	canvas.setTextSize(TINY_TEXT);
 	int lineH = canvas.fontHeight();
-	int visible = (canvas.height() - (lineH + 6)) / lineH;
+	int visible = (canvas.height() - (lineH + 6)) / lineH - 1; // -1 leaves room for the live partial line
 	_uartVisibleCount = (visible < 1) ? 1 : visible;
 }
 
@@ -67,32 +67,42 @@ static void _uartDraw() {
 		y += lineH;
 	}
 
+	// Live partial line (data received without a trailing newline yet).
+	if (_uartScroll == 0 && _uartPending.length() > 0) {
+		canvas.setCursor(4, y);
+		canvas.print(_uartPending.c_str());
+	}
+
 	_uartDirty = false;
 	drawHintCustom("enter: send  ;/: scroll", "A: send  PWR: scroll");
 }
 
-static void _uartPoll() {
-	if (!_uartPort) return;
-	int newLines = 0;
+static bool _uartReadStream(Stream& stream) {
 	bool got = false;
-	while (_uartPort->available()) {
-		char c = (char)_uartPort->read();
-		if (c == '\r') continue;
-		if (c == '\n') {
+	while (stream.available()) {
+		char c = (char)stream.read();
+		got = true;
+		if (c == '\n' || c == '\r') {
+			// Treat LF, CR and CRLF all as line terminators.
+			if (c == '\r' && stream.peek() == '\n') stream.read(); // swallow the LF of a CRLF pair
 			_uartCommit(_uartPending);
+			handleSerialCommandLine(_uartPending, stream); // run /commands, reply to the same stream
 			_uartPending = "";
-			newLines++;
+			if (_uartScroll > 0) _uartScroll++; // keep the view pinned while scrolled up
 		} else {
 			_uartPending += c;
 			if (_uartPending.length() > UART_MAX_LINE)
 				_uartPending = _uartPending.substring(_uartPending.length() - UART_MAX_LINE);
 		}
-		got = true;
 	}
-	if (got) {
-		if (_uartScroll > 0) _uartScroll += newLines; // keep the view pinned while scrolled up
-		_uartDirty = true;
-	}
+	return got;
+}
+
+static void _uartPoll() {
+	bool got = false;
+	if (_uartPort) got = _uartReadStream(*_uartPort); // GPIO UART
+	if (_uartReadStream(Serial)) got = true;          // USB Serial
+	if (got) _uartDirty = true;
 }
 
 static void _uartSend(const char* buf) {
@@ -157,6 +167,10 @@ void uartTerminalLoop() {
 	}
 
 	if (checkExit()) {
-		if (_uartPort) { _uartPort->end(); _uartPort = nullptr; }
+		if (_uartPort) {
+			_uartPort->end();
+			_uartPort->begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin); // restore GPIO command listening
+		}
+		_uartPort = nullptr;
 	}
 }
