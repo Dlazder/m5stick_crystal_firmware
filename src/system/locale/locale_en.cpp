@@ -201,4 +201,6 @@ const Locale LANG_EN = {
 	.TXT_SETTINGS_WEBSERVER_FS   = "WebServer FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Timezone: ",
 	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "terminal",
+	.MENU_UART_SAVE_LOGS = "save logs",
 };

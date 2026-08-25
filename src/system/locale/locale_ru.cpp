@@ -201,4 +201,6 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
 	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "терминал",
+	.MENU_UART_SAVE_LOGS = "сохранить логи",
 };

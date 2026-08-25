@@ -201,4 +201,6 @@ const Locale LANG_RO = {
 	.TXT_SETTINGS_WEBSERVER_FS   = "Server FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Fus orar: ",
 	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "terminal",
+	.MENU_UART_SAVE_LOGS = "salvează loguri",
 };

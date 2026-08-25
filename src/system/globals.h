@@ -212,5 +212,6 @@ uint8_t irTxPin = IR_SEND_PIN;
 uint8_t uartRxPin = UART_RX_PIN;
 uint8_t uartTxPin = UART_TX_PIN;
 uint32_t uartBaud = UART_BAUD_DEFAULT;
+bool uartLogEnabled = false; // write UART terminal traffic (RX/TX) to a log file
 
 Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);

@@ -62,5 +62,8 @@ void loadPreferences() {
 	uartBaud = getData("uartBaud", UART_BAUD_DEFAULT);
 	Serial.printf("UART: RX=%d TX=%d baud=%lu\n", uartRxPin, uartTxPin, (unsigned long)uartBaud);
 
+	uartLogEnabled = getData("uartLog", uartLogEnabled);
+	Serial.printf("UART log to file: %s\n", uartLogEnabled ? "enabled" : "disabled");
+
 	Serial.println("Preferences loaded");
 }

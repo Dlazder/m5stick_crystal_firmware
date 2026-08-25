@@ -201,4 +201,6 @@ const Locale LANG_FR = {
 	.TXT_SETTINGS_WEBSERVER_FS   = "Serveur web FS : ",
 	.TXT_SETTINGS_TIMEZONE       = "Fuseau horaire : ",
 	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "terminal",
+	.MENU_UART_SAVE_LOGS = "enregistrer les logs",
 };

@@ -204,6 +204,8 @@ struct Locale {
 
 	// UART menu
 	const char* MENU_UART;
+	const char* MENU_UART_TERMINAL;
+	const char* MENU_UART_SAVE_LOGS;
 };
 
 extern const Locale LANG_EN;

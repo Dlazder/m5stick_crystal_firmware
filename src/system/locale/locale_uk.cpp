@@ -201,4 +201,6 @@ const Locale LANG_UK = {
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Часовий пояс: ",
 	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "термінал",
+	.MENU_UART_SAVE_LOGS = "зберегти логи",
 };
