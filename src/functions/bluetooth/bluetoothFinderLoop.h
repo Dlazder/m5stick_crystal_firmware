@@ -55,7 +55,8 @@ void bluetoothFinderLoop() {
 
 	if (!scanning && checkTimer(1000)) {
 		BLEScan* pScan = BLEDevice::getScan();
-		pScan->start(1, onBleScanComplete, true);  // is_continue=true: keep accumulated results
+		pScan->clearResults();
+		pScan->start(1, onBleScanComplete, false);
 		scanning = true;
 	}
 
