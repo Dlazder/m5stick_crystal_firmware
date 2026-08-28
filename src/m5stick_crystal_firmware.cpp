@@ -16,6 +16,7 @@ void setup() {
 
   // GPIO UART — also accepts serial commands (in addition to USB Serial).
   Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
+  Serial2.setTimeout(50);
 
   canvas.createSprite(DISP.width(), DISP.height() - getStatusBarHeight());
   canvas.setTextColor(FGCOLOR, BGCOLOR);

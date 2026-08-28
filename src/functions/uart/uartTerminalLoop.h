@@ -184,12 +184,11 @@ void uartTerminalLoop() {
 		return;
 	}
 
-	// Scroll toward older data (physical: up key; buttons: PWR, wrapping to newest at top).
+	// Scroll toward older data (physical: up key; buttons: PWR, stops at oldest line).
 	if (isKbUpPressed() || isBtnPWRWasPressed()) {
 		int maxScroll = _uartCount - _uartVisibleCount;
 		if (maxScroll < 0) maxScroll = 0;
 		if (_uartScroll < maxScroll) _uartScroll++;
-		else _uartScroll = 0;
 		_uartDraw();
 	}
 	// Scroll toward newer data (physical keyboard only).
