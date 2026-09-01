@@ -16,7 +16,7 @@ for TEMPLATE in "$TEMPLATE_DIR"/*.json; do
 
     sed "s/__VERSION__/$VERSION/g" "$TEMPLATE" > "$PAYLOAD"
 
-    npx -y m5-burner publish-firmware "$PAYLOAD"
+    npx -y m5-burner publish-firmware "$PAYLOAD" || echo "WARNING: failed to publish $KEY, continuing..."
 
     rm -f "$PAYLOAD"
     echo ""

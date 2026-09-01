@@ -62,4 +62,9 @@ void handleSettingToggle(const char* key) {
 		statusBarSeconds = !getData("sbSeconds", statusBarSeconds);
 		setData("sbSeconds", statusBarSeconds);
 	}
+
+	if (strcmp(key, "uartLog") == 0) {
+		uartLogEnabled = !uartLogEnabled;
+		setData("uartLog", uartLogEnabled);
+	}
 }

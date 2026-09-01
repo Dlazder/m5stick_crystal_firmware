@@ -63,7 +63,6 @@ void irTvBGoneLoop() {
         tvbIndex = 0;
         tvbRunning = false;
         tvbDone = false;
-        irTxPin = IR_SEND_PIN;
         M5.Power.setExtOutput(true, m5::ext_none);
         centeredPrint("TV-B-Gone", MEDIUM_TEXT, true);
         drawHintCustom("enter: start", "A: start");
@@ -142,7 +141,7 @@ void irTvBGoneLoop() {
         tvbIndex = 0;
         tvbRunning = false;
         tvbDone = false;
-        IrSender.begin(IR_SEND_PIN);
+        IrSender.begin(irTxPin);
         centeredPrint("TV-B-Gone", MEDIUM_TEXT, true);
         drawHintCustom("enter: start", "A: start");
     }

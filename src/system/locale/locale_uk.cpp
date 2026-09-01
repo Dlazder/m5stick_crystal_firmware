@@ -61,6 +61,7 @@ const Locale LANG_UK = {
 	.MENU_IR_READ                = "читати сигнал",
 	.MENU_IR_SEND                = "надіслати сигнал",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "скинути ІЧ піни",
 
 	// IR text
 	.TXT_IR_WAITING              = "Очікування...",
@@ -199,4 +200,7 @@ const Locale LANG_UK = {
 	.TXT_SETTINGS_KB_GYRO        = "гіро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Часовий пояс: ",
+	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "термінал",
+	.MENU_UART_SAVE_LOGS = "зберегти логи",
 };

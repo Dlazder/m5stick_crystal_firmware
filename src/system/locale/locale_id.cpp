@@ -61,6 +61,7 @@ const Locale LANG_ID = {
     .MENU_IR_READ                 = "baca sinyal",
     .MENU_IR_SEND                 = "kirim sinyal",
     .MENU_IR_TV_B_GONE            = "TV-B-Gone",
+    .MENU_IR_CONFIG_RESET         = "reset pin IR",
 
     // IR text
     .TXT_IR_WAITING               = "Menunggu...",
@@ -199,4 +200,7 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
     .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
     .TXT_SETTINGS_TIMEZONE        = "Zona waktu: ",
+	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "terminal",
+	.MENU_UART_SAVE_LOGS = "simpan log",
 };

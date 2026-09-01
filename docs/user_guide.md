@@ -1,6 +1,6 @@
 # User guide
 
-## Cotnrols
+## Controls
 
 ### CardPuter
 
@@ -11,6 +11,12 @@
 ### StickCPlus2
 
 - navigation through menu: button B/pwr button
+- select menu item: button A
+- exit from function: button B
+
+### StickS3
+
+- navigation through menu: button B
 - select menu item: button A
 - exit from function: button B
 

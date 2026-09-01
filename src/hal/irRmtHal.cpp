@@ -4,9 +4,6 @@
 
 #include "irRmtHal.h"
 
-uint8_t irRxPin = 42;
-uint8_t irTxPin = 46;
-
 volatile uint8_t irTX = 0;
 volatile uint8_t irRX = 0;
 static volatile bool irTaskStop = false;

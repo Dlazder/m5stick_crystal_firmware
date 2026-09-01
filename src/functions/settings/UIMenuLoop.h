@@ -8,7 +8,7 @@ void settingsUIMenuLoop() {
 		{PID::SETTINGS_STATUS_BAR, L->MENU_SETTINGS_STATUS_BAR},
 		{PID::ICONS, L->MENU_SETTINGS_ICONS, nullptr, "icons"},
 		{PID::BRIGHTNESS, L->MENU_SETTINGS_BRIGHTNESS},
-		{PID::DIMMING, L->MENU_SETTINGS_DIMMING},
+		{PID::DIMMING, L->MENU_SETTINGS_DIMMING, Icons::sleep},
 		{PID::ROTATION, L->MENU_SETTINGS_ROTATION, Icons::rotation, "rotation"},
 	};
 	int settingsUIMenuSize = sizeof(settingsUIMenu) / sizeof(MENU);

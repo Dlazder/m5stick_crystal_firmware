@@ -1,4 +1,19 @@
 /**
+ * Determines which filesystem to use for a new capture: SD card first,
+ * falling back to LittleFS when no SD card is available.
+ * @return true if LittleFS should be used, false for SD.
+ */
+bool detectUseLittleFS() {
+	bool useLittleFS = false;
+	bool ready = sdBegin();
+	if (!ready) {
+		ready = lfsBegin();
+		useLittleFS = ready;
+	}
+	return useLittleFS;
+}
+
+/**
  * Generates a unique file path by appending an incrementing counter
  * before the extension until an unused name is found.
  *
@@ -7,10 +22,11 @@
  *
  * @param basePath    Path before the counter (e.g. "/handshake_MyWiFi")
  * @param ext         File extension including dot (e.g. ".pcap")
- * @param useLittleFS true = check LittleFS, false = check SD
+ * @param useLittleFS Filesystem to check: defaults to auto-detection (SD first,
+ *                    LittleFS fallback); pass true/false to force LittleFS/SD.
  * @return Unique path like "/handshake_MyWiFi_1.pcap"
  */
-String generateUniqueFilename(const String& basePath, const String& ext, bool useLittleFS) {
+String generateUniqueFilename(const String& basePath, const String& ext, bool useLittleFS = detectUseLittleFS()) {
 	String path;
 	int n = 1;
 	do {
@@ -18,6 +34,23 @@ String generateUniqueFilename(const String& basePath, const String& ext, bool us
 		n++;
 	} while (useLittleFS ? LittleFS.exists(path) : SD.exists(path));
 	return path;
+}
+
+/**
+ * Opens a new uniquely-named file for writing, choosing SD or LittleFS
+ * automatically (SD first, LittleFS fallback). Returns an open File handle
+ * (invalid if neither filesystem could be written).
+ * @param basePath    Path before the counter (e.g. "/uart")
+ * @param ext         File extension including dot (e.g. ".log")
+ * @param useLittleFS Filesystem to use: defaults to auto-detection; pass
+ *                    true/false to force LittleFS/SD.
+ * @return Open File handle, or an invalid File on failure.
+ */
+File openUniqueFile(const String& basePath, const String& ext, bool useLittleFS = detectUseLittleFS()) {
+	String path = generateUniqueFilename(basePath, ext, useLittleFS);
+	return useLittleFS
+		? LittleFS.open(path.c_str(), FILE_WRITE)
+		: SD.open(path.c_str(), FILE_WRITE);
 }
 
 bool fpActive = false;

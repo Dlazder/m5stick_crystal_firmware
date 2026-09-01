@@ -35,6 +35,19 @@
 // IR receiver pin (OUT of the module connected to G26)
 #define IR_RECEIVE_PIN 26
 
+// UART terminal — GROVE port (G33=TX, G32=RX)
+#define UART_TX_PIN 33
+#define UART_RX_PIN 32
+#define UART_BAUD_DEFAULT 115200
+
+// Available GPIOs broken out on the headers, used for IR TX/RX pin configuration.
+// Some pins drive built-in peripherals (SD: 0/26/32/36, Grove I2C: 32/33, buzzer: 2) —
+// picking one of those for IR will disable the peripheral while it is in use.
+static const uint8_t devicePins[] = {
+	0, 26, 32, 33, 36
+};
+static constexpr uint8_t devicePinsCount = sizeof(devicePins) / sizeof(devicePins[0]);
+
 // KEY_BACKSPACE value for BLE keyboard
 #define BLE_KEY_BACKSPACE  KEY_BACKSPACE
 

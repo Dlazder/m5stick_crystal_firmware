@@ -61,6 +61,7 @@ struct Locale {
 	const char* MENU_IR_READ;
 	const char* MENU_IR_SEND;
 	const char* MENU_IR_TV_B_GONE;
+	const char* MENU_IR_CONFIG_RESET;
 
 	// IR text
 	const char* TXT_IR_WAITING;
@@ -200,6 +201,11 @@ struct Locale {
 	const char* TXT_SETTINGS_KB_GYRO;
 	const char* TXT_SETTINGS_WEBSERVER_FS;
 	const char* TXT_SETTINGS_TIMEZONE;
+
+	// UART menu
+	const char* MENU_UART;
+	const char* MENU_UART_TERMINAL;
+	const char* MENU_UART_SAVE_LOGS;
 };
 
 extern const Locale LANG_EN;

@@ -92,6 +92,18 @@
 #include "../functions/ir/irReadLoop.h"
 #include "../functions/ir/irSendLoop.h"
 #include "../functions/ir/irTvBGoneLoop.h"
+#include "../functions/ir/irConfigurePinsMenuLoop.h"
+#include "../functions/ir/irConfigureTxLoop.h"
+#include "../functions/ir/irConfigureRxLoop.h"
+#include "../functions/ir/irConfigureResetLoop.h"
+
+
+// UART
+#include "../functions/uart/uartMenuLoop.h"
+#include "../functions/uart/uartTerminalLoop.h"
+#include "../functions/uart/uartConfigRxLoop.h"
+#include "../functions/uart/uartConfigTxLoop.h"
+#include "../functions/uart/uartConfigBaudLoop.h"
 
 
 // USB

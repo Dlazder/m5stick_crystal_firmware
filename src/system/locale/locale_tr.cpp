@@ -61,6 +61,7 @@ const Locale LANG_TR = {
 	.MENU_IR_READ                = "sinyal oku",
 	.MENU_IR_SEND                = "sinyal gönder",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "IR pinlerini sıfırla",
 
 	// IR text
 	.TXT_IR_WAITING              = "Bekleniyor...",
@@ -199,4 +200,7 @@ const Locale LANG_TR = {
 	.TXT_SETTINGS_KB_GYRO        = "Gyro klavye: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Web sunucu FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Saat dilimi: ",
+	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "terminal",
+	.MENU_UART_SAVE_LOGS = "logları kaydet",
 };

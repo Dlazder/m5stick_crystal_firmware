@@ -61,6 +61,7 @@ const Locale LANG_RU = {
 	.MENU_IR_READ                = "читать сигнал",
 	.MENU_IR_SEND                = "отправить сигнал",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "сбросить ИК пины",
 
 	// IR text
 	.TXT_IR_WAITING              = "Ожидание...",
@@ -199,4 +200,7 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_KB_GYRO        = "гиро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
+	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "терминал",
+	.MENU_UART_SAVE_LOGS = "сохранить логи",
 };

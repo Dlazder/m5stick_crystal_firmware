@@ -61,6 +61,7 @@ const Locale LANG_PL = {
 	.MENU_IR_READ                = "odczytaj sygnał",
 	.MENU_IR_SEND                = "wyślij sygnał",
 	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+	.MENU_IR_CONFIG_RESET        = "zresetuj piny IR",
 
 	// IR text
 	.TXT_IR_WAITING              = "Oczekiwanie...",
@@ -199,4 +200,7 @@ const Locale LANG_PL = {
 	.TXT_SETTINGS_KB_GYRO        = "Żyro klaw.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Serwer FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Strefa czasowa: ",
+	.MENU_UART = "UART",
+	.MENU_UART_TERMINAL = "terminal",
+	.MENU_UART_SAVE_LOGS = "zapisz logi",
 };

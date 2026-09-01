@@ -31,9 +31,7 @@ bool keyboardLoop(
 	void (*onEnter)(const char* buf),
 	void (*onChar)(char ch)
 ) {
-	kbBlinkCounter++;
-	if (kbBlinkCounter >= 100) {
-		kbBlinkCounter  = 0;
+	if (checkTimer(KB_BLINK_MS, true, &kbBlinkTimer)) {
 		kbCursorVisible = !kbCursorVisible;
 		drawKeyboardUi();
 	}

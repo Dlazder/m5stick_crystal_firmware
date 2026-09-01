@@ -32,3 +32,5 @@
 
 #include "../utils/commandUtils/screenshotCommand.h"
 #include "../utils/commandUtils/info.h"
+#include "../utils/commandUtils/help.h"
+#include "../utils/commandUtils/shutdown.h"

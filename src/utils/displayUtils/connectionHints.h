@@ -110,36 +110,3 @@ void connectionGuideNFC() {
 
 	_drawPinTable(title, "PN532 (I2C)", hRight, rows, rowCount);
 }
-
-
-void connectionGuideIR() {
-	const char* title = "Connect IR Receiver";
-
-	#if CARDPUTER
-		const char* rows[][2] = {
-			{"VCC", "5V IN/OUT"},
-			{"GND", "GND"},
-			{"OUT", "G3"},
-		};
-		int rowCount = 3;
-		const char* hRight = "Cardputer";
-	#elif STICKS3
-		const char* rows[][2] = {
-			{"VCC", "built-in"},
-			{"GND", "built-in"},
-			{"OUT", "built-in"},
-		};
-		int rowCount = 3;
-		const char* hRight = "StickS3";
-	#else
-		const char* rows[][2] = {
-			{"VCC", "3.3V"},
-			{"GND", "GND"},
-			{"OUT", "G26"},
-		};
-		int rowCount = 3;
-		const char* hRight = "StickCP2";
-	#endif
-
-	_drawPinTable(title, "IR RX", hRight, rows, rowCount);
-}

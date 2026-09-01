@@ -53,5 +53,17 @@ void loadPreferences() {
 	timezoneOffset = getData("timezone", timezoneOffset);
 	Serial.printf("Timezone offset: %d\n", timezoneOffset);
 
+	irRxPin = getData("irRxPin", IR_RECEIVE_PIN);
+	irTxPin = getData("irTxPin", IR_SEND_PIN);
+	Serial.printf("IR pins: RX=%d TX=%d\n", irRxPin, irTxPin);
+
+	uartRxPin = getData("uartRxPin", UART_RX_PIN);
+	uartTxPin = getData("uartTxPin", UART_TX_PIN);
+	uartBaud = getData("uartBaud", UART_BAUD_DEFAULT);
+	Serial.printf("UART: RX=%d TX=%d baud=%lu\n", uartRxPin, uartTxPin, (unsigned long)uartBaud);
+
+	uartLogEnabled = getData("uartLog", uartLogEnabled);
+	Serial.printf("UART log to file: %s\n", uartLogEnabled ? "enabled" : "disabled");
+
 	Serial.println("Preferences loaded");
 }

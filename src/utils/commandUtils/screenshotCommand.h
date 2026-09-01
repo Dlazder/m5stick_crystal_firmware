@@ -2,13 +2,13 @@
 
 // Takes a BMP screenshot of the full display and saves it to SD card.
 // Returns the file path on success, or error message on failure.
-void screenshotCommand() {
+void screenshotCommand(Print& out) {
 #if !HAS_SD
-    Serial.println("Error: no SD card support");
+    out.println("Error: no SD card support");
     return;
 #else
     if (!sdBegin()) {
-        Serial.println("Error: SD init failed");
+        out.println("Error: SD init failed");
         return;
     }
 
@@ -68,6 +68,6 @@ void screenshotCommand() {
     }
 
     f.close();
-    Serial.println("Screenshot saved: " + filePath);
+    out.println("Screenshot saved: " + filePath);
 #endif
 }

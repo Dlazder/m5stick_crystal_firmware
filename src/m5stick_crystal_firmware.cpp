@@ -1,9 +1,9 @@
 #include "./system/globals.h"
 #include "./system/utils.h"
+#include "./system/serialCommandHandler.h"
 #include "./system/functions.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
-#include "./system/serialCommandHandler.h"
 
 void setup() {
   deviceInit();
@@ -13,6 +13,10 @@ void setup() {
   Serial.printf("[DEBUG] SDA=%d  SCL=%d\n", SDA, SCL);
   preferences.begin("storage", false);
   loadPreferences();
+
+  // GPIO UART — also accepts serial commands (in addition to USB Serial).
+  Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
+  Serial2.setTimeout(50);
 
   canvas.createSprite(DISP.width(), DISP.height() - getStatusBarHeight());
   canvas.setTextColor(FGCOLOR, BGCOLOR);
@@ -48,7 +52,12 @@ void loop() {
   globalTimer = millis();
   deviceUpdate();
 
-  handleSerialCommands();
+  // Serial command handlers — skipped while the terminal is active, since the
+  // terminal reads both USB and GPIO UART itself (and runs commands from them).
+  if (process != PID::UART_TERMINAL) {
+    handleSerialCommands(Serial);
+    handleSerialCommands(Serial2);
+  }
 
   dimmerUpdate();
 
